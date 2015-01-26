@@ -7,8 +7,8 @@
       <tbody>
         {{#each lines}}
           <tr>
-            <td {{bind-attr class=":line-num type"}}>{{deletedLineNum}}</td>
-            <td {{bind-attr class=":line-num type"}}>{{insertedLineNum}}</td>
+            <td {{bind-attr class=":line-num type" data-line-num=deletedLineNum}}></td>
+            <td {{bind-attr class=":line-num type" data-line-num=insertedLineNum}}></td>
             <td {{bind-attr class=":line-code type"}}>{{content}}</td>
           </tr>
         {{/each}}

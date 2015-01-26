@@ -42,6 +42,10 @@ html, body {
   text-align: right;
 }
 
+.line-num:before {
+  content: attr(data-line-num);
+}
+
 .line-num.deleted {
   background-color: #ffdddd;
   border-color: #f1c0c0;
