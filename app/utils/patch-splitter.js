@@ -15,12 +15,12 @@ export default function patchSplitter(patch) {
       diffStarted = false;
       match = line.match(filePathPattern);
       currentDiff = {
-        content: '',
         filePath: match[1].trim(),
+        rawLines: Ember.A(),
       };
       diffs.pushObject(currentDiff);
     } else if (diffStarted) {
-      currentDiff.content += line + "\n";
+      currentDiff.rawLines.pushObject(line);
     } else if (diffStartPattern.test(line)) {
       diffStarted = true;
     }

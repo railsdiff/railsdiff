@@ -1,51 +1,41 @@
-/* global Prism */
 import Ember from 'ember';
 
-var grammar = {
-  'deleted': /^\-.*$/m,
-  'inserted': /^\+.*$/m,
-};
+var comment = /^\\/,
+    deleted = /^\-/,
+    inserted = /^\+/;
 
 export default Ember.Object.extend({
-  lines: Ember.computed('tokens', function() {
+  lines: Ember.computed('rawLines', function() {
     var deletedLineNum = 1,
         insertedLineNum = 1,
-        lineConstructor = this.container.lookupFactory('model:line');
+        lineModel = this.container.lookupFactory('model:line');
 
-    return this.get('tokens').map(function(token) {
-      if (Ember.typeOf(token) === 'string') {
-        return lineConstructor.create({
-          deletedLineNum: deletedLineNum++,
-          insertedLineNum: insertedLineNum++,
-          content: token,
-          type: 'unchanged',
-        });
-      } else if (token.type === 'deleted') {
-        return lineConstructor.create({
-          content: token.content,
-          deletedLineNum: deletedLineNum++,
-          type: token.type,
-        });
-      } else {
-        return lineConstructor.create({
-          content: token.content,
-          insertedLineNum: insertedLineNum++,
-          type: token.type,
-        });
-      }
-    });
-  }),
-  tokens: Ember.computed('content', function() {
-    return Prism.tokenize(this.get('content'), grammar)
-      .reduce(function(array, token) {
-        if (Ember.typeOf(token) === 'string') {
-          token.split('\n')
-            .filter(function(string) { return string !== ''; })
-            .forEach(function(string) { array.pushObject(string); });
+    return this.get('rawLines').map(function(line) {
+        if (comment.test(line)) {
+          return lineModel.create({
+            content: line,
+            type: 'comment',
+          });
+        } else if (deleted.test(line)) {
+          return lineModel.create({
+            content: line,
+            deletedLineNum: deletedLineNum++,
+            type: 'deleted',
+          });
+        } else if (inserted.test(line)) {
+          return lineModel.create({
+            content: line,
+            insertedLineNum: insertedLineNum++,
+            type: 'inserted',
+          });
         } else {
-          array.pushObject(token);
+          return lineModel.create({
+            content: line,
+            deletedLineNum: deletedLineNum++,
+            insertedLineNum: insertedLineNum++,
+            type: 'unchanged',
+          });
         }
-        return array;
-      }, Ember.A());
+      });
   })
 });

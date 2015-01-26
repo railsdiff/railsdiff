@@ -24,6 +24,11 @@ html, body {
   white-space: pre;
 }
 
+.line-code.comment {
+  background-color: #fafafa;
+  color: rgba(0,0,0,0.3);
+}
+
 .line-code.deleted {
   background-color: #ffecec;
 }
@@ -44,6 +49,10 @@ html, body {
 
 .line-num:before {
   content: attr(data-line-num);
+}
+
+.line-num.comment {
+  background-color: #fafafa;
 }
 
 .line-num.deleted {
