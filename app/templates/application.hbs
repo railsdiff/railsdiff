@@ -1,0 +1,15 @@
+<h2 id="title">Welcome to Ember.js</h2>
+
+<label>
+  Source
+  {{view "select" content=sources value=sourceVersion}}
+</label>
+
+<label>
+  Target
+  {{view "select" content=targets value=targetVersion}}
+</label>
+
+<button {{action 'transition'}}>View Diff</button>
+
+{{outlet}}
