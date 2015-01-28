@@ -1,15 +1,19 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<header>
+  {{#link-to 'index'}}<h1>RailsDiff</h1>{{/link-to}}
 
-<label>
-  Source
-  {{view "select" content=sources value=sourceVersion}}
-</label>
+  <form>
+    <label>
+      Source
+      {{view "select" content=sources value=sourceVersion}}
+    </label>
+    <label>
+      Target
+      {{view "select" content=targets value=targetVersion}}
+    </label>
+    <button {{action 'transition'}}>View Diff</button>
+  </form>
+</header>
 
-<label>
-  Target
-  {{view "select" content=targets value=targetVersion}}
-</label>
-
-<button {{action 'transition'}}>View Diff</button>
-
-{{outlet}}
+<div class="content">
+  {{outlet}}
+</div>
