@@ -14,6 +14,13 @@
   </form>
 </header>
 
+{{#if errorMessage}}
+  <div class="error">
+    <h1>An error has occurred!</h1>
+    <span>{{errorMessage}}</span>
+  </div>
+{{/if}}
+
 <div class="content">
   {{outlet}}
 </div>
