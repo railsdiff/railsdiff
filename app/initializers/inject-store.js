@@ -1,4 +1,4 @@
-import Store from 'rails-diff-ember/models/store';
+import Store from '../models/store';
 
 export function initialize(container, application) {
   application.register('store:main', Store);

@@ -1,4 +1,4 @@
-import patchSplitter from 'rails-diff-ember/utils/patch-splitter';
+import patchSplitter from 'rails-diff/utils/patch-splitter';
 
 module('patchSplitter');
 

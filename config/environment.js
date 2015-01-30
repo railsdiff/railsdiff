@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'rails-diff-ember',
+    modulePrefix: 'rails-diff',
     environment: environment,
     baseURL: '/',
     locationType: 'hash',

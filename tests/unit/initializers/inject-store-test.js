@@ -1,5 +1,5 @@
 // import Ember from 'ember';
-// import { initialize } from 'rails-diff-ember/initializers/inject-store';
+// import { initialize } from 'rails-diff/initializers/inject-store';
 
 // var container, application;
 

@@ -1,7 +1,7 @@
 {
-  "name": "rails-diff-ember",
+  "name": "rails-diff",
   "version": "0.0.0",
-  "description": "Small description for rails-diff-ember goes here",
+  "description": "Small description for rails-diff goes here",
   "private": true,
   "directories": {
     "doc": "doc",
