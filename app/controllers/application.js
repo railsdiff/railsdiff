@@ -7,6 +7,7 @@ export default Ember.Controller.extend(ControllerMessaging, {
       this.transitionToRoute('patch', this.get('sourceVersion'), this.get('targetVersion'));
     }
   },
+  showForm: Ember.computed.and('sources.length', 'targets.length'),
   sourceVersion: Ember.computed.oneWay('sources.[].1'),
   sources: Ember.computed('model', function() {
     return Ember.keys(this.get('model')).reverse();

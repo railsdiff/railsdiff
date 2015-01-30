@@ -1,17 +1,19 @@
 <header>
   {{#link-to 'index'}}<h1>RailsDiff</h1>{{/link-to}}
 
-  <form>
-    <label>
-      Source
-      {{view "select" content=sources value=sourceVersion}}
-    </label>
-    <label>
-      Target
-      {{view "select" content=targets value=targetVersion}}
-    </label>
-    <button {{action 'transition'}}>View Diff</button>
-  </form>
+  {{#if showForm}}
+    <form>
+      <label>
+        Source
+        {{view "select" content=sources value=sourceVersion}}
+      </label>
+      <label>
+        Target
+        {{view "select" content=targets value=targetVersion}}
+      </label>
+      <button {{action 'transition'}}>View Diff</button>
+    </form>
+  {{/if}}
 </header>
 
 {{#each messages}}
