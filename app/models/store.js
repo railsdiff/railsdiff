@@ -5,7 +5,7 @@ var cache = {};
 export default Ember.Object.extend({
   find: function(name, id) {
     if (cache[name] && cache[name][id]) {
-      return cache[name][id];
+      return Ember.RSVP.resolve(cache[name][id]);
     }
 
     var adapter = this.container.lookup('adapter:' + name),
