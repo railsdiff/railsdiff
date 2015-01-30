@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import ControllerMessaging from '../mixins/controller-messaging';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(ControllerMessaging, {
   actions: {
     transition: function() {
       this.transitionToRoute('patch', this.get('sourceVersion'), this.get('targetVersion'));

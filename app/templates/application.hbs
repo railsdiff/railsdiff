@@ -14,12 +14,12 @@
   </form>
 </header>
 
-{{#if errorMessage}}
-  <div class="error">
-    <h1>An error has occurred!</h1>
-    <span>{{errorMessage}}</span>
+{{#each messages}}
+  <div {{bind-attr class=":message type" data-message-type=type}}>
+    <span>{{message}}</span>
+    <a href=":javascript" {{action 'dismissMessage' this}}>X</a>
   </div>
-{{/if}}
+{{/each}}
 
 <div class="content">
   {{outlet}}

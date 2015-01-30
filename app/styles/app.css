@@ -120,6 +120,44 @@ header h1 {
   border-color: #c1e9c1;
 }
 
+.message {
+    margin: 0 auto;
+    width: 80%;
+    border: 1px solid;
+    padding: 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.message:before {
+    content: attr(data-message-type);
+}
+
+.message.error {
+    border-color: rgb(237, 177, 177);
+    background-color: rgb(250, 222, 222);
+    color: rgb(176, 109, 109);
+}
+
+.message * {
+    text-transform: none;
+    font-weight: normal;
+    color: initial;
+}
+
+.message a {
+    text-decoration: none;
+    float: right;
+}
+
+.message.error a {
+    color: rgb(176, 109, 109);
+}
+
+.message span {
+    margin-left: 1em;
+}
+
 .meta {
   background-color: #f7f7f7;
   border-bottom: 1px solid #d8d8d8;

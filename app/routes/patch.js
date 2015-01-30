@@ -1,14 +1,11 @@
 import Ember from 'ember';
+import RouteMessaging from '../mixins/route-messaging';
 
-export default Ember.Route.extend({
-  actions: {
-    error: function(e) {
-      if (e && e.jqXHR && e.jqXHR.status === 404) {
-        this.transitionTo('notFound', 'not-found');
-      } else {
-        return true;
-      }
-    }
+export default Ember.Route.extend(RouteMessaging, {
+  modelError: function() {
+    this.addMessage('error',
+        'Could not connect to server to download diff data. Perhaps try again later.');
+    return {};
   },
 
   model: function(params) {
@@ -17,6 +14,7 @@ export default Ember.Route.extend({
       .set('targetVersion', params.target);
 
     var id = ['v', params.source, '/v', params.target].join('');
-    return this.store.find('patch', id);
+    return this.store.find('patch', id)
+      .then(null, this.modelError.bind(this));
   }
 });
