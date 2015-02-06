@@ -35,10 +35,11 @@ header a:active,
 header a:hover,
 header a:visited {
   color: inherit;
+  text-decoration: inherit;
 }
 
 header form {
-display: inline-block;
+  display: inline-block;
 }
 
 header h1 {
@@ -48,6 +49,10 @@ header h1 {
   background-image: url(/logo.png);
   background-repeat: no-repeat;
   padding-left: 49px;
+}
+
+.about {
+  margin-left: 1em;
 }
 
 .content {
