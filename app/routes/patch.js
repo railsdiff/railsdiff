@@ -16,5 +16,13 @@ export default Ember.Route.extend(RouteMessaging, {
     var id = ['v', params.source, '/v', params.target].join('');
     return this.store.find('patch', id)
       .then(null, this.modelError.bind(this));
+  },
+
+  titleToken: function() {
+    var application = this.controllerFor('application'),
+        source = application.get('sourceVersion'),
+        target = application.get('targetVersion');
+
+    return ['Rails', source, '-', target, 'diff'].join(' ');
   }
 });

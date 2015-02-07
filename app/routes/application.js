@@ -20,5 +20,9 @@ export default Ember.Route.extend(RouteMessaging, {
   model: function() {
     return this.store.find('version')
       .then(null, this.modelError.bind(this));
+  },
+
+  title: function(tokens) {
+    return tokens.concat('RailsDiff').join(' - ');
   }
 });
