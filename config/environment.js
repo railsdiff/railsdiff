@@ -2,6 +2,9 @@
 
 module.exports = function(environment) {
   var ENV = {
+    contentSecurityPolicy: {
+      "script-src": "'self' 'unsafe-eval' 'unsafe-inline' *.google-analytics.com",
+    },
     modulePrefix: 'rails-diff',
     environment: environment,
     baseURL: '/',
