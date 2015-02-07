@@ -55,6 +55,12 @@ header h1 {
   margin-left: 1em;
 }
 
+.block {
+  float: left;
+  margin-right: 2%;
+  width: 48%;
+}
+
 .content {
   margin: 0 auto;
   width: 90%;
@@ -74,6 +80,18 @@ header h1 {
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-bottom: 2em;
+}
+
+.form-container {
+  margin-top: 1em;
+}
+
+.form-container td {
+  vertical-align: top;
+}
+
+.index {
+  font-size: larger;
 }
 
 .line-code {
@@ -182,6 +200,11 @@ header h1 {
 
   header h1 {
     background-size: 29px auto;
+  }
+
+  .block {
+    float: none;
+    width: initial;
   }
 
   .line-code {
