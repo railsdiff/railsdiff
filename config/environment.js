@@ -8,7 +8,7 @@ module.exports = function(environment) {
     modulePrefix: 'rails-diff',
     environment: environment,
     baseURL: '/',
-    locationType: 'hash',
+    locationType: 'auto',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
