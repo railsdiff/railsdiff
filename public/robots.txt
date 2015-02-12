@@ -1,2 +1,4 @@
-# http://www.robotstxt.org
+Sitemap: http://railsdiff.org/sitemap.txt
+
 User-agent: *
+Disallow:
