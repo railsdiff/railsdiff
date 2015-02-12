@@ -1,0 +1,9 @@
+/* TEAM */
+Principal: Jacob Swanner
+Contact: jacob [at] jacobswanner.com
+Twitter: @jswanner
+Location: Orlando, FL
+
+/* SITE */
+Language: English
+Doctype: HTML5
