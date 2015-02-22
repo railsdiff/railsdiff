@@ -7,6 +7,8 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.resource('patch', {path: '/:source/:target'});
+  this.resource('diff', {path: '/diff/:source/:target'});
+  this.resource('html', {path: '/html/:path'});
   this.route('about');
   this.route('notFound', {path: '/*path'});
 });
