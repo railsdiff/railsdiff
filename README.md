@@ -1,7 +1,11 @@
 # RailsDiff
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is the Ember CLI app powering
+[http://railsdiff.org](http://railsdiff.org), this app gets its data
+from an [API](https://github.com/railsdiff/api). If you are wanting to
+make UI changes then you are in the right place; if on the other hand,
+you want to make changes to its data, head over to the API repository
+instead.
 
 ## Prerequisites
 
@@ -15,7 +19,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone https://github.com/railsdiff/railsdiff.git`
 * change into the new directory
 * `npm install`
 * `bower install`
@@ -38,10 +42,6 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 * `ember build` (development)
 * `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 
