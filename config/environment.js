@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-var apiHost = 'http://api.server.com';
+var apiHost = 'http://api.railsdiff.org';
 
 module.exports = function(environment) {
   var ENV = {
