@@ -8,12 +8,12 @@ export default Ember.Object.extend({
       return Ember.RSVP.resolve(cache[name][id]);
     }
 
-    var adapter = this.container.lookup('adapter:' + name),
-        modelConstructor = this.container.lookupFactory('model:' + name),
+    var Model = this.container.lookupFactory('model:' + name),
+        adapter = this.container.lookup('adapter:' + name),
         model;
     return adapter.find(name, id).then(function(record) {
       cache[name] = cache[name] || {};
-      model = cache[name][id] = modelConstructor && modelConstructor.create(record) || record;
+      model = cache[name][id] = Model && Model.create(record) || record;
       return model;
     });
   }
