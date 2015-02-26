@@ -1,8 +1,12 @@
 /* jshint node: true */
 
+var apiHost = 'http://api.server.com';
+
 module.exports = function(environment) {
   var ENV = {
+    apiHost: apiHost,
     contentSecurityPolicy: {
+      "connect-src": "'self' " + apiHost,
       "script-src": "'self' 'unsafe-eval' 'unsafe-inline' *.google-analytics.com",
     },
     modulePrefix: 'rails-diff',

@@ -7,10 +7,11 @@ export default Ember.Controller.extend(ControllerMessaging, {
       this.transitionToRoute('patch', this.get('sourceVersion'), this.get('targetVersion'));
     }
   },
-  showForm: Ember.computed.and('sources.length'),
-  sourceVersion: Ember.computed.oneWay('sources.[].1'),
-  sources: Ember.computed('model', function() {
-    return Ember.keys(this.get('model')).reverse();
+  showForm: Ember.computed.and('versions.length'),
+  sourceVersion: Ember.computed.oneWay('versions.[].1'),
+  sources: Ember.computed.alias('versions'),
+  versions: Ember.computed('model', function() {
+    return this.get('model').split('\n').reverse();
   }),
   targetValidator: function() {
     var targets = this.get('targets');
@@ -20,9 +21,11 @@ export default Ember.Controller.extend(ControllerMessaging, {
     }
   }.observes('targets'),
   targetVersion: Ember.computed.oneWay('targets.firstObject'),
-  targets: Ember.computed('model', 'sourceVersion', function() {
-    var sourceVersion = this.get('sourceVersion');
+  targets: Ember.computed('versions', 'sourceVersion', function() {
+    var versions = this.get('versions'),
+        sourceVersion = this.get('sourceVersion'),
+        sourceIndex = versions.indexOf(sourceVersion);
     if (!sourceVersion) { return []; }
-    return (this.get('model')[sourceVersion] || []).reverse();
+    return versions.slice(0, sourceIndex);
   })
 });
