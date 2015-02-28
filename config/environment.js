@@ -7,6 +7,7 @@ module.exports = function(environment) {
     apiHost: apiHost,
     contentSecurityPolicy: {
       "connect-src": "'self' " + apiHost,
+      "img-src": "'self' *.google-analytics.com",
       "script-src": "'self' 'unsafe-eval' 'unsafe-inline' *.google-analytics.com",
     },
     modulePrefix: 'rails-diff',
