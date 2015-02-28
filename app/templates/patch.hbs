@@ -6,10 +6,10 @@
     <table class="diff">
       <tbody>
         {{#each lines}}
-          <tr>
-            <td {{bind-attr class=":line-num type" data-line-num=deletedLineNum}}></td>
-            <td {{bind-attr class=":line-num type" data-line-num=insertedLineNum}}></td>
-            <td {{bind-attr class=":line-code type"}}>{{content}}</td>
+          <tr {{bind-attr class="type"}}>
+            <td class="line-num" {{bind-attr data-line-num=deletedLineNum}}></td>
+            <td class="line-num" {{bind-attr data-line-num=insertedLineNum}}></td>
+            <td class="line-code">{{content}}</td>
           </tr>
         {{/each}}
       </tbody>

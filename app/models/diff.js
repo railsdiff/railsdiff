@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Line from './line';
 
 var comment = /^\\/,
     deleted = /^\-/,
@@ -8,33 +9,36 @@ export default Ember.Object.extend({
   lines: Ember.computed('rawLines', function() {
     var deletedLineNum = 1,
         insertedLineNum = 1,
-        Line = this.container.lookupFactory('model:line');
+        previous = Ember.A([
+            Line.create(),
+            Line.create(),
+            Line.create()
+        ]);
 
-    return this.get('rawLines').map(function(line) {
-        if (comment.test(line)) {
-          return Line.create({
-            content: line,
-            type: 'comment',
-          });
-        } else if (deleted.test(line)) {
-          return Line.create({
-            content: line,
-            deletedLineNum: deletedLineNum++,
-            type: 'deleted',
-          });
-        } else if (inserted.test(line)) {
-          return Line.create({
-            content: line,
-            insertedLineNum: insertedLineNum++,
-            type: 'inserted',
-          });
+    return this.get('rawLines').map(function(content) {
+        var line;
+        if (comment.test(content)) {
+          return Line.createComment(content);
+        } else if (deleted.test(content)) {
+          line = Line.createDeleted(content, deletedLineNum++);
+          previous.invoke('markAsContext');
+          previous.shift();
+          previous.push(line);
+          return line;
+        } else if (inserted.test(content)) {
+          line = Line.createInserted(content, insertedLineNum++);
+          previous.invoke('markAsContext');
+          previous.shift();
+          previous.push(line);
+          return line;
         } else {
-          return Line.create({
-            content: line,
-            deletedLineNum: deletedLineNum++,
-            insertedLineNum: insertedLineNum++,
-            type: 'unchanged',
-          });
+          line = Line.createUnchanged(content, deletedLineNum++, insertedLineNum++);
+          if (previous.isAny('type', 'deleted') || previous.isAny('type', 'inserted')) {
+            line.markAsContext();
+          }
+          previous.shift();
+          previous.push(line);
+          return line;
         }
       });
   })

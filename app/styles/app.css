@@ -101,17 +101,21 @@ header h1 {
   white-space: pre-wrap;
 }
 
-.line-code.comment {
+.comment .line-code {
   background-color: #fafafa;
   color: rgba(0,0,0,0.3);
 }
 
-.line-code.deleted {
+.deleted .line-code {
   background-color: #ffecec;
 }
 
-.line-code.inserted {
+.inserted .line-code {
   background-color: #eaffea;
+}
+
+.unchanged .line-code {
+  background-color: #fafafa;
 }
 
 .line-num {
@@ -129,18 +133,30 @@ header h1 {
   content: attr(data-line-num);
 }
 
-.line-num.comment {
+.comment .line-num {
   background-color: #fafafa;
 }
 
-.line-num.deleted {
+.deleted .line-num {
   background-color: #ffdddd;
   border-color: #f1c0c0;
 }
 
-.line-num.inserted {
+.inserted .line-num {
   background-color: #dbffdb;
   border-color: #c1e9c1;
+}
+
+.unchanged .line-num {
+  background-color: #fafafa;
+}
+
+.unchanged+tr:not(.unchanged) td {
+  border-top: 1px solid #eee;
+}
+
+tr:not(.unchanged)+.unchanged td {
+  border-top: 1px solid #eee;
 }
 
 .message {
