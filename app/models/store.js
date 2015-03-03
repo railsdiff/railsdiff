@@ -1,20 +1,36 @@
 import Ember from 'ember';
 
-var cache = {};
-
 export default Ember.Object.extend({
+  buildRecord: function(name) {
+    var Model = this.container.lookupFactory('model:' + name);
+    return Model.create();
+  },
+  init: function() {
+    this._super();
+    this.cache = {};
+  },
   find: function(name, id) {
-    if (cache[name] && cache[name][id]) {
-      return Ember.RSVP.resolve(cache[name][id]);
+    if (this.cache[name] && this.cache[name][id]) {
+      return Ember.RSVP.resolve(this.cache[name][id]);
     }
 
-    var Model = this.container.lookupFactory('model:' + name),
-        adapter = this.container.lookup('adapter:' + name),
-        model;
-    return adapter.find(name, id).then(function(record) {
-      cache[name] = cache[name] || {};
-      model = cache[name][id] = Model && Model.create(record) || record;
-      return model;
-    });
-  }
+    var adapter = this.container.lookup('adapter:' + name);
+    return adapter.find(this, name, id);
+  },
+  findAll: function(name) {
+    var adapter = this.container.lookup('adapter:' + name);
+    return adapter.findAll(this, name);
+  },
+  recordForId: function(name, id) {
+    if (this.cache[name] && this.cache[name][id]) {
+      return this.cache[name][id];
+    }
+    var record = this.buildRecord(name);
+    record.set('id', id);
+    if (!this.cache[name]) {
+      this.cache[name] = {};
+    }
+    this.cache[name][id] = record;
+    return record;
+  },
 });

@@ -8,11 +8,11 @@ export default Ember.Controller.extend(ControllerMessaging, {
     }
   },
   showForm: Ember.computed.and('versions.length'),
-  sourceVersion: Ember.computed.oneWay('versions.[].1'),
-  sources: Ember.computed.alias('versions'),
-  versions: Ember.computed('model', function() {
-    return this.get('model').split('\n').reverse();
+  sourceVersion: Ember.computed.oneWay('sources.firstObject'),
+  sources: Ember.computed('versions', function() {
+    return this.get('versions').slice(1);
   }),
+  versions: Ember.computed.mapBy('model', 'version'),
   targetValidator: function() {
     var targets = this.get('targets');
 

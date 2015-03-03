@@ -18,7 +18,7 @@ export default Ember.Route.extend(RouteMessaging, {
   },
 
   model: function() {
-    return this.store.find('version')
+    return this.store.findAll('release')
       .then(null, this.modelError.bind(this));
   },
 
