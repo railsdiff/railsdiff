@@ -17,7 +17,7 @@ export default Ember.Controller.extend(ControllerMessaging, {
     var targets = this.get('targets');
 
     if (!targets.contains(this.get('targetVersion'))) {
-      this.set('targetVersion', targets[targets.length - 1]);
+      this.set('targetVersion', targets.get('lastObject'));
     }
   }.observes('targets'),
   targetVersion: Ember.computed.oneWay('targets.firstObject'),
