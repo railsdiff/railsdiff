@@ -7,7 +7,7 @@ export default Ember.Controller.extend(ControllerMessaging, {
       this.transitionToRoute('patch', this.get('sourceVersion'), this.get('targetVersion'));
     }
   },
-  showForm: Ember.computed.and('versions.length'),
+  showForm: Ember.computed.bool('versions.length'),
   sourceVersion: Ember.computed.oneWay('sources.firstObject'),
   sources: Ember.computed('versions', function() {
     return this.get('versions').slice(1);
