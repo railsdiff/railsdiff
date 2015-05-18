@@ -22,6 +22,7 @@ You will need the following things properly installed on your computer.
 * `git clone https://github.com/railsdiff/railsdiff.git`
 * change into the new directory
 * `npm install`
+* `npm install -g bower`
 * `bower install`
 
 ## Running / Development
