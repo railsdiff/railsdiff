@@ -1,12 +1,13 @@
 import Ember from 'ember';
-import ajax from 'ic-ajax';
 import config from '../config/environment';
 
 export default Ember.Object.extend({
+  ajax: Ember.inject.service(),
+
   find: function(store, name, id) {
-    return ajax(config.apiHost + '/' + id)
+    return this.get('ajax').request(config.apiHost + '/' + id, {dataType: 'text'})
       .then(function(result) {
-        var record = store.recordForId(name, id);
+        const record = store.recordForId(name, id);
         record.set('raw', result);
         return record;
       });

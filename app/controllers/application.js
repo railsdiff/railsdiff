@@ -3,9 +3,15 @@ import ControllerMessaging from '../mixins/controller-messaging';
 
 export default Ember.Controller.extend(ControllerMessaging, {
   actions: {
-    transition: function() {
+    sourceDidChange(value) {
+      this.set('sourceVersion', value);
+    },
+    targetDidChange(value) {
+      this.set('targetVersion', value);
+    },
+    transition() {
       this.transitionToRoute('patch', this.get('sourceVersion'), this.get('targetVersion'));
-    }
+    },
   },
   showForm: Ember.computed.bool('versions.length'),
   sourceVersion: Ember.computed.oneWay('sources.firstObject'),
@@ -16,7 +22,7 @@ export default Ember.Controller.extend(ControllerMessaging, {
   targetValidator: function() {
     var targets = this.get('targets');
 
-    if (!targets.contains(this.get('targetVersion'))) {
+    if (!targets.includes(this.get('targetVersion'))) {
       this.set('targetVersion', targets.get('lastObject'));
     }
   }.observes('targets'),
@@ -27,5 +33,5 @@ export default Ember.Controller.extend(ControllerMessaging, {
         sourceIndex = versions.indexOf(sourceVersion);
     if (!sourceVersion) { return []; }
     return versions.slice(0, sourceIndex);
-  })
+  }),
 });

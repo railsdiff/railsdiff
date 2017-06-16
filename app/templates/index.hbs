@@ -5,13 +5,13 @@
         <tr>
           <td>What version of Rails are you currently using?</td>
           <td>
-            {{view "select" content=sources value=sourceVersion}}
+            {{version-select didChange=(action "sourceDidChange") options=sources value=sourceVersion}}
           </td>
         </tr>
         <tr>
           <td>What version of Rails do you want to upgrade to?</td>
           <td>
-            {{view "select" content=targets value=targetVersion}}
+            {{version-select didChange=(action "targetDidChange") options=targets value=targetVersion}}
           </td>
         </tr>
         <tr>
