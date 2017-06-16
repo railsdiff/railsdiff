@@ -1,10 +1,10 @@
-/* jshint node: true */
+/* eslint-env node */
 
-var apiHost = 'http://api.railsdiff.org';
+const apiHost = 'http://api.railsdiff.org';
 
 module.exports = function(environment) {
   var ENV = {
-    apiHost: apiHost,
+    apiHost,
     contentSecurityPolicy: {
       "connect-src": "'self' " + apiHost,
       "img-src": "'self' *.google-analytics.com",
@@ -12,12 +12,16 @@ module.exports = function(environment) {
     },
     modulePrefix: 'rails-diff',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
       }
     },
 
@@ -37,7 +41,6 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter

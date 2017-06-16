@@ -7,18 +7,19 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{content-for 'head'}}
+    {{content-for "head"}}
 
     <link rel="shortcut icon" href="/logo.png" />
-    <link rel="stylesheet" href="assets/rails-diff.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/rails-diff.css">
 
-    {{content-for 'head-footer'}}
+    {{content-for "head-footer"}}
   </head>
   <body>
-    {{content-for 'body'}}
+    {{content-for "body"}}
 
-    <script src="assets/vendor.js"></script>
-    <script src="assets/rails-diff.js"></script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/rails-diff.js"></script>
     <script>
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-7325596-4']);
@@ -32,6 +33,6 @@
       })();
     </script>
 
-    {{content-for 'body-footer'}}
+    {{content-for "body-footer"}}
   </body>
 </html>

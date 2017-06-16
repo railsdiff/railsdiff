@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Line from './line';
 
 var comment = /^\\/,
     deleted = /^\-/,
@@ -6,9 +7,8 @@ var comment = /^\\/,
 
 export default Ember.Object.extend({
   lines: Ember.computed('rawLines', function() {
-    var deletedLineNum = 1,
-        insertedLineNum = 1,
-        Line = this.container.lookupFactory('model:line');
+    let deletedLineNum = 1;
+    let insertedLineNum = 1;
 
     return this.get('rawLines').map(function(line) {
         if (comment.test(line)) {
