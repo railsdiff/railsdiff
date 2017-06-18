@@ -82,6 +82,19 @@ header h1 {
   margin-bottom: 2em;
 }
 
+.file .links {
+  float: right;
+  font-size: 80%;
+}
+
+.file .links a.source {
+  color: #c88;
+}
+
+.file .links a.target {
+  color: #8c8;
+}
+
 .form-container {
   margin-top: 1em;
 }

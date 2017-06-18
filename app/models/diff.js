@@ -1,12 +1,16 @@
 import Ember from 'ember';
 import Line from './line';
+import config from '../config/environment';
+
+const { computed } = Ember;
+const { APP: { generatedFilesBaseUrl } } = config;
 
 var comment = /^\\/,
     deleted = /^\-/,
     inserted = /^\+/;
 
 export default Ember.Object.extend({
-  lines: Ember.computed('rawLines', function() {
+  lines: computed('rawLines', function() {
     let deletedLineNum = 1;
     let insertedLineNum = 1;
 
@@ -37,5 +41,12 @@ export default Ember.Object.extend({
           });
         }
       });
+  }),
+
+  sourceFileUrl: computed('sourceFilePath', function() {
+    return generatedFilesBaseUrl + this.get('sourceFilePath');
+  }),
+  targetFileUrl: computed('targetFilePath', function() {
+    return generatedFilesBaseUrl + this.get('targetFilePath');
   })
 });

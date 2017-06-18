@@ -1,29 +1,42 @@
-import Ember from 'ember';
-
-var newFilePattern = /^diff/;
-var filePathPattern = /\/v[^\/]+\/([^ ]+)$/;
-var diffStartPattern = /^@/;
+let newFilePattern = /^diff/;
+let filePathsPattern = /\/(v([^\/]+)\/[^ ]+) .*\/(v([^\/]+)\/([^ ]+))$/;
+let diffStartPattern = /^@/;
 
 export default function patchSplitter(patch) {
-  var lines = patch.split("\n"),
+  let lines = patch.split("\n"),
       diffStarted = false,
+      versionsMatched = false,
       currentDiff,
       match;
 
-  return lines.reduce(function(diffs, line) {
-    if (newFilePattern.test(line) && filePathPattern.test(line)) {
+  let result = {
+    sourceVersion: null,
+    targetVersion: null,
+    diffs: []
+  };
+
+  lines.forEach(function(line) {
+    if (newFilePattern.test(line) && filePathsPattern.test(line)) {
       diffStarted = false;
-      match = line.match(filePathPattern);
+      match = line.match(filePathsPattern);
+      if (!versionsMatched) {
+        versionsMatched = true;
+        result.sourceVersion = match[2];
+        result.targetVersion = match[4];
+      }
       currentDiff = {
-        filePath: match[1].trim(),
-        rawLines: Ember.A(),
+        sourceFilePath: match[1],
+        targetFilePath: match[3],
+        filePath: match[5],
+        rawLines: []
       };
-      diffs.pushObject(currentDiff);
+      result.diffs.push(currentDiff);
     } else if (diffStarted) {
-      currentDiff.rawLines.pushObject(line);
+      currentDiff.rawLines.push(line);
     } else if (diffStartPattern.test(line)) {
       diffStarted = true;
     }
-    return diffs;
-  }, Ember.A());
+  });
+
+  return result;
 }

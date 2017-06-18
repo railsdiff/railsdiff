@@ -2,6 +2,8 @@ import Diff from './diff';
 import Ember from 'ember';
 import patchSplitter from '../utils/patch-splitter';
 
+const { computed } = Ember;
+
 var diffSorter = function(a, b) {
   var aPath = a.get('filePath'),
       bPath = b.get('filePath');
@@ -12,9 +14,16 @@ var diffSorter = function(a, b) {
 };
 
 export default Ember.Object.extend({
-  diffs: Ember.computed('raw', function() {
-    return patchSplitter(this.get('raw')).map(function(diff) {
+  diffs: computed('_splittedPatch', function() {
+    return this.get('_splittedPatch').diffs.map(function(diff) {
       return Diff.create(diff);
     }).sort(diffSorter);
+  }),
+
+  sourceVersion: computed.alias('_splittedPatch.sourceVersion'),
+  targetVersion: computed.alias('_splittedPatch.targetVersion'),
+
+  _splittedPatch: computed('raw', function() {
+    return patchSplitter(this.get('raw'));
   })
 });
