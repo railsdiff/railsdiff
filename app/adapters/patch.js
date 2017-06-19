@@ -5,7 +5,7 @@ export default Ember.Object.extend({
   ajax: Ember.inject.service(),
 
   find: function(store, name, id) {
-    return this.get('ajax').request(config.apiHost + '/' + id, {dataType: 'text'})
+    return this.get('ajax').request(`${config.APP.apiHost}/${id}`, {dataType: 'text'})
       .then(function(result) {
         const record = store.recordForId(name, id);
         record.set('raw', result);

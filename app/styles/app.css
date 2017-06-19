@@ -189,6 +189,19 @@ header h1 {
   padding: 5px 10px;
 }
 
+.meta .links {
+  float: right;
+  font-size: 80%;
+}
+
+.meta .source {
+  color: #c88;
+}
+
+.meta .target {
+  color: #8c8;
+}
+
 @media (max-width: 600px) {
   body{
     font-size: 12px;

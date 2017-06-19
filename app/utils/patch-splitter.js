@@ -1,26 +1,28 @@
 import Ember from 'ember';
 
-var newFilePattern = /^diff/;
-var filePathPattern = /\/v[^\/]+\/([^ ]+)$/;
-var diffStartPattern = /^@/;
+let newFilePattern = /^diff/;
+let filePathsPattern = /\/v([^\/]+)\/.* .*\/v([^\/]+)\/([^ ]+)$/;
+let diffStartPattern = /^@/;
 
 export default function patchSplitter(patch) {
-  var lines = patch.split("\n"),
-      diffStarted = false,
-      currentDiff,
-      match;
+  const lines = patch.split("\n");
+  let currentDiff;
+  let diffStarted = false;
+  let match;
 
   return lines.reduce(function(diffs, line) {
-    if (newFilePattern.test(line) && filePathPattern.test(line)) {
+    if (newFilePattern.test(line) && filePathsPattern.test(line)) {
       diffStarted = false;
-      match = line.match(filePathPattern);
+      match = line.match(filePathsPattern);
       currentDiff = {
-        filePath: match[1].trim(),
-        rawLines: Ember.A(),
+        filePath: match[3],
+        rawLines: [],
+        sourceVersion: match[1],
+        targetVersion: match[2],
       };
       diffs.pushObject(currentDiff);
     } else if (diffStarted) {
-      currentDiff.rawLines.pushObject(line);
+      currentDiff.rawLines.push(line);
     } else if (diffStartPattern.test(line)) {
       diffStarted = true;
     }
