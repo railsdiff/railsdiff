@@ -14,16 +14,9 @@ var diffSorter = function(a, b) {
 };
 
 export default Ember.Object.extend({
-  diffs: computed('_splittedPatch', function() {
-    return this.get('_splittedPatch').diffs.map(function(diff) {
+  diffs: computed('raw', function() {
+    return patchSplitter(this.get('raw')).map(function(diff) {
       return Diff.create(diff);
     }).sort(diffSorter);
   }),
-
-  sourceVersion: computed.alias('_splittedPatch.sourceVersion'),
-  targetVersion: computed.alias('_splittedPatch.targetVersion'),
-
-  _splittedPatch: computed('raw', function() {
-    return patchSplitter(this.get('raw'));
-  })
 });
