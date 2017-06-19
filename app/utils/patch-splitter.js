@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 let newFilePattern = /^diff/;
-let filePathsPattern = /\/(v([^\/]+)\/[^ ]+) .*\/(v([^\/]+)\/([^ ]+))$/;
+let filePathsPattern = /\/v([^\/]+)\/.* .*\/v([^\/]+)\/([^ ]+)$/;
 let diffStartPattern = /^@/;
 
 export default function patchSplitter(patch) {
@@ -15,12 +15,10 @@ export default function patchSplitter(patch) {
       diffStarted = false;
       match = line.match(filePathsPattern);
       currentDiff = {
-        filePath: match[5],
+        filePath: match[3],
         rawLines: [],
-        sourceFilePath: match[1],
-        sourceVersion: match[2],
-        targetFilePath: match[3],
-        targetVersion: match[4],
+        sourceVersion: match[1],
+        targetVersion: match[2],
       };
       diffs.pushObject(currentDiff);
     } else if (diffStarted) {

@@ -25,8 +25,8 @@ module.exports = function(environment) {
     },
 
     APP: {
-      generatedFilesBaseUrl: 'https://github.com/railsdiff/api/raw/master/generated/'
       apiHost,
+      rawFileBaseUrl: 'https://github.com/railsdiff/api/raw/master/generated/'
     }
   };
 

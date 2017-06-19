@@ -3,7 +3,7 @@ import Line from './line';
 import config from '../config/environment';
 
 const { computed } = Ember;
-const { APP: { generatedFilesBaseUrl } } = config;
+const { APP: { rawFileBaseUrl } } = config;
 
 const comment = /^\\/;
 const deleted = /^\-/;
@@ -42,10 +42,12 @@ export default Ember.Object.extend({
       }
     });
   }),
-  sourceFileUrl: computed('sourceFilePath', function() {
-    return generatedFilesBaseUrl + this.get('sourceFilePath');
+  sourceFileUrl: computed('filePath', 'sourceVersion', function() {
+    const { filePath, sourceVersion } = this.getProperties('filePath', 'sourceVersion');
+    return `${rawFileBaseUrl}v${sourceVersion}/${filePath}`;
   }),
-  targetFileUrl: computed('targetFilePath', function() {
-    return generatedFilesBaseUrl + this.get('targetFilePath');
+  targetFileUrl: computed('filePath', 'targetVersion', function() {
+    const { filePath, targetVersion } = this.getProperties('filePath', 'targetVersion');
+    return `${rawFileBaseUrl}v${targetVersion}/${filePath}`;
   }),
 });
