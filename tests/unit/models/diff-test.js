@@ -1,17 +1,9 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('model:diff', 'Unit | Model | diff', {
-  // Specify the other units that are required for this test.
-  // needs: []
-});
-
-test('it exists', function(assert) {
-  let model = this.subject();
-  assert.ok(!!model);
-});
+moduleFor('model:diff', 'Unit | Model | diff');
 
 test('it returns generated urls', function(assert) {
-  let model = this.subject({
+  const model = this.subject({
     sourceFilePath: 'v3.1.1/Gemfile',
     targetFilePath: 'v3.2.6/Gemfile'
   });

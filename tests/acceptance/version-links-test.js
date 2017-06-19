@@ -1,18 +1,18 @@
-import { test } from 'qunit';
-import moduleForAcceptance from 'rails-diff/tests/helpers/module-for-acceptance';
 import Pretender from 'pretender';
+import moduleForAcceptance from 'rails-diff/tests/helpers/module-for-acceptance';
 import patch from '../fixtures/patch';
+import { test } from 'qunit';
 
 moduleForAcceptance('Acceptance | version links', {
+  afterEach() {
+    this.server.shutdown();
+  },
   beforeEach() {
     this.server = new Pretender();
     this.server.get('http://api.railsdiff.org/v3.1.1/v3.2.6', function() {
       return [200, {}, patch];
     });
   },
-  afterEach() {
-    this.server.shutdown();
-  }
 });
 
 const links = {
@@ -20,12 +20,12 @@ const links = {
   target: '.links .target'
 };
 
-function textFor(selector) {
-  return find(selector + ':first').text();
-}
-
 function hrefFor(selector) {
   return find(selector).attr('href');
+}
+
+function textFor(selector) {
+  return find(selector + ':first').text();
 }
 
 test('links are rendered', function(assert) {

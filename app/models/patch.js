@@ -4,9 +4,9 @@ import patchSplitter from '../utils/patch-splitter';
 
 const { computed } = Ember;
 
-var diffSorter = function(a, b) {
-  var aPath = a.get('filePath'),
-      bPath = b.get('filePath');
+const diffSorter = function(a, b) {
+  const aPath = a.get('filePath');
+  const bPath = b.get('filePath');
 
   if (aPath > bPath) { return 1; }
   if (aPath < bPath) { return -1; }

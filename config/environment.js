@@ -4,7 +4,6 @@ const apiHost = 'http://api.railsdiff.org';
 
 module.exports = function(environment) {
   var ENV = {
-    apiHost,
     contentSecurityPolicy: {
       "connect-src": "'self' " + apiHost,
       "img-src": "'self' *.google-analytics.com",
@@ -26,9 +25,8 @@ module.exports = function(environment) {
     },
 
     APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
       generatedFilesBaseUrl: 'https://github.com/railsdiff/api/raw/master/generated/'
+      apiHost,
     }
   };
 
