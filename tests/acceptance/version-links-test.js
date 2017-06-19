@@ -16,8 +16,8 @@ moduleForAcceptance('Acceptance | version links', {
 });
 
 const links = {
-  source: '.links a.source',
-  target: '.links a.target'
+  source: '.links .source',
+  target: '.links .target'
 };
 
 function textFor(selector) {
