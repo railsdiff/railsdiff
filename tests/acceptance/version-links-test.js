@@ -17,7 +17,7 @@ moduleForAcceptance('Acceptance | version links', {
 
 const links = {
   source: '.links .source',
-  target: '.links .target'
+  target: '.links .target',
 };
 
 function hrefFor(selector) {

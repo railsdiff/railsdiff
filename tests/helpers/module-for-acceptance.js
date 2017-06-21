@@ -7,6 +7,10 @@ const { Promise } = RSVP;
 
 export default function(name, options = {}) {
   module(name, {
+    afterEach() {
+      let afterEach = options.afterEach && options.afterEach.apply(this, arguments);
+      return Promise.resolve(afterEach).then(() => destroyApp(this.application));
+    },
     beforeEach() {
       this.application = startApp();
 
@@ -14,10 +18,5 @@ export default function(name, options = {}) {
         return options.beforeEach.apply(this, arguments);
       }
     },
-
-    afterEach() {
-      let afterEach = options.afterEach && options.afterEach.apply(this, arguments);
-      return Promise.resolve(afterEach).then(() => destroyApp(this.application));
-    }
   });
 }

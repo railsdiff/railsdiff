@@ -24,5 +24,5 @@ export default Route.extend(RouteMessaging, {
 
   title: function(tokens) {
     return tokens.concat('RailsDiff').join(' - ');
-  }
+  },
 });

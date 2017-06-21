@@ -8,5 +8,5 @@ export function initialize(application) {
 
 export default {
   name: 'inject-store',
-  initialize: initialize
+  initialize: initialize,
 };

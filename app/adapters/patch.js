@@ -12,5 +12,5 @@ export default EmberObject.extend({
         record.set('raw', result);
         return record;
       });
-  }
+  },
 });

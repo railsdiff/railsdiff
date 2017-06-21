@@ -24,5 +24,5 @@ export default Route.extend(RouteMessaging, {
     const target = application.get('targetVersion');
 
     return ['Rails', source, '-', target, 'diff'].join(' ');
-  }
+  },
 });

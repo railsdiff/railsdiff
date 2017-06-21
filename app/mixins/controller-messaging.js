@@ -15,5 +15,5 @@ export default Mixin.create({
   init: function() {
     this._super();
     this.set('messages', A());
-  }
+  },
 });

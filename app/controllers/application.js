@@ -21,7 +21,7 @@ export default Controller.extend(ControllerMessaging, {
   }),
   versions: mapBy('model', 'version'),
   targetValidator: function() {
-    var targets = this.get('targets');
+    const targets = this.get('targets');
 
     if (!targets.includes(this.get('targetVersion'))) {
       this.set('targetVersion', targets.get('lastObject'));
@@ -29,9 +29,10 @@ export default Controller.extend(ControllerMessaging, {
   }.observes('targets'),
   targetVersion: oneWay('targets.firstObject'),
   targets: computed('versions', 'sourceVersion', function() {
-    var versions = this.get('versions'),
-        sourceVersion = this.get('sourceVersion'),
-        sourceIndex = versions.indexOf(sourceVersion);
+    const versions = this.get('versions');
+    const sourceVersion = this.get('sourceVersion');
+    const sourceIndex = versions.indexOf(sourceVersion);
+
     if (!sourceVersion) { return []; }
     return versions.slice(0, sourceIndex);
   }),

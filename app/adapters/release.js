@@ -12,5 +12,5 @@ export default EmberObject.extend({
           return store.recordForId(name, version);
         });
       });
-  }
+  },
 });
