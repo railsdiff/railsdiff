@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { A } from 'ember-array/utils';
 
 let newFilePattern = /^diff/;
 let filePathsPattern = /\/v([^\/]+)\/.* .*\/v([^\/]+)\/([^ ]+)$/;
@@ -27,5 +27,5 @@ export default function patchSplitter(patch) {
       diffStarted = true;
     }
     return diffs;
-  }, Ember.A());
+  }, A());
 }

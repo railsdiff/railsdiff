@@ -1,5 +1,6 @@
-import Ember from 'ember';
+import EmberObject from 'ember-object';
+import { reads } from 'ember-computed';
 
-export default Ember.Object.extend({
-  version: Ember.computed.alias('id')
+export default EmberObject.extend({
+  version: reads('id')
 });

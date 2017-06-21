@@ -1,8 +1,7 @@
 import Diff from './diff';
-import Ember from 'ember';
+import EmberObject from 'ember-object';
+import computed from 'ember-computed';
 import patchSplitter from '../utils/patch-splitter';
-
-const { computed } = Ember;
 
 const diffSorter = function(a, b) {
   const aPath = a.get('filePath');
@@ -13,7 +12,7 @@ const diffSorter = function(a, b) {
   return 0;
 };
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   diffs: computed('raw', function() {
     return patchSplitter(this.get('raw')).map(function(diff) {
       return Diff.create(diff);

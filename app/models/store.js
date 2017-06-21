@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import EmberObject from 'ember-object';
+import RSVP from 'rsvp';
+import getOwner from 'ember-owner/get';
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   buildRecord: function(name) {
-    const Model = Ember.getOwner(this).factoryFor('model:' + name);
+    const Model = getOwner(this).factoryFor('model:' + name);
     return Model.create();
   },
   init: function() {
@@ -11,14 +13,14 @@ export default Ember.Object.extend({
   },
   find: function(name, id) {
     if (this.cache[name] && this.cache[name][id]) {
-      return Ember.RSVP.resolve(this.cache[name][id]);
+      return RSVP.resolve(this.cache[name][id]);
     }
 
-    const adapter = Ember.getOwner(this).lookup('adapter:' + name);
+    const adapter = getOwner(this).lookup('adapter:' + name);
     return adapter.find(this, name, id);
   },
   findAll: function(name) {
-    const adapter = Ember.getOwner(this).lookup('adapter:' + name);
+    const adapter = getOwner(this).lookup('adapter:' + name);
     return adapter.findAll(this, name);
   },
   recordForId: function(name, id) {

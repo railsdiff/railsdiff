@@ -1,15 +1,15 @@
-import Ember from 'ember';
+import EmberObject from 'ember-object';
 import Line from './line';
+import computed from 'ember-computed';
 import config from '../config/environment';
 
-const { computed } = Ember;
 const { APP: { rawFileBaseUrl } } = config;
 
 const comment = /^\\/;
 const deleted = /^\-/;
 const inserted = /^\+/;
 
-export default Ember.Object.extend({
+export default EmberObject.extend({
   lines: computed('rawLines', function() {
     let deletedLineNum = 1;
     let insertedLineNum = 1;

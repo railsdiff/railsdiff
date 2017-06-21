@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Route from 'ember-route';
 import RouteMessaging from '../mixins/route-messaging';
 
-export default Ember.Route.extend(RouteMessaging, {
+export default Route.extend(RouteMessaging, {
   modelError: function() {
     this.addMessage('error',
         'Could not connect to server to download diff data. Perhaps try again later.');

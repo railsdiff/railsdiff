@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Mixin from 'ember-metal/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   addMessage: function(type, message) {
     this.controllerFor('application').addMessage(type, message);
     return this;

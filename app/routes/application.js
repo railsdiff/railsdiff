@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import Route from 'ember-route';
 import RouteMessaging from '../mixins/route-messaging';
+import { once } from 'ember-runloop';
 
-export default Ember.Route.extend(RouteMessaging, {
+export default Route.extend(RouteMessaging, {
   actions: {
     didTransition: function() {
-      Ember.run.once(this, function() {
+      once(this, function() {
         window._gaq.push(['_trackPageview', this.router.get('url')]);
       });
       return true;

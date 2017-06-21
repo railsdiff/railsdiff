@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import Mixin from 'ember-metal/mixin';
+import { A } from 'ember-array/utils';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   actions: {
     dismissMessage: function(message) {
       this.get('messages').removeObject(message);
@@ -13,6 +14,6 @@ export default Ember.Mixin.create({
   },
   init: function() {
     this._super();
-    this.set('messages', Ember.A());
+    this.set('messages', A());
   }
 });

@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import Controller from 'ember-controller';
+import injectController from 'ember-controller/inject';
+import { reads } from 'ember-computed';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     sourceDidChange() {
       this.get('application').send('sourceDidChange', ...arguments);
@@ -12,10 +14,10 @@ export default Ember.Controller.extend({
       this.get('application').send('transition');
     }
   },
-  application: Ember.inject.controller(),
-  showForm: Ember.computed.alias('application.showForm'),
-  sourceVersion: Ember.computed.alias('application.sourceVersion'),
-  sources: Ember.computed.alias('application.sources'),
-  targetVersion: Ember.computed.alias('application.targetVersion'),
-  targets: Ember.computed.alias('application.targets'),
+  application: injectController(),
+  showForm: reads('application.showForm'),
+  sourceVersion: reads('application.sourceVersion'),
+  sources: reads('application.sources'),
+  targetVersion: reads('application.targetVersion'),
+  targets: reads('application.targets'),
 });

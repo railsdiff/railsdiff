@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Controller from 'ember-controller';
 import ControllerMessaging from '../mixins/controller-messaging';
+import computed, { bool, mapBy, oneWay } from 'ember-computed';
 
-export default Ember.Controller.extend(ControllerMessaging, {
+export default Controller.extend(ControllerMessaging, {
   actions: {
     sourceDidChange(value) {
       this.set('sourceVersion', value);
@@ -13,12 +14,12 @@ export default Ember.Controller.extend(ControllerMessaging, {
       this.transitionToRoute('patch', this.get('sourceVersion'), this.get('targetVersion'));
     },
   },
-  showForm: Ember.computed.bool('versions.length'),
-  sourceVersion: Ember.computed.oneWay('sources.firstObject'),
-  sources: Ember.computed('versions', function() {
+  showForm: bool('versions.length'),
+  sourceVersion: oneWay('sources.firstObject'),
+  sources: computed('versions', function() {
     return this.get('versions').slice(1);
   }),
-  versions: Ember.computed.mapBy('model', 'version'),
+  versions: mapBy('model', 'version'),
   targetValidator: function() {
     var targets = this.get('targets');
 
@@ -26,8 +27,8 @@ export default Ember.Controller.extend(ControllerMessaging, {
       this.set('targetVersion', targets.get('lastObject'));
     }
   }.observes('targets'),
-  targetVersion: Ember.computed.oneWay('targets.firstObject'),
-  targets: Ember.computed('versions', 'sourceVersion', function() {
+  targetVersion: oneWay('targets.firstObject'),
+  targets: computed('versions', 'sourceVersion', function() {
     var versions = this.get('versions'),
         sourceVersion = this.get('sourceVersion'),
         sourceIndex = versions.indexOf(sourceVersion);
