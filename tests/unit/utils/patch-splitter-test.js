@@ -4,9 +4,9 @@ import { module, test } from 'qunit';
 
 module('Unit | Utility | patchSplitter');
 
-test('returns object', function(assert) {
+test('returns array', function(assert) {
   const result = patchSplitter('');
-  assert.ok(typeof result === 'object');
+  assert.ok(result instanceof Array);
 });
 
 test('sets file paths', function(assert) {
