@@ -1,7 +1,7 @@
 import { A } from 'ember-array/utils';
 
 const newFilePattern = /^diff/;
-const filePathsPattern = /\/v([^\/]+)\/.* .*\/v([^\/]+)\/([^ ]+)$/;
+const filePathsPattern = /generated\/v([^\/]+)\/.* generated\/v([^\/]+)\/([^ ]+)$/;
 const diffStartPattern = /^@/;
 
 export default function patchSplitter(patch) {
