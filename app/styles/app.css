@@ -100,6 +100,13 @@ header h1 {
   text-indent: -7px;
   white-space: pre-wrap;
 }
+.line-char {
+  background-color: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 .line-code.comment {
   background-color: #fafafa;
