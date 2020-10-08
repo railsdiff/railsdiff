@@ -2,7 +2,7 @@
 Principal: Jacob Swanner
 Contact: jacob [at] jacobswanner.com
 Twitter: @jswanner
-Location: Orlando, FL
+Location: Seattle, WA
 
 /* SITE */
 Language: English
