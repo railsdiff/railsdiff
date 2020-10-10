@@ -22,6 +22,7 @@
     "experimentalDecorators": true,
     "paths": {
       "rails-diff/tests/*": ["tests/*"],
+      "rails-diff/mirage/*": ["mirage/*"],
       "rails-diff/*": ["app/*"],
       "*": ["types/*"]
     }
@@ -31,6 +32,7 @@
     ".template-lintrc.js",
     "app/**/*",
     "config/**/*",
+    "mirage/**/*",
     "ember-cli-build.js",
     "prettier.config.js",
     "testem.js",
