@@ -24,6 +24,7 @@
       "rails-diff/tests/*": ["tests/*"],
       "rails-diff/mirage/*": ["mirage/*"],
       "rails-diff/*": ["app/*"],
+      "fetch": ["node_modules/ember-fetch"],
       "*": ["types/*"]
     }
   },
