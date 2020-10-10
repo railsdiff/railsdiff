@@ -1,0 +1,22 @@
+{
+  "[handlebars]": { "editor.formatOnSave": false },
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "eslint.validate": ["javascript", "typescript"],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "tmp/**": true
+  },
+  "files.watcherExclude": {
+    "**/.git/**": true,
+    "**/node_modules/**": true,
+    "**/tmp/**": true
+  },
+  "prettier.requireConfig": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "tmp/**": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

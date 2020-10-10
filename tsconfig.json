@@ -21,19 +21,19 @@
     "module": "es6",
     "experimentalDecorators": true,
     "paths": {
-      "rails-diff/tests/*": [
-        "tests/*"
-      ],
-      "rails-diff/*": [
-        "app/*"
-      ],
-      "*": [
-        "types/*"
-      ]
+      "rails-diff/tests/*": ["tests/*"],
+      "rails-diff/*": ["app/*"],
+      "*": ["types/*"]
     }
   },
   "include": [
+    ".eslintrc.js",
+    ".template-lintrc.js",
     "app/**/*",
+    "config/**/*",
+    "ember-cli-build.js",
+    "prettier.config.js",
+    "testem.js",
     "tests/**/*",
     "types/**/*"
   ]
