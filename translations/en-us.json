@@ -1,5 +1,7 @@
 {
   "about": "About",
+  "about.heading": "Why RailsDiff was built:",
+  "about.content": "<p>When upgrading the version of Rails used in an application, it can be difficult to know precisely every detail that should be changed.</p><p>Often, just modifying the Rails gem version in your Gemfile and then running bundle update rails seems to work: your tests still pass, application runs like normal, etc. So, you never think twice and go about continuing to develop your application. But, were there other changes that could/should have been made as well? Perhaps, Rails has changed the default value for some configuration settings, or perhaps new configuration settings have been added since your application was generated.</p><p>What the Rails application generator creates is specific to the version of Rails it was generated for. So, as new versions of Rails are released, what the application generator creates can change; and, comparing the output of different versions of the generator can give you some understanding of the changes going on in Rails.</p><p>So, to that end, I've generated applications for each version of Rails; and, for each version, I've generated a diff between it and all versions before it. You can use these diffs to know precisely every change needed to upgrade to any version of Rails.</p><h2>Want to contribute?</h2><p>On the <a href=\"https://github.com/railsdiff/railsdiff\">GitHub repository</a> you can find out how to get started.</p>",
   "railsdiff": "RailsDiff",
   "source": "Source",
   "target": "Target",
