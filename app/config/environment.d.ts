@@ -11,4 +11,5 @@ declare const config: {
   locationType: string;
   rootURL: string;
   APP: Record<string, unknown>;
+  MIRAGE_SCENARIO?: string;
 };

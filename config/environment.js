@@ -1,6 +1,10 @@
 "use strict";
 
 module.exports = function (environment) {
+  const { MIRAGE_SCENARIO = "sample" } = {
+    ...process.env,
+  };
+
   const ENV = {
     modulePrefix: "rails-diff",
     environment,
@@ -29,6 +33,7 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    Object.assign(ENV, { MIRAGE_SCENARIO });
   }
 
   if (environment === "test") {

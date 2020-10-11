@@ -1,28 +1,26 @@
 <header>
-  <LinkTo @route="index"><h1>RailsDiff</h1></LinkTo>
+  <LinkTo @route="index">
+    <h1>{{t "railsdiff"}}</h1>
+  </LinkTo>
 
-  {{#if showForm}}
-    <form>
-      <label>
-        Source
-        {{version-select didChange=(action "sourceDidChange") options=sources value=sourceVersion}}
-      </label>
-      <label>
-        Target
-        {{version-select didChange=(action "targetDidChange") options=targets value=targetVersion}}
-      </label>
-      <button {{action "transition"}}>View Diff</button>
-    </form>
+  {{#if this.model}}
+  <form onsubmit={{action this.showDiff}}>
+    <label for="source-version">{{t "source"}}</label>
+    <OneWaySelect id="source-version" @options={{this.sourceVersions}} @update={{action (mut this.sourceVersion)}} />
+    <label for="target-version">{{t "target"}}</label>
+    <OneWaySelect id="target-version" @options={{this.targetVersions}} @update={{action (mut this.targetVersion)}} />
+    <button type="submit">{{t "view-diff"}}</button>
+  </form>
   {{/if}}
 
-  <LinkTo @route="about" class="about">About</LinkTo>
+  <LinkTo @route="about" class="about">{{t "about"}}</LinkTo>
 </header>
 
 {{#each messages as |message|}}
-  <div class="message {{message.type}}" data-message-type="{{message.type}}">
-    <span>{{message.message}}</span>
-    <a href=":javascript" {{action "dismissMessage" message}}>X</a>
-  </div>
+<div class="message {{message.type}}" data-message-type="{{message.type}}">
+  <span>{{message.message}}</span>
+  <a href=":javascript" {{action "dismissMessage" message}}>X</a>
+</div>
 {{/each}}
 
 <div class="content">

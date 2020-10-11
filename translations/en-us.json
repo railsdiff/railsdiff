@@ -1,1 +1,7 @@
-{}
+{
+  "about": "About",
+  "railsdiff": "RailsDiff",
+  "source": "Source",
+  "target": "Target",
+  "view-diff": "View Diff"
+}
