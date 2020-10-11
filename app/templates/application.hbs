@@ -6,9 +6,11 @@
   {{#if this.model}}
   <form onsubmit={{action this.showDiff}}>
     <label for="source-version">{{t "source"}}</label>
-    <OneWaySelect id="source-version" @options={{this.sourceVersions}} @update={{action (mut this.sourceVersion)}} />
+    <OneWaySelect id="source-version" @options={{this.versions.sources}} @required={{true}}
+      @update={{action (mut this.versions.source)}} @value={{this.versions.source}} />
     <label for="target-version">{{t "target"}}</label>
-    <OneWaySelect id="target-version" @options={{this.targetVersions}} @update={{action (mut this.targetVersion)}} />
+    <OneWaySelect id="target-version" @options={{this.versions.targets}} @required={{true}}
+      @update={{action (mut this.versions.target)}} @value={{this.versions.target}} />
     <button type="submit">{{t "view-diff"}}</button>
   </form>
   {{/if}}

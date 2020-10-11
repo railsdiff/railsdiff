@@ -1,31 +1,35 @@
 <div class="index">
-  {{#if showForm}}
-    <section class="block">
+  {{#if this.model}}
+  <section class="block">
+    <form onsubmit={{action this.showDiff}}>
       <table class="form-container">
         <tr>
-          <td>What version of Rails are you currently using?</td>
+          <td><label for="source-version-long">{{t "source.long"}}</label></td>
           <td>
-            {{version-select didChange=(action "sourceDidChange") options=sources value=sourceVersion}}
+            <OneWaySelect id="source-version-long" @options={{this.versions.sources}} @required={{true}}
+              @update={{action (mut this.versions.source)}} @value={{this.versions.source}} />
           </td>
         </tr>
         <tr>
-          <td>What version of Rails do you want to upgrade to?</td>
+          <td><label for="target-version-long">{{t "target.long"}}</label></td>
           <td>
-            {{version-select didChange=(action "targetDidChange") options=targets value=targetVersion}}
+            <OneWaySelect id="target-version-long" @options={{this.versions.targets}} @required={{true}}
+              @update={{action (mut this.versions.target)}} @value={{this.versions.target}} />
           </td>
         </tr>
         <tr>
           <td></td>
           <td>
-            <button {{action 'transition'}}>View Diff</button>
+            <button type="submit">{{t "view-diff"}}</button>
           </td>
         </tr>
       </table>
-    </section>
+    </form>
+  </section>
   {{/if}}
 
   <section class="block">
-    <p>RailsDiff is about what you'd have to change about your app's configuration when upgrading Rails versions, not about what Rails has changed internally.</p>
+    <p>{{t "railsdiff.summary"}}</p>
   </section>
 </div>
 
