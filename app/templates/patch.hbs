@@ -1,25 +1,28 @@
+{{this.model}}
 {{#each model.diffs as |diff|}}
-  <div class="file">
-    <div class="meta">
-      <span>{{diff.filePath}}</span>
-      <span class="links">
-        <a class="source" href="{{diff.sourceFileUrl}}" title="View generated file at source version">{{diff.sourceVersion}}</a>
-        ...
-        <a class="target" href="{{diff.targetFileUrl}}" title="View generated file at target version">{{diff.targetVersion}}</a>
-      </span>
-    </div>
-    <table class="diff">
-      <tbody>
-        {{#each diff.lines as |line|}}
-          <tr>
-            <td class="line-num {{line.type}}" data-line-num="{{line.deletedLineNum}}"></td>
-            <td class="line-num {{line.type}}" data-line-num="{{line.insertedLineNum}}"></td>
-            <td class="line-code {{line.type}}">{{line.content}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+<div class="file">
+  <div class="meta">
+    <span>{{diff.filePath}}</span>
+    <span class="links">
+      <a class="source" href="{{diff.sourceFileUrl}}"
+        title="View generated file at source version">{{diff.sourceVersion}}</a>
+      ...
+      <a class="target" href="{{diff.targetFileUrl}}"
+        title="View generated file at target version">{{diff.targetVersion}}</a>
+    </span>
   </div>
+  <table class="diff">
+    <tbody>
+      {{#each diff.lines as |line|}}
+      <tr>
+        <td class="line-num {{line.type}}" data-line-num="{{line.deletedLineNum}}"></td>
+        <td class="line-num {{line.type}}" data-line-num="{{line.insertedLineNum}}"></td>
+        <td class="line-code {{line.type}}">{{line.content}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
 {{/each}}
 
 {{outlet}}

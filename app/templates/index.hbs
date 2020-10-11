@@ -7,14 +7,14 @@
           <td><label for="source-version-long">{{t "source.long"}}</label></td>
           <td>
             <OneWaySelect id="source-version-long" @options={{this.versions.sources}} @required={{true}}
-              @update={{action (mut this.versions.source)}} @value={{this.versions.source}} />
+              @update={{action this.setSource}} @value={{this.versions.source}} />
           </td>
         </tr>
         <tr>
           <td><label for="target-version-long">{{t "target.long"}}</label></td>
           <td>
             <OneWaySelect id="target-version-long" @options={{this.versions.targets}} @required={{true}}
-              @update={{action (mut this.versions.target)}} @value={{this.versions.target}} />
+              @update={{action this.setTarget}} @value={{this.versions.target}} />
           </td>
         </tr>
         <tr>

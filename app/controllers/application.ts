@@ -7,7 +7,18 @@ export default class ApplicationController extends Controller {
   versions!: ServiceRegistry["versions"];
 
   @action
+  setSource(source: string) {
+    this.versions.setSource(source);
+  }
+
+  @action
+  setTarget(target: string) {
+    this.versions.setTarget(target);
+  }
+
+  @action
   showDiff(event: Event) {
     event.preventDefault();
+    this.transitionToRoute(`/${this.versions.source}/${this.versions.target}`);
   }
 }

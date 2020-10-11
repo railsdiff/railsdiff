@@ -12,8 +12,7 @@ const Branch = t.interface({
 const Branches = t.array(Branch);
 
 export default class VersionsService extends Service {
-  @tracked
-  all: string[] = [];
+  private _all: string[] = [];
 
   @tracked
   source?: string = this.sources.firstObject;
@@ -22,15 +21,22 @@ export default class VersionsService extends Service {
   target?: string = this.targets.firstObject;
 
   get sources() {
-    return this.all.slice(1);
+    return this._all.slice(1);
   }
 
   get targets() {
-    if (!this.source || this.all.length < 2) {
+    if (!this.source || this._all.length < 2) {
       return [];
     }
 
-    return this.all.slice(0, this.all.indexOf(this.source));
+    return this._all.slice(0, this._all.indexOf(this.source));
+  }
+
+  async loadDiff() {
+    const response = await fetch(
+      `/railsdiff/generated/compare/v${this.source}...v${this.target}.diff`
+    );
+    return response.text();
   }
 
   async load() {
@@ -42,14 +48,28 @@ export default class VersionsService extends Service {
       throw new Error("Branches response is invalid");
     }
 
-    this.all = branches.right
+    this._all = branches.right
       .map((branch) => branch.name)
       .filter((name) => name.indexOf("v") === 0)
       .map((name) => name.substring(1))
       .sort(compareVersions)
       .reverse();
 
-    return this.all;
+    return this._all;
+  }
+
+  setSource(source: string) {
+    if (!this.sources.includes(source)) {
+      throw new Error("Given source version is unrecognized");
+    }
+    this.source = source;
+  }
+
+  setTarget(target: string) {
+    if (!this.targets.includes(target)) {
+      throw new Error("Given target version is unrecognized");
+    }
+    this.target = target;
   }
 }
 
