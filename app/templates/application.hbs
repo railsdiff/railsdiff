@@ -1,1 +1,30 @@
-{{outlet}}
+<header>
+  <LinkTo @route="index"><h1>RailsDiff</h1></LinkTo>
+
+  {{#if showForm}}
+    <form>
+      <label>
+        Source
+        {{version-select didChange=(action "sourceDidChange") options=sources value=sourceVersion}}
+      </label>
+      <label>
+        Target
+        {{version-select didChange=(action "targetDidChange") options=targets value=targetVersion}}
+      </label>
+      <button {{action "transition"}}>View Diff</button>
+    </form>
+  {{/if}}
+
+  <LinkTo @route="about" class="about">About</LinkTo>
+</header>
+
+{{#each messages as |message|}}
+  <div class="message {{message.type}}" data-message-type="{{message.type}}">
+    <span>{{message.message}}</span>
+    <a href=":javascript" {{action "dismissMessage" message}}>X</a>
+  </div>
+{{/each}}
+
+<div class="content">
+  {{outlet}}
+</div>

@@ -1,0 +1,32 @@
+<div class="index">
+  {{#if showForm}}
+    <section class="block">
+      <table class="form-container">
+        <tr>
+          <td>What version of Rails are you currently using?</td>
+          <td>
+            {{version-select didChange=(action "sourceDidChange") options=sources value=sourceVersion}}
+          </td>
+        </tr>
+        <tr>
+          <td>What version of Rails do you want to upgrade to?</td>
+          <td>
+            {{version-select didChange=(action "targetDidChange") options=targets value=targetVersion}}
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <button {{action 'transition'}}>View Diff</button>
+          </td>
+        </tr>
+      </table>
+    </section>
+  {{/if}}
+
+  <section class="block">
+    <p>RailsDiff is about what you'd have to change about your app's configuration when upgrading Rails versions, not about what Rails has changed internally.</p>
+  </section>
+</div>
+
+{{outlet}}
