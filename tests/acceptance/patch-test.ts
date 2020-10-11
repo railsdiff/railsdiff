@@ -1,5 +1,5 @@
-import { currentURL, visit } from "@ember/test-helpers";
-import { click, findControl } from "ember-semantic-test-helpers/test-support";
+import { visit } from "@ember/test-helpers";
+import { findControl } from "ember-semantic-test-helpers/test-support";
 import { module, test } from "qunit";
 
 import sample from "../../mirage/scenarios/sample";
@@ -44,6 +44,6 @@ module("Acceptance | patch", (hooks) => {
 
   test("displays the diff between the source and target versions", async (assert) => {
     await visit("/1.0.0/2.0.0");
-    assert.dom(".content").containsText("frozen_string_literal");
+    assert.dom(".content").containsText("rubygems.org");
   });
 });

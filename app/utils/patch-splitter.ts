@@ -1,13 +1,8 @@
-const newFilePattern = /^diff/;
-const filePathsPattern = /generated\/v([^/]+)\/.* generated\/v([^/]+)\/([^ ]+)$/;
-const diffStartRegexp = /^@/;
+import Diff from "rails-diff/models/diff";
 
-type Diff = {
-  filePath: string;
-  rawLines: string[];
-  sourceVersion: string;
-  targetVersion: string;
-};
+const newFilePattern = /^diff/;
+const filePathsRegexp = /generated\/v([^/]+)\/.* generated\/v([^/]+)\/([^ ]+)$/;
+const diffStartRegexp = /^@/;
 
 export default function patchSplitter(patch: string) {
   const lines = patch.split("\n");
@@ -15,16 +10,16 @@ export default function patchSplitter(patch: string) {
   let diffStarted = false;
   let match: null | RegExpMatchArray;
 
-  return lines.reduce(function (diffs, line) {
-    if (newFilePattern.test(line) && filePathsPattern.test(line)) {
+  return lines.reduce((diffs, line) => {
+    if (newFilePattern.test(line) && filePathsRegexp.test(line)) {
       diffStarted = false;
-      match = filePathsPattern.exec(line)!;
-      currentDiff = {
+      match = filePathsRegexp.exec(line)!;
+      currentDiff = new Diff({
         filePath: match[3],
         rawLines: [],
         sourceVersion: match[1],
         targetVersion: match[2],
-      };
+      });
       diffs.pushObject(currentDiff);
     } else if (diffStarted) {
       currentDiff.rawLines.push(line);

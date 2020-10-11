@@ -70,29 +70,28 @@ export default function (this: Server<AppRegistry>) {
       );
     }
 
-    const diff = `
-diff --git a/spec/my/gem_spec.rb b/spec/my/gem_spec.rb
-index 1012309..7744ae3 100644
---- a/spec/my/gem_spec.rb
-+++ b/spec/my/gem_spec.rb
-@@ -1,3 +1,5 @@
-+# frozen_string_literal: true
-+
-  RSpec.describe My::Gem do
-    it "has a version number" do
-      expect(My::Gem::VERSION).not_to be nil
-diff --git a/spec/spec_helper.rb b/spec/spec_helper.rb
-index 3212e9e..711f9f1 100644
---- a/spec/spec_helper.rb
-+++ b/spec/spec_helper.rb
-@@ -1,4 +1,5 @@
--require "bundler/setup"
-+# frozen_string_literal: true
-+
-  require "my/gem"
+    const diff = `diff -ur generated/${sourceVersion}/Gemfile generated/${targetVersion}/Gemfile
+index 0a5b233..0ace91f 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -1,9 +1,9 @@
+-source 'http://rubygems.org'
++source 'https://rubygems.org'
+-gem 'rails', '3.1.2'
++gem 'rails', '3.2.6'
+@@ -11,8 +11,12 @@ gem 'sqlite3'
+-  gem 'sass-rails',   '~> 3.1.5.rc.2'
+-  gem 'coffee-rails', '~> 3.1.1'
++  gem 'sass-rails',   '~> 3.2.3'
++  gem 'coffee-rails', '~> 3.2.1'
+diff -ur generated/${sourceVersion}/config/routes.rb generated/${targetVersion}/config/routes.rb
+index 2c8e7db..f01137d 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -54,5 +54,5 @@ App::Application.routes.draw do
+-  # match ':controller(/:action(/:id(.:format)))'
++  # match ':controller(/:action(/:id))(.:format)'`;
 
-  RSpec.configure do |config|
-`;
     return new Response(
       200,
       { "Content-Type": "text/plain; charset=utf-8" },

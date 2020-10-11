@@ -1,10 +1,11 @@
 import Route from "@ember/routing/route";
 import { Registry as ServiceRegistry, inject as service } from "@ember/service";
+import Patch from "rails-diff/models/patch";
 
-type Params = {
+interface Params {
   source: string;
   target: string;
-};
+}
 
 export default class PatchRoute extends Route {
   @service("versions")
@@ -14,6 +15,9 @@ export default class PatchRoute extends Route {
     this.versions.setSource(params.source);
     this.versions.setTarget(params.target);
 
-    return this.versions.loadDiff();
+    const rawPatch = await this.versions.loadPatch();
+    const patch = new Patch(rawPatch);
+
+    return patch;
   }
 }

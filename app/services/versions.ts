@@ -32,7 +32,7 @@ export default class VersionsService extends Service {
     return this._all.slice(0, this._all.indexOf(this.source));
   }
 
-  async loadDiff() {
+  async loadPatch() {
     const response = await fetch(
       `/railsdiff/generated/compare/v${this.source}...v${this.target}.diff`
     );

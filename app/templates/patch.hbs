@@ -1,5 +1,4 @@
-{{this.model}}
-{{#each model.diffs as |diff|}}
+{{#each this.model.diffs as |diff|}}
 <div class="file">
   <div class="meta">
     <span>{{diff.filePath}}</span>
@@ -24,5 +23,3 @@
   </table>
 </div>
 {{/each}}
-
-{{outlet}}
