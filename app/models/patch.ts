@@ -1,9 +1,10 @@
-import patchSplitter from "rails-diff/utils/patch-splitter";
+import { FileCompare } from "../services/versions";
+
 import Diff from "./diff";
 
-const diffSorter = function (a: Diff, b: Diff) {
-  const aPath = a.filePath;
-  const bPath = b.filePath;
+const fileSorter = function (a: FileCompare, b: FileCompare) {
+  const aPath = a.filename;
+  const bPath = b.filename;
 
   if (aPath > bPath) {
     return 1;
@@ -15,13 +16,19 @@ const diffSorter = function (a: Diff, b: Diff) {
 };
 
 export default class Patch {
-  patch: string;
+  files: FileCompare[];
 
-  constructor(patch: string) {
-    this.patch = patch;
+  constructor(files: FileCompare[]) {
+    this.files = files.sort(fileSorter);
   }
 
   get diffs() {
-    return patchSplitter(this.patch).sort(diffSorter);
+    return this.files.map((fileCompare) => {
+      const diff = new Diff(fileCompare.filename);
+      fileCompare.patch.split("\n").forEach((line) => {
+        diff.rawLines.push(line);
+      });
+      return diff;
+    });
   }
 }

@@ -1,42 +1,55 @@
 "use strict";
 
+function isTruthy(value) {
+  return ["true", "1"].includes(value.toString().toLowerCase());
+}
+
 module.exports = function (environment) {
-  const { MIRAGE_SCENARIO = "sample" } = {
+  const isDevelopment = environment === "development";
+  const isProduction = environment === "production";
+  const isTest = environment === "test";
+
+  const {
+    API_URL = "",
+    FILE_URL = "",
+    GITHUB_OWNER = "railsdiff",
+    GITHUB_REPOSITORY = "generated",
+    MIRAGE_ENABLED = true,
+    MIRAGE_SCENARIO = "sample",
+  } = {
     ...process.env,
   };
 
   const ENV = {
-    modulePrefix: "rails-diff",
-    environment,
-    rootURL: "/",
-    locationType: "auto",
+    APP: {
+      API_URL,
+      FILE_URL,
+      GITHUB_OWNER,
+      GITHUB_REPOSITORY,
+    },
     EmberENV: {
-      FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
-      },
+      FEATURES: {},
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
         Date: false,
       },
     },
-
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
-    },
+    environment,
+    locationType: "auto",
+    modulePrefix: "rails-diff",
+    rootURL: "/",
   };
 
-  if (environment === "development") {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    Object.assign(ENV, { MIRAGE_SCENARIO });
+  if (isDevelopment) {
+    Object.assign(ENV, {
+      MIRAGE_SCENARIO,
+      "ember-cli-mirage": {
+        enabled: isTruthy(MIRAGE_ENABLED),
+      },
+    });
   }
 
-  if (environment === "test") {
+  if (isTest) {
     // Testem prefers this...
     ENV.locationType = "none";
 
@@ -46,9 +59,12 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = "#ember-testing";
     ENV.APP.autoboot = false;
+
+    ENV.APP.API_URL = "";
+    ENV.APP.FILE_URL = "";
   }
 
-  if (environment === "production") {
+  if (isProduction) {
     // here you can enable a production-specific feature
   }
 

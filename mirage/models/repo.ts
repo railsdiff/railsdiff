@@ -1,5 +1,5 @@
 import { Model, hasMany } from "miragejs";
 
 export default Model.extend({
-  branches: hasMany("branch"),
+  tags: hasMany("tag"),
 });

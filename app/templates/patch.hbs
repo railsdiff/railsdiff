@@ -1,13 +1,11 @@
-{{#each this.model.diffs as |diff|}}
+{{#each this.model.patch.diffs as |diff|}}
 <div class="file">
   <div class="meta">
     <span>{{diff.filePath}}</span>
     <span class="links">
-      <a class="source" href="{{diff.sourceFileUrl}}"
-        title="View generated file at source version">{{diff.sourceVersion}}</a>
+      <RawFileLink class="source" @path={{diff.filePath}} @version={{this.model.sourceVersion}} />
       ...
-      <a class="target" href="{{diff.targetFileUrl}}"
-        title="View generated file at target version">{{diff.targetVersion}}</a>
+      <RawFileLink class="target" @path={{diff.filePath}} @version={{this.model.targetVersion}} />
     </span>
   </div>
   <table class="diff">

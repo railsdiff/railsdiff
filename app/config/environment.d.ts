@@ -10,6 +10,11 @@ declare const config: {
   podModulePrefix: string;
   locationType: string;
   rootURL: string;
-  APP: Record<string, unknown>;
+  APP: {
+    API_URL: string;
+    FILE_URL: string;
+    GITHUB_OWNER: string;
+    GITHUB_REPOSITORY: string;
+  };
   MIRAGE_SCENARIO?: string;
 };

@@ -1,22 +1,22 @@
 import { Registry } from "miragejs";
 
-import BranchFactory from "./factories/branch";
 import OwnerFactory from "./factories/owner";
 import RepoFactory from "./factories/repo";
-import BranchModel from "./models/branch";
+import TagFactory from "./factories/tag";
 import OwnerModel from "./models/owner";
 import RepoModel from "./models/repo";
+import TagModel from "./models/tag";
 
 type AppRegistry = Registry<
   {
-    branch: typeof BranchModel;
     owner: typeof OwnerModel;
     repo: typeof RepoModel;
+    tag: typeof TagModel;
   },
   {
-    branch: typeof BranchFactory;
     owner: typeof OwnerFactory;
     repo: typeof RepoFactory;
+    tag: typeof TagFactory;
   }
 >;
 

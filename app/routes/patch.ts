@@ -15,9 +15,13 @@ export default class PatchRoute extends Route {
     this.versions.setSource(params.source);
     this.versions.setTarget(params.target);
 
-    const rawPatch = await this.versions.loadPatch();
-    const patch = new Patch(rawPatch);
+    const files = await this.versions.loadPatch();
+    const patch = new Patch(files);
 
-    return patch;
+    return {
+      patch,
+      sourceVersion: params.source,
+      targetVersion: params.target,
+    };
   }
 }

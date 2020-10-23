@@ -1,15 +1,27 @@
 import Service from "@ember/service";
 import { tracked } from "@glimmer/tracking";
-import compareVersions from "compare-versions";
 import fetch from "fetch";
 import { isLeft } from "fp-ts/lib/Either";
 import * as t from "io-ts";
+import config from "rails-diff/config/environment";
+import compareVersions from "rails-diff/utils/compare-versions";
 
-const Branch = t.interface({
+const Tag = t.interface({
   name: t.string,
 });
 
-const Branches = t.array(Branch);
+const Tags = t.array(Tag);
+
+const FileCompare = t.interface({
+  filename: t.string,
+  patch: t.string,
+});
+
+const Compare = t.interface({
+  files: t.array(FileCompare),
+});
+
+export type FileCompare = t.TypeOf<typeof FileCompare>;
 
 export default class VersionsService extends Service {
   private _all: string[] = [];
@@ -34,22 +46,31 @@ export default class VersionsService extends Service {
 
   async loadPatch() {
     const response = await fetch(
-      `/railsdiff/generated/compare/v${this.source}...v${this.target}.diff`
+      `${config.APP.API_URL}/repos/${config.APP.GITHUB_OWNER}/${config.APP.GITHUB_REPOSITORY}/compare/v${this.source}...v${this.target}`
     );
-    return response.text();
+    const responseBody = await response.json();
+    const comparisons = Compare.decode(responseBody);
+
+    if (isLeft(comparisons)) {
+      throw new Error("Compare response is invalid");
+    }
+
+    return comparisons.right.files;
   }
 
   async load() {
-    const response = await fetch("/repos/railsdiff/generated/branches");
+    const response = await fetch(
+      `${config.APP.API_URL}/repos/${config.APP.GITHUB_OWNER}/${config.APP.GITHUB_REPOSITORY}/tags`
+    );
     const responseBody = await response.json();
-    const branches = Branches.decode(responseBody);
+    const tags = Tags.decode(responseBody);
 
-    if (isLeft(branches)) {
-      throw new Error("Branches response is invalid");
+    if (isLeft(tags)) {
+      throw new Error("Tags response is invalid");
     }
 
-    this._all = branches.right
-      .map((branch) => branch.name)
+    this._all = tags.right
+      .map((tag) => tag.name)
       .filter((name) => name.indexOf("v") === 0)
       .map((name) => name.substring(1))
       .sort(compareVersions)

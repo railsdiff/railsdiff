@@ -44,6 +44,39 @@ module("Acceptance | patch", (hooks) => {
 
   test("displays the diff between the source and target versions", async (assert) => {
     await visit("/1.0.0/2.0.0");
-    assert.dom(".content").containsText("rubygems.org");
+    assert.dom(".content").containsText(".travis.yml");
+  });
+
+  test("links to source and target file locations", async (assert) => {
+    await visit("/1.0.0/2.0.0");
+
+    assert
+      .dom("a[title='View .travis.yml at 1.0.0']")
+      .hasProperty(
+        "href",
+        new RegExp("/railsdiff/generated/blob/v1.0.0/.travis.yml"),
+        "Links to first source file"
+      );
+    assert
+      .dom("a[title='View .travis.yml at 2.0.0']")
+      .hasProperty(
+        "href",
+        new RegExp("/railsdiff/generated/blob/v2.0.0/.travis.yml"),
+        "Links to first target file"
+      );
+    assert
+      .dom("a[title='View LICENSE.txt at 1.0.0']")
+      .hasProperty(
+        "href",
+        new RegExp("/railsdiff/generated/blob/v1.0.0/LICENSE.txt"),
+        "Links to second source file"
+      );
+    assert
+      .dom("a[title='View LICENSE.txt at 2.0.0']")
+      .hasProperty(
+        "href",
+        new RegExp("/railsdiff/generated/blob/v2.0.0/LICENSE.txt"),
+        "Links to second target file"
+      );
   });
 });

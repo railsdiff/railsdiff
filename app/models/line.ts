@@ -1,5 +1,3 @@
-import { number } from "io-ts";
-
 interface Args {
   content: string;
   insertedLineNum?: number;

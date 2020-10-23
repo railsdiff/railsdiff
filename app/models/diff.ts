@@ -1,27 +1,15 @@
 import Line from "./line";
 
-interface Args {
-  filePath: string;
-  rawLines: string[];
-  sourceVersion: string;
-  targetVersion: string;
-}
-
 const commentRegexp = /^\\/;
 const deleted = /^\-/;
 const inserted = /^\+/;
 
 export default class Diff {
   filePath: string;
-  rawLines: string[];
-  sourceVersion: string;
-  targetVersion: string;
+  rawLines: string[] = [];
 
-  constructor(data: Args) {
-    this.filePath = data.filePath;
-    this.rawLines = data.rawLines;
-    this.sourceVersion = data.sourceVersion;
-    this.targetVersion = data.targetVersion;
+  constructor(filePath: string) {
+    this.filePath = filePath;
   }
 
   get lines() {

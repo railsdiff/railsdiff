@@ -3,7 +3,7 @@ import { module, test } from "qunit";
 
 import { setupAcceptanceTest } from "../helpers";
 
-module("Acceptance | branch request failure", (hooks) => {
+module("Acceptance | tag request failure", (hooks) => {
   setupAcceptanceTest(hooks);
 
   test("describes the application", async (assert) => {
