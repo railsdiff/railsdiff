@@ -1,28 +1,30 @@
 <div class="index">
   {{#if this.model}}
   <section class="block">
-    <form onsubmit={{action this.showDiff}}>
+    <form {{on "submit" this.showDiff}}>
       <table class="form-container">
-        <tr>
-          <td><label for="source-version-long">{{t "source.long"}}</label></td>
-          <td>
-            <OneWaySelect id="source-version-long" @options={{this.versions.sources}} @required={{true}}
-              @update={{action this.setSource}} @value={{this.versions.source}} />
-          </td>
-        </tr>
-        <tr>
-          <td><label for="target-version-long">{{t "target.long"}}</label></td>
-          <td>
-            <OneWaySelect id="target-version-long" @options={{this.versions.targets}} @required={{true}}
-              @update={{action this.setTarget}} @value={{this.versions.target}} />
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <button type="submit">{{t "view-diff"}}</button>
-          </td>
-        </tr>
+        <tbody>
+          <tr>
+            <td><label for="source-version-long">{{t "source.long"}}</label></td>
+            <td>
+              <OneWaySelect id="source-version-long" @options={{this.versions.sources}} @required={{true}}
+                @update={{fn this.setSource}} @value={{this.versions.source}} />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="target-version-long">{{t "target.long"}}</label></td>
+            <td>
+              <OneWaySelect id="target-version-long" @options={{this.versions.targets}} @required={{true}}
+                @update={{fn this.setTarget}} @value={{this.versions.target}} />
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <button type="submit">{{t "view-diff"}}</button>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </form>
   </section>
