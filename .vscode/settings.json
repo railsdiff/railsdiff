@@ -1,7 +1,4 @@
 {
-  "[handlebars]": { "editor.formatOnSave": false },
-  "editor.formatOnPaste": false,
-  "editor.formatOnSave": true,
   "eslint.validate": ["javascript", "typescript"],
   "files.exclude": {
     "**/.git": true,
