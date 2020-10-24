@@ -39,7 +39,7 @@ export default function (this: Server<AppRegistry>) {
       );
     }
 
-    const limit = 3;
+    const limit = normalize(request.queryParams["per_page"]);
     const number = normalize(request.queryParams["page"]);
     const tags = paginate(repo.tags, { limit, number });
     const totalPages = Math.ceil(repo.tags.length / limit);

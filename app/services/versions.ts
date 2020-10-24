@@ -101,7 +101,7 @@ export default class VersionsService extends Service {
 
   async load() {
     const tags = await this._loadPage(
-      `${config.APP.API_URL}/repos/${config.APP.GITHUB_OWNER}/${config.APP.GITHUB_REPOSITORY}/tags`
+      `${config.APP.API_URL}/repos/${config.APP.GITHUB_OWNER}/${config.APP.GITHUB_REPOSITORY}/tags?per_page=100`
     );
 
     this._allVersions = tags
