@@ -4,6 +4,7 @@ import fetch from "fetch";
 import { isLeft } from "fp-ts/lib/Either";
 import * as t from "io-ts";
 import config from "rails-diff/config/environment";
+import Version from "rails-diff/models/version";
 import compareVersions from "rails-diff/utils/compare-versions";
 
 const Tag = t.interface({
@@ -24,16 +25,20 @@ const Compare = t.interface({
 export type FileCompare = t.TypeOf<typeof FileCompare>;
 
 export default class VersionsService extends Service {
-  private _all: string[] = [];
+  private _allVersions: Version[] = [];
+
+  private get _all() {
+    return this._allVersions.map((version) => version.toString());
+  }
 
   @tracked
-  source?: string = this.sources.firstObject;
+  source?: string = this.sources.firstObject?.toString();
 
   @tracked
-  target?: string = this.targets.firstObject;
+  target?: string = this.targets.firstObject?.toString();
 
   get sources() {
-    return this._all.slice(1);
+    return this._all.slice(1).map((version) => version.toString());
   }
 
   get targets() {
@@ -41,7 +46,11 @@ export default class VersionsService extends Service {
       return [];
     }
 
-    return this._all.slice(0, this._all.indexOf(this.source));
+    const index = this._all.findIndex(
+      (version) => version.toString() === this.source
+    );
+
+    return this._all.slice(0, index);
   }
 
   async loadPatch() {
@@ -69,10 +78,13 @@ export default class VersionsService extends Service {
       throw new Error("Tags response is invalid");
     }
 
-    this._all = tags.right
+    this._allVersions = tags.right
       .map((tag) => tag.name)
       .filter((name) => name.indexOf("v") === 0)
       .map((name) => name.substring(1))
+      .map((name) => {
+        return new Version(name);
+      })
       .sort(compareVersions)
       .reverse();
 

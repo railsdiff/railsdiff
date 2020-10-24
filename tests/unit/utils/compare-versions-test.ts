@@ -1,28 +1,37 @@
 import { module, test } from "qunit";
+import Version from "rails-diff/models/version";
 import compareVersions from "rails-diff/utils/compare-versions";
 
-module("Unit | Utils | compareVersions", () => {
-  test("returns expected results", (assert) => {
-    const versions: [string, string, number][] = [
-      ["1.2.0", "1.2", 0],
-      ["1.4", "1.7.2", -1],
-      ["1.2pre", "1.2", -1],
-      ["1.7", "1.1.1", 1],
-      ["1.7.9RC1", "1.7.9RC2", -1],
-      ["1.7.9RC1", "1.7.9RC", 1],
-      ["1.7.9RC1", "1.7.9", -1],
-      ["0.4beta", "0.4", -1],
-      ["0.4beta", "0.4alpha", 1],
-      ["0.4b", "0.4b", 0],
-      ["0.0.1", "0.0.0.1", 1],
-    ];
+function assertEqual(assert: Assert, left: Version, right: Version) {
+  assert.equal(compareVersions(left, right), 0, `${left} === ${right}`);
+}
 
-    versions.forEach(([a, b, expected]) => {
-      assert.equal(
-        compareVersions(a, b),
-        expected,
-        `${a} <=> ${b} === ${expected}`
-      );
-    });
+function assertLessThan(assert: Assert, left: Version, right: Version) {
+  assert.equal(compareVersions(left, right), -1, `${left} < ${right}`);
+}
+
+function assertNotEqual(assert: Assert, left: Version, right: Version) {
+  assert.notEqual(compareVersions(left, right), 0, `${left} !== ${right}`);
+}
+
+function v(version: string) {
+  return new Version(version);
+}
+
+module("Unit | Utils | compareVersions", () => {
+  test("compares SemVer versions", (assert) => {
+    assertLessThan(assert, v("1.0.0-alpha"), v("1.0.0-alpha.1"));
+    assertLessThan(assert, v("1.0.0-alpha.1"), v("1.0.0-beta.2"));
+    assertLessThan(assert, v("1.0.0-beta.2"), v("1.0.0-beta.11"));
+    assertLessThan(assert, v("1.0.0-beta.11"), v("1.0.0-rc.1"));
+    assertLessThan(assert, v("1.0.0-rc1"), v("1.0.0"));
+    assertLessThan(assert, v("1.0.0-1"), v("1"));
+  });
+
+  test("identifies order equality", (assert) => {
+    assertEqual(assert, v("1.2"), v("1.2"));
+    assertEqual(assert, v("1.2"), v("1.2.0"));
+    assertNotEqual(assert, v("1.2"), v("1.3"));
+    assertEqual(assert, v("1.2.b1"), v("1.2.b.1"));
   });
 });
