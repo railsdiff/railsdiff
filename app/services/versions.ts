@@ -12,6 +12,7 @@ const Tag = t.interface({
 });
 
 const Tags = t.array(Tag);
+type Tags = t.TypeOf<typeof Tags>;
 
 const FileCompare = t.interface({
   filename: t.string,
@@ -67,18 +68,39 @@ export default class VersionsService extends Service {
     return comparisons.right.files;
   }
 
-  async load() {
-    const response = await fetch(
-      `${config.APP.API_URL}/repos/${config.APP.GITHUB_OWNER}/${config.APP.GITHUB_REPOSITORY}/tags`
-    );
+  private async _loadPage(url: string, data: Tags = []) {
+    const response = await fetch(url);
     const responseBody = await response.json();
     const tags = Tags.decode(responseBody);
+    let linkHeader: string | null;
 
     if (isLeft(tags)) {
       throw new Error("Tags response is invalid");
     }
 
-    this._allVersions = tags.right
+    data = data.concat(tags.right);
+
+    if ((linkHeader = response.headers.get("link"))) {
+      let nextUrl: RegExpExecArray | null;
+      const next = linkHeader
+        .split(",")
+        .map((link) => link.trim())
+        .find((link) => link.indexOf('rel="next"') > -1);
+
+      if (next && (nextUrl = /<(.+)>/.exec(next))) {
+        data = await this._loadPage(nextUrl[1], data);
+      }
+    }
+
+    return data;
+  }
+
+  async load() {
+    const tags = await this._loadPage(
+      `${config.APP.API_URL}/repos/${config.APP.GITHUB_OWNER}/${config.APP.GITHUB_REPOSITORY}/tags`
+    );
+
+    this._allVersions = tags
       .map((tag) => tag.name)
       .filter((name) => name.indexOf("v") === 0)
       .map((name) => name.substring(1))
