@@ -14,10 +14,14 @@ const Tag = t.interface({
 const Tags = t.array(Tag);
 type Tags = t.TypeOf<typeof Tags>;
 
-const FileCompare = t.interface({
-  filename: t.string,
-  patch: t.string,
-});
+const FileCompare = t.intersection([
+  t.interface({
+    filename: t.string,
+  }),
+  t.partial({
+    patch: t.string,
+  }),
+]);
 
 const Compare = t.interface({
   files: t.array(FileCompare),
