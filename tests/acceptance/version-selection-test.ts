@@ -55,4 +55,27 @@ module("Acceptance | version selection", (hooks) => {
 
     assert.deepEqual(getVersions("Target"), ["2.0.0", "1.1.1", "1.0.1"]);
   });
+
+  test("header selection and landing page selection are bound together", async (assert) => {
+    await visit("/");
+    await select("Source", "1.0.0");
+    await select("Target", "2.0.0");
+
+    const sourceSelect = findControl(
+      "What version of Rails are you currently using?"
+    ) as HTMLSelectElement | undefined;
+
+    const targetSelect = findControl(
+      "What version of Rails do you want to upgrade to?"
+    ) as HTMLSelectElement | undefined;
+
+    assert.equal("1.0.0", sourceSelect?.selectedOptions[0].text);
+    assert.equal("2.0.0", targetSelect?.selectedOptions[0].text);
+
+    await select("Source", "1.0.1");
+    await select("Target", "1.1.1");
+
+    assert.equal("1.0.1", sourceSelect?.selectedOptions[0].text);
+    assert.equal("1.1.1", targetSelect?.selectedOptions[0].text);
+  });
 });
