@@ -1,9 +1,16 @@
-import { visit } from "@ember/test-helpers";
-import { findControl } from "ember-semantic-test-helpers/test-support";
+import { click as clickSelector, visit } from "@ember/test-helpers";
+import { findControl, select } from "ember-semantic-test-helpers/test-support";
+import { findButtons } from "ember-semantic-test-helpers/test-support/find-helpers";
 import { module, test } from "qunit";
 
 import sample from "../../mirage/scenarios/sample";
 import { setupAcceptanceTest } from "../helpers";
+
+async function viewDiff() {
+  // With two "View Diff" buttons on the page, a simple click("View Diff") throws an error (rightly so).
+  const submit = findButtons("View Diff")[0];
+  await clickSelector(submit);
+}
 
 module("Acceptance | patch", (hooks) => {
   setupAcceptanceTest(hooks);
@@ -43,12 +50,19 @@ module("Acceptance | patch", (hooks) => {
   });
 
   test("displays the diff between the source and target versions", async (assert) => {
-    await visit("/1.0.0/2.0.0");
+    await visit("/");
+    await select("Source", "1.0.0");
+    await select("Target", "2.0.0");
+    await viewDiff();
+
     assert.dom(".content").containsText(".travis.yml");
   });
 
   test("links to source and target file locations", async (assert) => {
-    await visit("/1.0.0/2.0.0");
+    await visit("/");
+    await select("Source", "1.0.0");
+    await select("Target", "2.0.0");
+    await viewDiff();
 
     assert
       .dom("a[title='View .travis.yml at 1.0.0']")
