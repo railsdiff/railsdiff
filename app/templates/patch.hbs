@@ -1,23 +1,41 @@
 {{#each this.model.patch.diffs as |diff|}}
-<div class="file">
-  <div class="meta">
-    <span>{{diff.filePath}}</span>
-    <span class="links">
-      <RawFileLink class="source" @path={{diff.filePath}} @version={{this.model.sourceVersion}} />
-      ...
-      <RawFileLink class="target" @path={{diff.filePath}} @version={{this.model.targetVersion}} />
-    </span>
+  <div class="file">
+    <div class="meta">
+      <span>
+        {{diff.filePath}}
+      </span>
+      <span class="links">
+        <RawFileLink
+          class="source"
+          @path={{diff.filePath}}
+          @version={{this.model.sourceVersion}}
+        />
+        ...
+        <RawFileLink
+          class="target"
+          @path={{diff.filePath}}
+          @version={{this.model.targetVersion}}
+        />
+      </span>
+    </div>
+    <table class="diff">
+      <tbody>
+        {{#each diff.lines as |line|}}
+          <tr>
+            <td
+              class="line-num {{line.type}}"
+              data-line-num="{{line.deletedLineNum}}"
+            ></td>
+            <td
+              class="line-num {{line.type}}"
+              data-line-num="{{line.insertedLineNum}}"
+            ></td>
+            <td class="line-code {{line.type}}">
+              {{line.content}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
-  <table class="diff">
-    <tbody>
-      {{#each diff.lines as |line|}}
-      <tr>
-        <td class="line-num {{line.type}}" data-line-num="{{line.deletedLineNum}}"></td>
-        <td class="line-num {{line.type}}" data-line-num="{{line.insertedLineNum}}"></td>
-        <td class="line-code {{line.type}}">{{line.content}}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-</div>
 {{/each}}

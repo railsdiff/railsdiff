@@ -1,29 +1,42 @@
 <header>
   <LinkTo @route="index">
-    <h1>{{t "railsdiff"}}</h1>
+    <h1>
+      {{t "railsdiff"}}
+    </h1>
   </LinkTo>
 
   {{#if this.model}}
-  <form {{on "submit" this.showDiff}}>
-    <label for="source-version">{{t "source"}}</label>
-    <OneWaySelect id="source-version" @options={{this.versions.sources}} @required={{true}}
-      @update={{fn this.setSource}} @value={{this.versions.source}} />
-    <label for="target-version">{{t "target"}}</label>
-    <OneWaySelect id="target-version" @options={{this.versions.targets}} @required={{true}}
-      @update={{fn this.setTarget}} @value={{this.versions.target}} />
-    <button type="submit">{{t "view-diff"}}</button>
-  </form>
+    <form {{on "submit" this.showDiff}}>
+      <label for="source-version">
+        {{t "source"}}
+      </label>
+      <OneWaySelect
+        id="source-version"
+        @options={{this.versions.sources}}
+        @required={{true}}
+        @update={{fn this.setSource}}
+        @value={{this.versions.source}}
+      />
+      <label for="target-version">
+        {{t "target"}}
+      </label>
+      <OneWaySelect
+        id="target-version"
+        @options={{this.versions.targets}}
+        @required={{true}}
+        @update={{fn this.setTarget}}
+        @value={{this.versions.target}}
+      />
+      <button type="submit">
+        {{t "view-diff"}}
+      </button>
+    </form>
   {{/if}}
 
-  <LinkTo @route="about" class="about">{{t "about"}}</LinkTo>
+  <LinkTo @route="about" class="about">
+    {{t "about"}}
+  </LinkTo>
 </header>
-
-{{#each messages as |message|}}
-<div class="message {{message.type}}" data-message-type="{{message.type}}">
-  <span>{{message.message}}</span>
-  <a href=":javascript" {{on "click" "dismissMessage" message}}>X</a>
-</div>
-{{/each}}
 
 <div class="content">
   {{outlet}}
