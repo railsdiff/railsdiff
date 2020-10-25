@@ -1,7 +1,7 @@
 import Line from "./line";
 
 const commentRegexp = /^\\/;
-const deleted = /^\-/;
+const deleted = /^-/;
 const inserted = /^\+/;
 
 export default class Diff {
