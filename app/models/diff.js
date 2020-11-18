@@ -15,35 +15,36 @@ export default EmberObject.extend({
     let insertedLineNum = 1;
 
     return this.get('rawLines').map(function(line) {
-      let typeChar = line.substring(0, 1)
-      let content = line.substr(1);
-      if (comment.test(line)) {
+      const content = line.slice(1);
+      const prefix = line.slice(0, 1);
+
+      if (comment.test(prefix)) {
         return Line.create({
-          content: content,
+          content,
+          prefix,
           type: 'comment',
-          typeChar: typeChar,
         });
-      } else if (deleted.test(line)) {
+      } else if (deleted.test(prefix)) {
         return Line.create({
-          content: content,
+          content,
           deletedLineNum: deletedLineNum++,
+          prefix,
           type: 'deleted',
-          typeChar: typeChar,
         });
-      } else if (inserted.test(line)) {
+      } else if (inserted.test(prefix)) {
         return Line.create({
-          content: content,
+          content,
           insertedLineNum: insertedLineNum++,
+          prefix,
           type: 'inserted',
-          typeChar: typeChar,
         });
       } else {
         return Line.create({
-          content: content,
+          content,
           deletedLineNum: deletedLineNum++,
           insertedLineNum: insertedLineNum++,
+          prefix,
           type: 'unchanged',
-          typeChar: typeChar,
         });
       }
     });

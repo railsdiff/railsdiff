@@ -100,24 +100,20 @@ header h1 {
   text-indent: -7px;
   white-space: pre-wrap;
 }
-.line-char {
-  background-color: inherit;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
 
-.line-code.comment {
+.line-code.comment,
+.line-prefix.comment {
   background-color: #fafafa;
   color: rgba(0,0,0,0.3);
 }
 
-.line-code.deleted {
+.line-code.deleted,
+.line-prefix.deleted {
   background-color: #ffecec;
 }
 
-.line-code.inserted {
+.line-code.inserted,
+.line-prefix.inserted {
   background-color: #eaffea;
 }
 
@@ -148,6 +144,14 @@ header h1 {
 .line-num.inserted {
   background-color: #dbffdb;
   border-color: #c1e9c1;
+}
+
+.line-prefix {
+  background-color: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .message {

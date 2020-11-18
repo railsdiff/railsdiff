@@ -14,7 +14,7 @@
           <tr>
             <td class="line-num {{line.type}}" data-line-num="{{line.deletedLineNum}}"></td>
             <td class="line-num {{line.type}}" data-line-num="{{line.insertedLineNum}}"></td>
-            <td class="line-code {{line.type}}"><span class="line-char">{{line.typeChar}}</span>{{line.content}}</td>
+            <td class="line-code {{line.type}}"><span class="line-prefix">{{line.prefix}}</span>{{line.content}}</td>
           </tr>
         {{/each}}
       </tbody>
