@@ -96,8 +96,7 @@ header h1 {
 
 .line-code {
   color: #333;
-  padding: 0 1em;
-  text-indent: -7px;
+  padding: 0 1em 0 0.5em;
   white-space: pre-wrap;
 }
 
@@ -155,41 +154,41 @@ header h1 {
 }
 
 .message {
-    margin: 0 auto;
-    width: 80%;
-    border: 1px solid;
-    padding: 1em;
-    text-transform: uppercase;
-    font-weight: bold;
+  margin: 0 auto;
+  width: 80%;
+  border: 1px solid;
+  padding: 1em;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .message:before {
-    content: attr(data-message-type);
+  content: attr(data-message-type);
 }
 
 .message.error {
-    border-color: rgb(237, 177, 177);
-    background-color: rgb(250, 222, 222);
-    color: rgb(176, 109, 109);
+  border-color: rgb(237, 177, 177);
+  background-color: rgb(250, 222, 222);
+  color: rgb(176, 109, 109);
 }
 
 .message * {
-    text-transform: none;
-    font-weight: normal;
-    color: initial;
+  text-transform: none;
+  font-weight: normal;
+  color: initial;
 }
 
 .message a {
-    text-decoration: none;
-    float: right;
+  text-decoration: none;
+  float: right;
 }
 
 .message.error a {
-    color: rgb(176, 109, 109);
+  color: rgb(176, 109, 109);
 }
 
 .message span {
-    margin-left: 1em;
+  margin-left: 1em;
 }
 
 .meta {
