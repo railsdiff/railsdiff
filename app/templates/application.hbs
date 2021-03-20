@@ -4,7 +4,6 @@
       {{t "railsdiff"}}
     </h1>
   </LinkTo>
-
   {{#if this.model}}
     <form {{on "submit" this.showDiff}}>
       <label for="source-version">
@@ -32,12 +31,10 @@
       </button>
     </form>
   {{/if}}
-
   <LinkTo @route="about" class="about">
     {{t "about"}}
   </LinkTo>
 </header>
-
 <div class="content">
   {{outlet}}
 </div>

@@ -41,6 +41,7 @@ declare module "ember-semantic-test-helpers/test-support/find-helpers" {
 }
 
 declare module "ember-semantic-test-helpers/test-support" {
+  /* eslint-disable ember/no-test-support-import */
   import click from "ember-semantic-test-helpers/test-support/actors/click";
   import fillIn from "ember-semantic-test-helpers/test-support/actors/fillIn";
   import select from "ember-semantic-test-helpers/test-support/actors/select";
