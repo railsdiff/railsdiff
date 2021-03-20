@@ -13,7 +13,7 @@
         id="source-version"
         @options={{this.versions.sources}}
         @required={{true}}
-        @update={{fn this.setSource}}
+        @update={{this.setSource}}
         @value={{this.versions.source}}
       />
       <label for="target-version">
@@ -23,7 +23,7 @@
         id="target-version"
         @options={{this.versions.targets}}
         @required={{true}}
-        @update={{fn this.setTarget}}
+        @update={{this.setTarget}}
         @value={{this.versions.target}}
       />
       <button type="submit">

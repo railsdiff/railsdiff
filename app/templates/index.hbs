@@ -15,7 +15,7 @@
                   id="source-version-long"
                   @options={{this.versions.sources}}
                   @required={{true}}
-                  @update={{fn this.setSource}}
+                  @update={{this.setSource}}
                   @value={{this.versions.source}}
                 />
               </td>
@@ -31,7 +31,7 @@
                   id="target-version-long"
                   @options={{this.versions.targets}}
                   @required={{true}}
-                  @update={{fn this.setTarget}}
+                  @update={{this.setTarget}}
                   @value={{this.versions.target}}
                 />
               </td>
@@ -49,12 +49,10 @@
       </form>
     </section>
   {{/if}}
-
   <section class="block">
     <p>
       {{t "railsdiff.summary"}}
     </p>
   </section>
 </div>
-
 {{outlet}}
