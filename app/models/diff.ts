@@ -1,3 +1,5 @@
+import { Status } from "../services/versions";
+
 import Line from "./line";
 
 const commentRegexp = /^\\/;
@@ -7,9 +9,9 @@ const inserted = /^\+/;
 export default class Diff {
   filePath: string;
   rawLines: string[] = [];
-  status: string;
+  status: Status;
 
-  constructor(filePath: string, status: string) {
+  constructor(filePath: string, status: Status) {
     this.filePath = filePath;
     this.status = status;
   }

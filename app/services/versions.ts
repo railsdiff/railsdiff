@@ -11,13 +11,20 @@ const Tag = t.interface({
   name: t.string,
 });
 
+const Status = t.union([
+  t.literal("added"),
+  t.literal("modified"),
+  t.literal("removed"),
+  t.literal("renamed"),
+]);
+export type Status = t.TypeOf<typeof Status>;
 const Tags = t.array(Tag);
 type Tags = t.TypeOf<typeof Tags>;
 
 const FileCompare = t.intersection([
   t.interface({
     filename: t.string,
-    status: t.string,
+    status: Status,
   }),
   t.partial({
     patch: t.string,
