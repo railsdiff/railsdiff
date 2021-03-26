@@ -1,4 +1,4 @@
-import { Status } from "../services/versions";
+import { FileCompare } from "../services/versions";
 
 import Line from "./line";
 
@@ -7,13 +7,19 @@ const deleted = /^-/;
 const inserted = /^\+/;
 
 export default class Diff {
-  filePath: string;
+  filePath: FileCompare["filename"];
   rawLines: string[] = [];
-  status: Status;
+  status: FileCompare["status"];
 
-  constructor(filePath: string, status: Status) {
-    this.filePath = filePath;
-    this.status = status;
+  constructor(fileCompare: FileCompare) {
+    this.filePath = fileCompare.filename;
+    this.status = fileCompare.status;
+
+    if (fileCompare.patch) {
+      fileCompare.patch?.split("\n").forEach((line) => {
+        this.rawLines.push(line);
+      });
+    }
   }
 
   get isAdded() {

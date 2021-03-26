@@ -11,31 +11,45 @@ const Tag = t.interface({
   name: t.string,
 });
 
-const Status = t.union([
-  t.literal("added"),
-  t.literal("modified"),
-  t.literal("removed"),
-  t.literal("renamed"),
-]);
-export type Status = t.TypeOf<typeof Status>;
 const Tags = t.array(Tag);
 type Tags = t.TypeOf<typeof Tags>;
 
-const FileCompare = t.intersection([
+const Status = t.intersection([
   t.interface({
     filename: t.string,
-    status: Status,
+    status: t.string,
   }),
   t.partial({
     patch: t.string,
   }),
 ]);
 
+const Added = t.intersection([
+  Status,
+  t.interface({ status: t.literal("added") }),
+]);
+
+const Modified = t.intersection([
+  Status,
+  t.interface({ status: t.literal("modified") }),
+]);
+
+const Removed = t.intersection([
+  Status,
+  t.interface({ status: t.literal("removed") }),
+]);
+
+const Renamed = t.intersection([
+  Status,
+  t.interface({ previous_filename: t.string, status: t.literal("renamed") }),
+]);
+
+const FileCompare = t.union([Added, Modified, Removed, Renamed]);
+export type FileCompare = t.TypeOf<typeof FileCompare>;
+
 const Compare = t.interface({
   files: t.array(FileCompare),
 });
-
-export type FileCompare = t.TypeOf<typeof FileCompare>;
 
 export default class VersionsService extends Service {
   private _allVersions: Version[] = [];

@@ -23,14 +23,6 @@ export default class Patch {
   }
 
   get diffs() {
-    return this.files.map((fileCompare) => {
-      const diff = new Diff(fileCompare.filename, fileCompare.status);
-      if (fileCompare.patch) {
-        fileCompare.patch.split("\n").forEach((line) => {
-          diff.rawLines.push(line);
-        });
-      }
-      return diff;
-    });
+    return this.files.map((fileCompare) => new Diff(fileCompare));
   }
 }
