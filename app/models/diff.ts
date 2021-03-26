@@ -7,9 +7,19 @@ const inserted = /^\+/;
 export default class Diff {
   filePath: string;
   rawLines: string[] = [];
+  status: string;
 
-  constructor(filePath: string) {
+  constructor(filePath: string, status: string) {
     this.filePath = filePath;
+    this.status = status;
+  }
+
+  get isAdded() {
+    return this.status == "added";
+  }
+
+  get isRemoved() {
+    return this.status == "removed";
   }
 
   get lines() {

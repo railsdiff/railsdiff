@@ -17,6 +17,7 @@ type Tags = t.TypeOf<typeof Tags>;
 const FileCompare = t.intersection([
   t.interface({
     filename: t.string,
+    status: t.string,
   }),
   t.partial({
     patch: t.string,

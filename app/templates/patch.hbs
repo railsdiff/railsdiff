@@ -5,17 +5,25 @@
         {{diff.filePath}}
       </span>
       <span class="links">
-        <RawFileLink
-          class="source"
-          @path={{diff.filePath}}
-          @version={{this.model.sourceVersion}}
-        />
+        {{#if diff.isAdded}}
+          {{this.model.sourceVersion}}
+        {{else}}
+          <RawFileLink
+            class="source"
+            @path={{diff.filePath}}
+            @version={{this.model.sourceVersion}}
+          />
+        {{/if}}
         ...
-        <RawFileLink
-          class="target"
-          @path={{diff.filePath}}
-          @version={{this.model.targetVersion}}
-        />
+        {{#if diff.isRemoved}}
+          {{this.model.targetVersion}}
+        {{else}}
+          <RawFileLink
+            class="target"
+            @path={{diff.filePath}}
+            @version={{this.model.targetVersion}}
+          />
+        {{/if}}
       </span>
     </div>
     <table class="diff">
