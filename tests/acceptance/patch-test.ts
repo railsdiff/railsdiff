@@ -49,7 +49,63 @@ module("Acceptance | patch", (hooks) => {
     assert.dom(".content").containsText("There was a problem");
   });
 
-  test("displays the diff between the source and target versions", async (assert) => {
+  test("displays the diff between the source and target versions for an added file", async (assert) => {
+    await visit("/");
+    await select("Source", "1.0.0");
+    await select("Target", "1.0.1");
+    await viewDiff();
+
+    assert.dom(".content").containsText("Gemfile");
+  });
+
+  test("links only to the target file location for an added file", async (assert) => {
+    await visit("/");
+    await select("Source", "1.0.0");
+    await select("Target", "1.0.1");
+    await viewDiff();
+
+    assert.dom("a[title='View Gemfile at 1.0.0']").doesNotExist();
+    assert
+      .dom("a[title='View Gemfile at 1.0.1']")
+      .hasProperty(
+        "href",
+        new RegExp("/railsdiff/rails-new-output/blob/v1.0.1/Gemfile"),
+        "Links to target file"
+      );
+  });
+
+  test("displays the diff between the source and target versions for a modified file", async (assert) => {
+    await visit("/");
+    await select("Source", "1.0.1");
+    await select("Target", "1.1.1");
+    await viewDiff();
+
+    assert.dom(".content").containsText("Gemfile");
+  });
+
+  test("links to source and target file locations for a modified file", async (assert) => {
+    await visit("/");
+    await select("Source", "1.0.1");
+    await select("Target", "1.1.1");
+    await viewDiff();
+
+    assert
+      .dom("a[title='View Gemfile at 1.0.1']")
+      .hasProperty(
+        "href",
+        new RegExp("/railsdiff/rails-new-output/blob/v1.0.1/Gemfile"),
+        "Links to source file"
+      );
+    assert
+      .dom("a[title='View Gemfile at 1.1.1']")
+      .hasProperty(
+        "href",
+        new RegExp("/railsdiff/rails-new-output/blob/v1.1.1/Gemfile"),
+        "Links to target file"
+      );
+  });
+
+  test("displays the diff between the source and target versions for a removed file", async (assert) => {
     await visit("/");
     await select("Source", "1.1.1");
     await select("Target", "2.0.0");
@@ -58,7 +114,7 @@ module("Acceptance | patch", (hooks) => {
     assert.dom(".content").containsText("Gemfile");
   });
 
-  test("links to source and target file locations", async (assert) => {
+  test("links only to the source file location for a removed file", async (assert) => {
     await visit("/");
     await select("Source", "1.1.1");
     await select("Target", "2.0.0");
@@ -69,14 +125,8 @@ module("Acceptance | patch", (hooks) => {
       .hasProperty(
         "href",
         new RegExp("/railsdiff/rails-new-output/blob/v1.1.1/Gemfile"),
-        "Links to first source file"
+        "Links to source file"
       );
-    assert
-      .dom("a[title='View Gemfile at 2.0.0']")
-      .hasProperty(
-        "href",
-        new RegExp("/railsdiff/rails-new-output/blob/v2.0.0/Gemfile"),
-        "Links to first target file"
-      );
+    assert.dom("a[title='View Gemfile at 2.0.0']").doesNotExist();
   });
 });

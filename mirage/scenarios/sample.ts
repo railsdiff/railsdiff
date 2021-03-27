@@ -6,8 +6,7 @@ import AppRegistry from "../registry";
 export default function (server: Server<AppRegistry>) {
   const main = server.create("tag", { name: "main" });
   const v1_0_0 = server.create("tag", { name: "v1.0.0" });
-  const v1_0_1 = server.create("tag", { name: "v1.0.1" });
-  const v1_1_1 = server.create("tag", {
+  const v1_0_1 = server.create("tag", {
     files: {
       Gemfile: `ruby '2.5.0'
 
@@ -18,9 +17,9 @@ gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 `,
     },
-    name: "v1.1.1",
+    name: "v1.0.1",
   });
-  const v2_0_0 = server.create("tag", {
+  const v1_1_1 = server.create("tag", {
     files: {
       Gemfile: `ruby '2.5.0'
 
@@ -29,6 +28,17 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
+`,
+      "README.markdown": `# Welcome to RailsDiff
+`,
+    },
+    name: "v1.1.1",
+  });
+  const v2_0_0 = server.create("tag", {
+    files: {
+      "README.markdown": `# Welcome to RailsDiff 👋
+
+If you'd like to contribute, see https://github.com/railsdiff/railsdiff. 😍
 `,
     },
     name: "v2.0.0",
