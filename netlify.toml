@@ -5,16 +5,16 @@
 [[redirects]]
   from = "http://www.railsdiff.com/*"
   to = "https://railsdiff.org/:splat"
-  status = 200
+  status = 301
 [[redirects]]
   from = "https://www.railsdiff.com/*"
   to = "https://railsdiff.org/:splat"
-  status = 200
+  status = 301
 [[redirects]]
   from = "http://railsdiff.com/*"
   to = "https://railsdiff.org/:splat"
-  status = 200
+  status = 301
 [[redirects]]
   from = "https://railsdiff.com/*"
   to = "https://railsdiff.org/:splat"
-  status = 200
+  status = 301
