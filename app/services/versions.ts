@@ -50,6 +50,7 @@ export type FileCompare = t.TypeOf<typeof FileCompare>;
 const Compare = t.interface({
   files: t.array(FileCompare),
 });
+export type Compare = t.TypeOf<typeof Compare>;
 
 export default class VersionsService extends Service {
   private _allVersions: Version[] = [];
