@@ -17,9 +17,9 @@
             @path={{if diff.isRenamed diff.previousPath diff.filePath}}
             @version={{this.model.sourceVersion}}
           />
-        {{/if}}
+        {{/if~}}
         ...
-        {{#if diff.isRemoved}}
+        {{~#if diff.isRemoved}}
           {{this.model.targetVersion}}
         {{else}}
           <RawFileLink
