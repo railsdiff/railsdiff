@@ -22,11 +22,22 @@ function normalize(number: number | string) {
 
 export default function (this: Server<AppRegistry>) {
   this.get("/repos/:ownerLogin/:repoName/tags", (schema, request) => {
-    const repoFullName = `${request.params.ownerLogin}/${request.params.repoName}`;
-    const repo = schema.findBy("repo", { name: repoFullName });
+    const owner = schema.findBy("owner", { login: request.params.ownerLogin });
+
+    if (!owner) {
+      throw new Error(
+        `Could not find owner with login ${request.params.ownerLogin}`
+      );
+    }
+
+    const repo = owner.repos.models.find(
+      (repo) => repo.name === request.params.repoName
+    );
 
     if (!repo) {
-      throw new Error(`Could not find repo with name ${repoFullName}`);
+      throw new Error(
+        `Could not find repo with name ${request.params.repoName}`
+      );
     }
 
     const limit = normalize(request.queryParams["per_page"]);
@@ -37,7 +48,7 @@ export default function (this: Server<AppRegistry>) {
 
     if (number > 1) {
       links.push(
-        `</repos/${repo.name}/tags?page=${Math.min(
+        `</repos/${owner.login}/${repo.name}/tags?page=${Math.min(
           number - 1,
           totalPages
         )}>; rel="prev"`
@@ -46,7 +57,10 @@ export default function (this: Server<AppRegistry>) {
 
     if (number < totalPages) {
       links.push(
-        `</repos/${repo.name}/tags?page=${Math.max(number + 1, 0)}>; rel="next"`
+        `</repos/${owner.login}/${repo.name}/tags?page=${Math.max(
+          number + 1,
+          0
+        )}>; rel="next"`
       );
     }
 
@@ -68,11 +82,24 @@ export default function (this: Server<AppRegistry>) {
         2
       );
 
-      const repoFullName = `${request.params.ownerLogin}/${request.params.repoName}`;
-      const repo = schema.findBy("repo", { name: repoFullName });
+      const owner = schema.findBy("owner", {
+        login: request.params.ownerLogin,
+      });
+
+      if (!owner) {
+        throw new Error(
+          `Could not find owner with login ${request.params.ownerLogin}`
+        );
+      }
+
+      const repo = owner.repos.models.find(
+        (repo) => repo.name === request.params.repoName
+      );
 
       if (!repo) {
-        throw new Error(`Could not find repo with name ${repoFullName}`);
+        throw new Error(
+          `Could not find repo with name ${request.params.repoName}`
+        );
       }
 
       const sourceTag = repo.tags.models.find(

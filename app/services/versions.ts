@@ -84,7 +84,7 @@ export default class VersionsService extends Service {
 
   async loadPatch() {
     const response = await fetch(
-      `${config.APP.API_URL}/repos/${config.APP.GITHUB_REPOSITORY}/compare/v${this.source}...v${this.target}`
+      `${config.APP.API_URL}/repos/${config.APP.GITHUB_OWNER}/${config.APP.GITHUB_REPOSITORY}/compare/v${this.source}...v${this.target}`
     );
     const responseBody = await response.json();
     const comparisons = Compare.decode(responseBody);
@@ -125,7 +125,7 @@ export default class VersionsService extends Service {
 
   async load() {
     const tags = await this._loadPage(
-      `${config.APP.API_URL}/repos/${config.APP.GITHUB_REPOSITORY}/tags?per_page=100`
+      `${config.APP.API_URL}/repos/${config.APP.GITHUB_OWNER}/${config.APP.GITHUB_REPOSITORY}/tags?per_page=100`
     );
 
     this._allVersions = tags
