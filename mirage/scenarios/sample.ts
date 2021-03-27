@@ -44,13 +44,8 @@ If you'd like to contribute, see https://github.com/railsdiff/railsdiff. 😍
     name: "v2.0.0",
   });
 
-  const repo = server.create("repo", {
+  server.create("repo", {
     tags: [main, v1_0_0, v1_0_1, v1_1_1, v2_0_0],
     name: config.APP.GITHUB_REPOSITORY,
-  });
-
-  server.create("owner", {
-    login: config.APP.GITHUB_OWNER,
-    repos: [repo],
   });
 }
