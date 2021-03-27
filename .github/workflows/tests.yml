@@ -22,8 +22,6 @@ jobs:
             ${{ runner.os }}-node-
       - name: "Install Dependencies"
         run: "npm install"
-      - name: "Run Linters"
-        run: "npm run lint"
       - name: "Run Tests"
         run: "npm test"
     strategy:
