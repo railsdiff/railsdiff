@@ -1,7 +1,6 @@
 # rails-diff
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This repository contains the Ember application used on the frontend of https://railsdiff.org.
 
 ## Prerequisites
 
@@ -14,7 +13,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone https://github.com/railsdiff/railsdiff.git` this repository
 * `cd rails-diff`
 * `npm install`
 
@@ -37,7 +36,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 * `npm run lint:hbs`
 * `npm run lint:js`
-* `npm run lint:js -- --fix`
+* `npm run lint:fix`
 
 ### Building
 
@@ -46,7 +45,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+This repository uses a Continuous Deployment process to push all `main` updates automatically to the production environment.
 
 ## Further Reading / Useful Links
 
