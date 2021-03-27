@@ -2,7 +2,11 @@
   <div class="file">
     <div class="meta">
       <span>
-        {{diff.filePath}}
+        {{#if diff.isRenamed}}
+          {{t "rename" previousPath=diff.previousPath path=diff.filePath}}
+        {{else}}
+          {{diff.filePath}}
+        {{/if}}
       </span>
       <span class="links">
         {{#if diff.isAdded}}
@@ -10,7 +14,7 @@
         {{else}}
           <RawFileLink
             class="source"
-            @path={{diff.filePath}}
+            @path={{if diff.isRenamed diff.previousPath diff.filePath}}
             @version={{this.model.sourceVersion}}
           />
         {{/if}}
@@ -39,7 +43,7 @@
               data-line-num="{{line.insertedLineNum}}"
             ></td>
             <td class="line-code {{line.type}}">
-              {{~line.content~}}
+              {{line.content}}
             </td>
           </tr>
         {{/each}}

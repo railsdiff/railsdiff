@@ -7,13 +7,11 @@ const deleted = /^-/;
 const inserted = /^\+/;
 
 export default class Diff {
-  filePath: FileCompare["filename"];
+  private _fileCompare: FileCompare;
   rawLines: string[] = [];
-  status: FileCompare["status"];
 
   constructor(fileCompare: FileCompare) {
-    this.filePath = fileCompare.filename;
-    this.status = fileCompare.status;
+    this._fileCompare = fileCompare;
 
     if (fileCompare.patch) {
       fileCompare.patch?.split("\n").forEach((line) => {
@@ -22,12 +20,20 @@ export default class Diff {
     }
   }
 
+  get filePath() {
+    return this._fileCompare.filename;
+  }
+
   get isAdded() {
-    return this.status == "added";
+    return this._fileCompare.status == "added";
+  }
+
+  get isRenamed() {
+    return this._fileCompare.status === "renamed";
   }
 
   get isRemoved() {
-    return this.status == "removed";
+    return this._fileCompare.status == "removed";
   }
 
   get lines() {
@@ -58,5 +64,13 @@ export default class Diff {
         });
       }
     });
+  }
+
+  get previousPath() {
+    if (this._fileCompare.status !== "renamed") {
+      return;
+    }
+
+    return this._fileCompare.previous_filename;
   }
 }
