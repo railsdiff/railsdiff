@@ -3,17 +3,7 @@
   to = "/index.html"
   status = 200
 [[redirects]]
-  from = "http://www.railsdiff.com/*"
-  to = "https://railsdiff.org/:splat"
-  force = true
-  status = 301
-[[redirects]]
   from = "https://www.railsdiff.com/*"
-  to = "https://railsdiff.org/:splat"
-  force = true
-  status = 301
-[[redirects]]
-  from = "http://railsdiff.com/*"
   to = "https://railsdiff.org/:splat"
   force = true
   status = 301
