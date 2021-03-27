@@ -4,7 +4,7 @@
       <span>
         <a
           class="file-anchor"
-          href={{diff.anchor}}
+          href={{concat "#" diff.anchor}}
           title={{t "patch.anchor.title" path=diff.filePath}}
         >
           {{~#if diff.isRenamed}}
