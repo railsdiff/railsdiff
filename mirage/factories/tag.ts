@@ -1,6 +1,9 @@
 import faker from "faker";
 import { Factory } from "miragejs";
 
+export type FileMap = Record<string, string>;
+
 export default Factory.extend({
-  name: () => faker.internet.userName(),
+  files: (): FileMap => ({}),
+  name: (): string => faker.internet.userName(),
 });

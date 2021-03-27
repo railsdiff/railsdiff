@@ -51,46 +51,32 @@ module("Acceptance | patch", (hooks) => {
 
   test("displays the diff between the source and target versions", async (assert) => {
     await visit("/");
-    await select("Source", "1.0.0");
+    await select("Source", "1.1.1");
     await select("Target", "2.0.0");
     await viewDiff();
 
-    assert.dom(".content").containsText(".travis.yml");
+    assert.dom(".content").containsText("Gemfile");
   });
 
   test("links to source and target file locations", async (assert) => {
     await visit("/");
-    await select("Source", "1.0.0");
+    await select("Source", "1.1.1");
     await select("Target", "2.0.0");
     await viewDiff();
 
     assert
-      .dom("a[title='View .travis.yml at 1.0.0']")
+      .dom("a[title='View Gemfile at 1.1.1']")
       .hasProperty(
         "href",
-        new RegExp("/railsdiff/rails-new-output/blob/v1.0.0/.travis.yml"),
+        new RegExp("/railsdiff/rails-new-output/blob/v1.1.1/Gemfile"),
         "Links to first source file"
       );
     assert
-      .dom("a[title='View .travis.yml at 2.0.0']")
+      .dom("a[title='View Gemfile at 2.0.0']")
       .hasProperty(
         "href",
-        new RegExp("/railsdiff/rails-new-output/blob/v2.0.0/.travis.yml"),
+        new RegExp("/railsdiff/rails-new-output/blob/v2.0.0/Gemfile"),
         "Links to first target file"
-      );
-    assert
-      .dom("a[title='View LICENSE.txt at 1.0.0']")
-      .hasProperty(
-        "href",
-        new RegExp("/railsdiff/rails-new-output/blob/v1.0.0/LICENSE.txt"),
-        "Links to second source file"
-      );
-    assert
-      .dom("a[title='View LICENSE.txt at 2.0.0']")
-      .hasProperty(
-        "href",
-        new RegExp("/railsdiff/rails-new-output/blob/v2.0.0/LICENSE.txt"),
-        "Links to second target file"
       );
   });
 });
