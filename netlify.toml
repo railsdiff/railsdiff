@@ -1,14 +1,16 @@
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-[[redirects]]
   from = "https://www.railsdiff.com/*"
   to = "https://railsdiff.org/:splat"
   force = true
   status = 301
+
 [[redirects]]
   from = "https://railsdiff.com/*"
   to = "https://railsdiff.org/:splat"
   force = true
   status = 301
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
