@@ -20,12 +20,20 @@ export default class Diff {
     }
   }
 
+  get anchor() {
+    return `diff-${this.sha}`;
+  }
+
   get filePath() {
     return this._fileCompare.filename;
   }
 
   get isAdded() {
     return this._fileCompare.status == "added";
+  }
+
+  get isLinked() {
+    return document.URL.split("#", 2)[1] === this.anchor;
   }
 
   get isRenamed() {

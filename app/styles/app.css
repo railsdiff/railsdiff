@@ -82,6 +82,11 @@ header h1 {
   margin-bottom: 2em;
 }
 
+.file-linked {
+  box-shadow: 0 0 0.5em rgb(0, 0, 165);
+  box-sizing: border-box;
+}
+
 .form-container {
   margin-top: 1em;
 }
