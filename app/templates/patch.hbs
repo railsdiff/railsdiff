@@ -1,12 +1,18 @@
 {{#each this.model.patch.diffs as |diff|}}
-  <div class="file">
+  <div class="file" id={{concat "diff-" diff.sha}}>
     <div class="meta">
       <span>
-        {{#if diff.isRenamed}}
-          {{t "rename" previousPath=diff.previousPath path=diff.filePath}}
-        {{else}}
-          {{diff.filePath}}
-        {{/if}}
+        <a
+          class="file-anchor"
+          href={{concat "#diff-" diff.sha}}
+          title={{t "patch.anchor.title" path=diff.filePath}}
+        >
+          {{~#if diff.isRenamed}}
+            {{t "rename" previousPath=diff.previousPath path=diff.filePath}}
+          {{else}}
+            {{diff.filePath}}
+          {{/if~}}
+        </a>
       </span>
       <span class="links">
         {{#if diff.isAdded}}

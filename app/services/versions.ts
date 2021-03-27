@@ -17,6 +17,7 @@ type Tags = t.TypeOf<typeof Tags>;
 const Status = t.intersection([
   t.interface({
     filename: t.string,
+    sha: t.string,
     status: t.string,
   }),
   t.partial({

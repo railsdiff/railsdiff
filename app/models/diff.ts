@@ -73,4 +73,8 @@ export default class Diff {
 
     return this._fileCompare.previous_filename;
   }
+
+  get sha() {
+    return this._fileCompare.sha;
+  }
 }

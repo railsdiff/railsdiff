@@ -189,6 +189,15 @@ header h1 {
   padding: 5px 10px;
 }
 
+.meta .file-anchor {
+  color: inherit;
+  text-decoration: none;
+}
+
+.meta .file-anchor:hover {
+  text-decoration: underline;
+}
+
 .meta .links {
   float: right;
   font-size: 80%;

@@ -76,7 +76,7 @@ export default function (this: Server<AppRegistry>) {
 
   this.get(
     "/repos/:ownerLogin/:repoName/compare/:versions",
-    (schema, request) => {
+    async (schema, request) => {
       const [sourceVersion, targetVersion] = request.params.versions.split(
         "...",
         2
@@ -121,7 +121,7 @@ export default function (this: Server<AppRegistry>) {
       return new Response(
         200,
         { "Content-Type": "application/json; charset=utf-8" },
-        compare(sourceTag.files, targetTag.files)
+        await compare(sourceTag.files, targetTag.files)
       );
     }
   );

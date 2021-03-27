@@ -49,6 +49,17 @@ module("Acceptance | patch", (hooks) => {
     assert.dom(".content").containsText("There was a problem");
   });
 
+  test("deep links to each file diff", async (assert) => {
+    await visit("/");
+    await select("Source", "1.0.0");
+    await select("Target", "1.0.1");
+    await viewDiff();
+
+    assert
+      .dom("a[title='Permalink to Gemfile']")
+      .hasAttribute("href", "#diff-de3150c01c3a946a6168173c4116741379fe3579");
+  });
+
   test("displays the diff between the source and target versions for an added file", async (assert) => {
     await visit("/");
     await select("Source", "1.0.0");
