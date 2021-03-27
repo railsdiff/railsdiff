@@ -1,5 +1,5 @@
 {{#each this.model.patch.diffs as |diff|}}
-  <div class={{concat "file" (if diff.isLinked " file-linked")}} id={{diff.anchor}}>
+  <div class={{concat "file" (if diff.isLinked " file-linked")}} id={{diff.anchor}} {{did-insert (fn this.scrollToLinked diff.isLinked)}}>
     <div class="meta">
       <span>
         <a
