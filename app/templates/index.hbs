@@ -11,13 +11,16 @@
                 </label>
               </td>
               <td>
-                <OneWaySelect
+                <Inputs::Select
                   id="source-version-long"
-                  @options={{this.versions.sources}}
-                  @required={{true}}
-                  @update={{this.setSource}}
+                  @onChange={{this.setSource}}
                   @value={{this.versions.source}}
-                />
+                  required as |select|
+                >
+                  {{#each this.versions.sources as |version|}}
+                    <select.option @label={{version}} @value={{version}} />
+                  {{/each}}
+                </Inputs::Select>
               </td>
             </tr>
             <tr>
@@ -27,13 +30,16 @@
                 </label>
               </td>
               <td>
-                <OneWaySelect
+                <Inputs::Select
                   id="target-version-long"
-                  @options={{this.versions.targets}}
-                  @required={{true}}
-                  @update={{this.setTarget}}
+                  @onChange={{this.setTarget}}
                   @value={{this.versions.target}}
-                />
+                  required as |select|
+                >
+                  {{#each this.versions.targets as |version|}}
+                    <select.option @label={{version}} @value={{version}} />
+                  {{/each}}
+                </Inputs::Select>
               </td>
             </tr>
             <tr>
