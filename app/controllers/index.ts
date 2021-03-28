@@ -3,8 +3,8 @@ import { action } from "@ember/object";
 import { Registry as ServiceRegistry, inject as service } from "@ember/service";
 
 export default class IndexController extends Controller {
-  @service("versions")
-  versions!: ServiceRegistry["versions"];
+  @service("router")
+  private _router!: ServiceRegistry["router"];
 
   @action
   setSource(source: string) {
@@ -19,6 +19,11 @@ export default class IndexController extends Controller {
   @action
   showDiff(event: Event) {
     event.preventDefault();
-    this.transitionToRoute(`/${this.versions.source}/${this.versions.target}`);
+    this._router.transitionTo(
+      `/${this.versions.source}/${this.versions.target}`
+    );
   }
+
+  @service("versions")
+  versions!: ServiceRegistry["versions"];
 }

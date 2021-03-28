@@ -9,23 +9,29 @@
       <label for="source-version">
         {{t "source"}}
       </label>
-      <OneWaySelect
+      <Inputs::Select
         id="source-version"
-        @options={{this.versions.sources}}
-        @required={{true}}
-        @update={{this.setSource}}
+        @onChange={{this.setSource}}
         @value={{this.versions.source}}
-      />
+        required as |select|
+      >
+        {{#each this.versions.sources as |version|}}
+          <select.option @label={{version}} @value={{version}} />
+        {{/each}}
+      </Inputs::Select>
       <label for="target-version">
         {{t "target"}}
       </label>
-      <OneWaySelect
+      <Inputs::Select
         id="target-version"
-        @options={{this.versions.targets}}
-        @required={{true}}
-        @update={{this.setTarget}}
+        @onChange={{this.setTarget}}
         @value={{this.versions.target}}
-      />
+        required as |select|
+      >
+        {{#each this.versions.targets as |version|}}
+          <select.option @label={{version}} @value={{version}} />
+        {{/each}}
+      </Inputs::Select>
       <button type="submit">
         {{t "view-diff"}}
       </button>
