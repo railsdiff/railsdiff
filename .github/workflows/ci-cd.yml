@@ -31,10 +31,23 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v2"
+      - uses: "actions/setup-node@v1"
+        with:
+          node-version: "14.x"
+      - uses: "actions/cache@v2"
+        with:
+          key: "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
+          path: "~/.npm"
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: "Install Dependencies"
+        run: "npm install"
+      - name: "Build Application"
+        run: "ember build --environment production"
       - env:
           NETLIFY_AUTH_TOKEN: "${{ secrets.NETLIFY_AUTH_TOKEN }}"
           NETLIFY_SITE_ID: "${{ secrets.NETLIFY_SITE_ID }}"
         name: "Deploy"
         uses: "netlify/actions/cli@master"
         with:
-          args: "deploy --prod"
+          args: "deploy --dir=dist --prod"
