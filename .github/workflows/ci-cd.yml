@@ -37,4 +37,4 @@ jobs:
         name: "Deploy"
         uses: "netlify/actions/cli@master"
         with:
-          args: "deploy --dir=dist --prod"
+          args: "deploy --prod"
