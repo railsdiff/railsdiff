@@ -41,6 +41,11 @@ jobs:
         with:
           node-version: "14.x"
       - uses: "actions/cache@v2"
+        with:
+          path: "~/.npm"
+          key: "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
+          restore-keys: |
+            ${{ runner.os }}-node-
       - run: "npm install"
       - run: "npm run build"
 
