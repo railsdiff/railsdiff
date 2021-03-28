@@ -1,0 +1,33 @@
+---
+name: "Pull Request"
+
+"on":
+  "pull_request":
+    "branches":
+      - "main"
+
+jobs:
+  tests:
+    name: "Tests"
+    runs-on: "${{ matrix.os }}"
+    steps:
+      - uses: "actions/checkout@v2"
+      - uses: "actions/setup-node@v1"
+        with:
+          node-version: "${{ matrix.node-version }}"
+      - uses: "actions/cache@v2"
+        with:
+          path: "~/.npm"
+          key: "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: "Install Dependencies"
+        run: "npm install"
+      - name: "Run Tests"
+        run: "npm test"
+    strategy:
+      matrix:
+        os:
+          - "ubuntu-latest"
+        node-version:
+          - "14.x"

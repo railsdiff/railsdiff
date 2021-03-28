@@ -1,9 +1,10 @@
 ---
-name: "Tests"
+name: "Default"
 
 "on":
-  - "pull_request"
-  - "push"
+  "push":
+    "branches":
+      - "main"
 
 jobs:
   tests:
@@ -30,3 +31,23 @@ jobs:
           - "ubuntu-latest"
         node-version:
           - "14.x"
+  deploy:
+    name: "Deployment"
+    needs: tests
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v2"
+      - uses: "actions/setup-node@v1"
+        with:
+          node-version: "14.x"
+      - uses: "actions/cache@v2"
+      - run: "npm install"
+      - run: "npm run build"
+
+      - uses: 'netlify/actions/cli@master'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        with:
+          args: "deploy --dir=dist --prod"
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
