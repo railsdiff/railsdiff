@@ -24,6 +24,14 @@ jobs:
         run: "npm install"
       - name: "Run Tests"
         run: "npm test"
+      - env:
+          NETLIFY_AUTH_TOKEN: "${{ secrets.NETLIFY_AUTH_TOKEN }}"
+          NETLIFY_SITE_ID: "${{ secrets.NETLIFY_SITE_ID }}"
+        if: "github.ref == 'refs/heads/master'"
+        name: "Deploy"
+        uses: "netlify/actions/cli@master"
+        with:
+          args: "deploy --dir=dist --prod"
     strategy:
       matrix:
         os:
