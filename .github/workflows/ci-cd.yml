@@ -30,7 +30,7 @@ jobs:
     needs: "tests"
     runs-on: "ubuntu-latest"
     steps:
-        uses: "actions/checkout@v2"
+      - uses: "actions/checkout@v2"
       - env:
           NETLIFY_AUTH_TOKEN: "${{ secrets.NETLIFY_AUTH_TOKEN }}"
           NETLIFY_SITE_ID: "${{ secrets.NETLIFY_SITE_ID }}"
