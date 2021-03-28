@@ -8,6 +8,6 @@ interface Args {
 
 export default class RawFileLinkComponent extends Component<Args> {
   get url() {
-    return `${config.APP.FILE_URL}/${config.APP.GITHUB_REPOSITORY}/blob/v${this.args.version}/${this.args.path}`;
+    return `${config.APP.FILE_URL}/${config.APP.REPOSITORY}/blob/v${this.args.version}/${this.args.path}`;
   }
 }

@@ -12,7 +12,7 @@ module.exports = function (environment) {
   const {
     API_URL = "",
     FILE_URL = "",
-    GITHUB_REPOSITORY = "railsdiff/rails-new-output",
+    REPOSITORY = "railsdiff/rails-new-output",
     MIRAGE_ENABLED = true,
     MIRAGE_SCENARIO = "sample",
   } = {
@@ -23,7 +23,7 @@ module.exports = function (environment) {
     APP: {
       API_URL,
       FILE_URL,
-      GITHUB_REPOSITORY,
+      REPOSITORY,
     },
     EmberENV: {
       FEATURES: {},

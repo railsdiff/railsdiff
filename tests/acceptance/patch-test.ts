@@ -81,7 +81,7 @@ module("Acceptance | patch", (hooks) => {
       .dom("a[title='View Gemfile at 1.0.1']")
       .hasProperty(
         "href",
-        new RegExp(`/${config.APP.GITHUB_REPOSITORY}/blob/v1.0.1/Gemfile`),
+        new RegExp(`/${config.APP.REPOSITORY}/blob/v1.0.1/Gemfile`),
         "Links to target file"
       );
   });
@@ -105,14 +105,14 @@ module("Acceptance | patch", (hooks) => {
       .dom("a[title='View Gemfile at 1.0.1']")
       .hasProperty(
         "href",
-        new RegExp(`/${config.APP.GITHUB_REPOSITORY}/blob/v1.0.1/Gemfile`),
+        new RegExp(`/${config.APP.REPOSITORY}/blob/v1.0.1/Gemfile`),
         "Links to source file"
       );
     assert
       .dom("a[title='View Gemfile at 1.1.1']")
       .hasProperty(
         "href",
-        new RegExp(`/${config.APP.GITHUB_REPOSITORY}/blob/v1.1.1/Gemfile`),
+        new RegExp(`/${config.APP.REPOSITORY}/blob/v1.1.1/Gemfile`),
         "Links to target file"
       );
   });
@@ -136,7 +136,7 @@ module("Acceptance | patch", (hooks) => {
       .dom("a[title='View Gemfile at 1.1.1']")
       .hasProperty(
         "href",
-        new RegExp(`/${config.APP.GITHUB_REPOSITORY}/blob/v1.1.1/Gemfile`),
+        new RegExp(`/${config.APP.REPOSITORY}/blob/v1.1.1/Gemfile`),
         "Links to source file"
       );
     assert.dom("a[title='View Gemfile at 2.0.0']").doesNotExist();

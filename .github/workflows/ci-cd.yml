@@ -45,7 +45,7 @@ jobs:
       - env:
           API_URL: "https://api.github.com"
           FILE_URL: "https://github.com"
-          GITHUB_REPOSITORY: "railsdiff/rails-new-output"
+          REPOSITORY: "railsdiff/rails-new-output"
         name: "Build Application"
         run: "npm run build"
       - env:

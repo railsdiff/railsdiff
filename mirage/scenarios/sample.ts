@@ -46,11 +46,11 @@ If you'd like to contribute, see https://github.com/railsdiff/railsdiff. 😍
 
   const repo = server.create("repo", {
     tags: [main, v1_0_0, v1_0_1, v1_1_1, v2_0_0],
-    name: config.APP.GITHUB_REPOSITORY.split("/", 2)[1],
+    name: config.APP.REPOSITORY.split("/", 2)[1],
   });
 
   server.create("owner", {
-    login: config.APP.GITHUB_REPOSITORY.split("/", 2)[0],
+    login: config.APP.REPOSITORY.split("/", 2)[0],
     repos: [repo],
   });
 }

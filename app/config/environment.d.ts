@@ -13,7 +13,7 @@ declare const config: {
   APP: {
     API_URL: string;
     FILE_URL: string;
-    GITHUB_REPOSITORY: string;
+    REPOSITORY: string;
   };
   MIRAGE_SCENARIO?: string;
 };
