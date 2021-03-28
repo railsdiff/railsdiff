@@ -16,8 +16,8 @@ jobs:
           node-version: "14.x"
       - uses: "actions/cache@v2"
         with:
-          path: "~/.npm"
           key: "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
+          path: "~/.npm"
           restore-keys: |
             ${{ runner.os }}-node-
       - name: "Install Dependencies"
