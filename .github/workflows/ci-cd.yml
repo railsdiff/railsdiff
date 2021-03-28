@@ -45,6 +45,9 @@ jobs:
       - name: "Build Application"
         run: "npm run build"
       - env:
+          API_URL: "https://api.github.com"
+          FILE_URL: "https://github.com"
+          GITHUB_REPOSITORY: "railsdiff/rails-new-output"
           NETLIFY_AUTH_TOKEN: "${{ secrets.NETLIFY_AUTH_TOKEN }}"
           NETLIFY_SITE_ID: "${{ secrets.NETLIFY_SITE_ID }}"
         name: "Deploy"
