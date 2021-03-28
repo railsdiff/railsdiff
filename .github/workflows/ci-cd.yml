@@ -43,7 +43,7 @@ jobs:
       - name: "Install Dependencies"
         run: "npm install"
       - name: "Build Application"
-        run: "ember build --environment production"
+        run: "npm run build"
       - env:
           NETLIFY_AUTH_TOKEN: "${{ secrets.NETLIFY_AUTH_TOKEN }}"
           NETLIFY_SITE_ID: "${{ secrets.NETLIFY_SITE_ID }}"
