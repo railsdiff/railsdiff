@@ -15,5 +15,7 @@
   "source": "Source",
   "target.long": "What version of Rails do you want to upgrade to?",
   "target": "Target",
+  "title.patch": "{source} → {target}",
+  "title-separator": " - ",
   "view-diff": "View Diff"
 }
