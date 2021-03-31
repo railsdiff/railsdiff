@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>RailsDiff</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     {{content-for "head"}}
 
     <link rel="shortcut icon" href="/logo.png" />
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/rails-diff.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css" />
+    <link
+      integrity=""
+      rel="stylesheet"
+      href="{{rootURL}}assets/rails-diff.css"
+    />
 
     {{content-for "head-footer"}}
   </head>
@@ -20,18 +24,6 @@
 
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/rails-diff.js"></script>
-    <script>
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-7325596-4']);
-      _gaq.push(['_setSiteSpeedSampleRate', 100]);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript';
-        ga.async = true; ga.src = '//www.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
 
     {{content-for "body-footer"}}
   </body>

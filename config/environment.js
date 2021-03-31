@@ -12,6 +12,7 @@ module.exports = function (environment) {
   const {
     API_URL = "",
     FILE_URL = "",
+    GA_MEASUREMENT_ID = "",
     REPOSITORY = "railsdiff/rails-new-output",
     MIRAGE_ENABLED = true,
     MIRAGE_SCENARIO = "sample",
@@ -37,6 +38,22 @@ module.exports = function (environment) {
     modulePrefix: "rails-diff",
     rootURL: "/",
   };
+
+  if (GA_MEASUREMENT_ID) {
+    Object.assign(ENV, {
+      metricsAdapters: [
+        {
+          config: {
+            anonymizeIp: true,
+            id: GA_MEASUREMENT_ID,
+            sendHitTask: isProduction,
+            trace: isDevelopment,
+          },
+          name: "GoogleAnalytics",
+        },
+      ],
+    });
+  }
 
   if (isDevelopment) {
     Object.assign(ENV, {
