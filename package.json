@@ -45,7 +45,7 @@
     "@types/ember__test-helpers": "^1.7.3",
     "@types/faker": "^5.5.0",
     "@types/qunit": "^2.11.1",
-    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.20.0",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
