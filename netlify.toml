@@ -1,3 +1,24 @@
+[[headers]]
+  for = "/assets/images/*-*.*"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    public'''
+
+[[headers]]
+  for = "/assets/rails-diff-*.*"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    public'''
+
+[[headers]]
+  for = "/assets/vendor-*.*"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    public'''
+
 [[redirects]]
   from = "https://www.railsdiff.com/*"
   to = "https://railsdiff.org/:splat"

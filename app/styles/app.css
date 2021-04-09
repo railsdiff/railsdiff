@@ -46,7 +46,7 @@ header h1 {
   display: inline-block;
   margin: 5px 5%;
   background-size: 34px auto;
-  background-image: url(/logo.png);
+  background-image: url(/images/logo.png);
   background-repeat: no-repeat;
   padding-left: 49px;
 }
