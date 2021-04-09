@@ -1,0 +1,60 @@
+<div
+  class={{concat "file" (if this.isLinked " file-linked")}}
+  id={{@diff.anchor}}
+>
+  <div class="meta">
+    <span>
+      <a
+        class="file-anchor"
+        href={{concat "#" @diff.anchor}}
+        title={{t "patch.anchor.title" path=@diff.filePath}}
+      >
+        {{~#if @diff.isRenamed}}
+          {{t "rename" previousPath=@diff.previousPath path=@diff.filePath}}
+        {{else}}
+          {{@diff.filePath}}
+        {{/if~}}
+      </a>
+    </span>
+    <span class="links">
+      {{#if @diff.isAdded}}
+        {{@sourceVersion}}
+      {{else}}
+        <RawFileLink
+          class="source"
+          @path={{if @diff.isRenamed @diff.previousPath @diff.filePath}}
+          @version={{@sourceVersion}}
+        />
+      {{/if~}}
+      ...
+      {{~#if @diff.isRemoved}}
+        {{@targetVersion}}
+      {{else}}
+        <RawFileLink
+          class="target"
+          @path={{@diff.filePath}}
+          @version={{@targetVersion}}
+        />
+      {{/if}}
+    </span>
+  </div>
+  <table class="diff">
+    <tbody>
+      {{#each @diff.lines as |line|}}
+        <tr>
+          <td
+            class="line-num {{line.type}}"
+            data-line-num="{{line.deletedLineNum}}"
+          ></td>
+          <td
+            class="line-num {{line.type}}"
+            data-line-num="{{line.insertedLineNum}}"
+          ></td>
+          <td class="line-code {{line.type}}">
+            {{~line.content~}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

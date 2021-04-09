@@ -1,11 +1,7 @@
 import Controller from "@ember/controller";
-import { action } from "@ember/object";
 
 export default class PatchController extends Controller {
-  @action
-  scrollToLinked(isLinked: boolean, element: Element): void {
-    if (isLinked) {
-      element.scrollIntoView();
-    }
+  get linkedAnchor(): string | undefined {
+    return document.URL.split("#", 2)[1];
   }
 }

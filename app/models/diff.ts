@@ -32,10 +32,6 @@ export default class Diff {
     return this._fileCompare.status == "added";
   }
 
-  get isLinked() {
-    return document.URL.split("#", 2)[1] === this.anchor;
-  }
-
   get isRenamed() {
     return this._fileCompare.status === "renamed";
   }

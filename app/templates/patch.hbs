@@ -9,65 +9,10 @@
 }}
 
 {{#each this.model.patch.diffs as |diff|}}
-  <div
-    class={{concat "file" (if diff.isLinked " file-linked")}}
-    id={{diff.anchor}}
-    {{did-insert (fn this.scrollToLinked diff.isLinked)}}
-  >
-    <div class="meta">
-      <span>
-        <a
-          class="file-anchor"
-          href={{concat "#" diff.anchor}}
-          title={{t "patch.anchor.title" path=diff.filePath}}
-        >
-          {{~#if diff.isRenamed}}
-            {{t "rename" previousPath=diff.previousPath path=diff.filePath}}
-          {{else}}
-            {{diff.filePath}}
-          {{/if~}}
-        </a>
-      </span>
-      <span class="links">
-        {{#if diff.isAdded}}
-          {{this.model.sourceVersion}}
-        {{else}}
-          <RawFileLink
-            class="source"
-            @path={{if diff.isRenamed diff.previousPath diff.filePath}}
-            @version={{this.model.sourceVersion}}
-          />
-        {{/if~}}
-        ...
-        {{~#if diff.isRemoved}}
-          {{this.model.targetVersion}}
-        {{else}}
-          <RawFileLink
-            class="target"
-            @path={{diff.filePath}}
-            @version={{this.model.targetVersion}}
-          />
-        {{/if}}
-      </span>
-    </div>
-    <table class="diff">
-      <tbody>
-        {{#each diff.lines as |line|}}
-          <tr>
-            <td
-              class="line-num {{line.type}}"
-              data-line-num="{{line.deletedLineNum}}"
-            ></td>
-            <td
-              class="line-num {{line.type}}"
-              data-line-num="{{line.insertedLineNum}}"
-            ></td>
-            <td class="line-code {{line.type}}">
-              {{~line.content~}}
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+  <Diff
+    @diff={{diff}}
+    @linkedAnchor={{this.linkedAnchor}}
+    @sourceVersion={{this.model.sourceVersion}}
+    @targetVersion={{this.model.targetVersion}}
+  />
 {{/each}}
