@@ -81,7 +81,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-sort-keys-fix": "^1.1.1",
     "faker": "^5.5.3",
-    "fp-ts": "^2.9.5",
+    "fp-ts": "^2.10.0",
     "io-ts": "^2.2.16",
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
