@@ -1,9 +1,9 @@
-import Diff from "diff";
+import { createPatch } from "diff";
 import { FileMap } from "rails-diff/mirage/factories/tag";
 import { Compare } from "rails-diff/services/versions";
 
 function gitDiff(filename: string, source: string, target: string): string {
-  const diff = Diff.createPatch(filename, source, target).split("\n");
+  const diff = createPatch(filename, source, target).split("\n");
   diff.splice(0, 4);
   return diff.join("\n");
 }
