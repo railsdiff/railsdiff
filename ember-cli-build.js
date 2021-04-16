@@ -22,6 +22,7 @@ module.exports = function (defaults) {
 
   const { Webpack } = require("@embroider/webpack");
   return require("@embroider/compat").compatBuild(app, Webpack, {
+    splitAtRoutes: [],
     staticAddonTestSupportTrees: true,
     staticAddonTrees: true,
     staticComponents: true,
