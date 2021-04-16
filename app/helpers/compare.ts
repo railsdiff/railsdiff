@@ -1,6 +1,7 @@
 import { createPatch } from "diff";
-import { FileMap } from "rails-diff/mirage/factories/tag";
 import { Compare } from "rails-diff/services/versions";
+
+export type FileMap = Record<string, string>;
 
 function gitDiff(filename: string, source: string, target: string): string {
   const diff = createPatch(filename, source, target).split("\n");
