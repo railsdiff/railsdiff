@@ -1,7 +1,6 @@
 import faker from "faker";
 import { Factory } from "miragejs";
-
-export type FileMap = Record<string, string>;
+import { FileMap } from "rails-diff/helpers/compare";
 
 export default Factory.extend({
   files: (): FileMap => ({}),
