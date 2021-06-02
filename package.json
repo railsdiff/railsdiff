@@ -40,7 +40,7 @@
     "@types/ember-qunit": "^3.4.13",
     "@types/ember-resolver": "^5.0.10",
     "@types/ember__test-helpers": "^2.0.0",
-    "@types/faker": "^5.5.3",
+    "@types/faker": "^5.5.6",
     "@types/qunit": "^2.11.1",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
