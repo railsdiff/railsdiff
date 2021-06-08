@@ -15,7 +15,8 @@
                   id="source-version-long"
                   @onChange={{this.setSource}}
                   @value={{this.versions.source}}
-                  required as |select|
+                  required
+                  as |select|
                 >
                   {{#each this.versions.sources as |version|}}
                     <select.option @label={{version}} @value={{version}} />
@@ -34,7 +35,8 @@
                   id="target-version-long"
                   @onChange={{this.setTarget}}
                   @value={{this.versions.target}}
-                  required as |select|
+                  required
+                  as |select|
                 >
                   {{#each this.versions.targets as |version|}}
                     <select.option @label={{version}} @value={{version}} />

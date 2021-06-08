@@ -1,4 +1,5 @@
-const ANCHORED_VERSION_PATTERN = /^\s*([0-9]+(\.[0-9a-zA-Z]+)*(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?)?\s*$/;
+const ANCHORED_VERSION_PATTERN =
+  /^\s*([0-9]+(\.[0-9a-zA-Z]+)*(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?)?\s*$/;
 const EMPTY_PATTERN = /^\s*$/;
 
 function dropWhile<T>(arr: T[], func: (item: T) => boolean) {
