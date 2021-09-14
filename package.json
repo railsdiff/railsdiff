@@ -72,7 +72,7 @@
     "ember-resolver": "^8.0.2",
     "ember-semantic-test-helpers": "^1.0.0",
     "ember-source": "~3.27.4",
-    "ember-template-lint": "^3.4.2",
+    "ember-template-lint": "^3.7.0",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-ember": "^10.5.0",
