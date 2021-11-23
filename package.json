@@ -59,7 +59,7 @@
     "ember-cli-terser": "^4.0.2",
     "ember-cli-typescript": "^4.2.1",
     "ember-cli-typescript-blueprints": "^3.0.0",
-    "ember-data": "~3.27.1",
+    "ember-data": "~3.28.4",
     "ember-decorators": "^6.1.1",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.1.1",
