@@ -36,7 +36,7 @@
     "@glimmer/tracking": "^1.0.4",
     "@types/diff": "^5.0.1",
     "@types/ember": "^3.16.5",
-    "@types/ember-data": "^3.16.13",
+    "@types/ember-data": "^4.0.0",
     "@types/ember-qunit": "^3.4.13",
     "@types/ember-resolver": "^5.0.10",
     "@types/ember__test-helpers": "^2.0.1",
