@@ -2,45 +2,40 @@
 name: "CI/CD"
 
 "on":
-  - "push"
+  pull_request:
+    branches:
+      - "main"
+  push:
+    branches:
+      - "main"
 
 jobs:
   tests:
     name: "Tests"
     runs-on: "ubuntu-latest"
     steps:
-      - uses: "actions/checkout@v2"
-      - uses: "actions/setup-node@v1"
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-node@v3"
         with:
+          cache: "npm"
           node-version: "14.x"
-      - uses: "actions/cache@v2"
-        with:
-          key: "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
-          path: "~/.npm"
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: "Install Dependencies"
-        run: "npm install"
+        run: "npm ci"
       - name: "Run Tests"
         run: "npm test"
   deploy:
-    if: "github.ref == 'refs/heads/main'"
+    if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
     name: "Deploy"
     needs: "tests"
     runs-on: "ubuntu-latest"
     steps:
-      - uses: "actions/checkout@v2"
-      - uses: "actions/setup-node@v1"
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-node@v3"
         with:
+          cache: "npm"
           node-version: "14.x"
-      - uses: "actions/cache@v2"
-        with:
-          key: "${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}"
-          path: "~/.npm"
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: "Install Dependencies"
-        run: "npm install"
+        run: "npm ci"
       - env:
           API_URL: "https://api.github.com"
           GA_MEASUREMENT_ID: "UA-7325596-4"
