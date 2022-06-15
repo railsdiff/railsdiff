@@ -243,3 +243,65 @@ header h1 {
     display: none;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+  }
+  header {
+    background-color: #333;
+    border-bottom-color: #000;
+  }
+
+  header a,
+  header a:active,
+  header a:hover,
+  header a:visited {
+    color: #858585;
+  }
+
+  .file {
+    border-color: #282828;
+  }
+
+  .line-code,
+  .line-num {
+    background-color: #282828;
+    color: #858585;
+  }
+
+  .line-code.comment,
+  .line-num.comment {
+    background-color: #373737;
+    color: #858585;
+  }
+
+  .line-code.deleted,
+  .line-num.deleted {
+    background-color: #350101;
+  }
+
+  .line-num.deleted {
+    border-color: #410d0d;
+  }
+
+  .line-code.inserted,
+  .line-num.inserted {
+    background-color: #082808;
+  }
+
+  .line-num.inserted {
+    border-color: #003400;
+  }
+
+  .line-num,
+  .line-num.comment {
+    border-color: #282828;
+  }
+
+  .meta {
+    background-color: #373737;
+    border-color: #282828;
+  }
+}
