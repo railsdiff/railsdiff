@@ -26,13 +26,13 @@ module("Unit | Models | Version", () => {
     assert.expect(7);
 
     ["1.0", "1.0 ", " 1.0 ", "1.0\n", "\n1.0\n", "1.0"].forEach((version) => {
-      assert.equal(
+      assert.strictEqual(
         new Version(version).toString(),
         "1.0",
         `Accepts "${version}"`
       );
     });
 
-    assert.equal(new Version("1").toString(), "1", 'Accepts "1"');
+    assert.strictEqual(new Version("1").toString(), "1", 'Accepts "1"');
   });
 });

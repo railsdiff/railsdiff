@@ -69,13 +69,13 @@ module("Acceptance | version selection", (hooks) => {
       "What version of Rails do you want to upgrade to?"
     ) as HTMLSelectElement | undefined;
 
-    assert.equal(sourceSelect?.selectedOptions[0].text, "1.0.0");
-    assert.equal(targetSelect?.selectedOptions[0].text, "2.0.0");
+    assert.strictEqual(sourceSelect?.selectedOptions[0].text, "1.0.0");
+    assert.strictEqual(targetSelect?.selectedOptions[0].text, "2.0.0");
 
     await select("Source", "1.0.1");
     await select("Target", "1.1.1");
 
-    assert.equal(sourceSelect?.selectedOptions[0].text, "1.0.1");
-    assert.equal(targetSelect?.selectedOptions[0].text, "1.1.1");
+    assert.strictEqual(sourceSelect?.selectedOptions[0].text, "1.0.1");
+    assert.strictEqual(targetSelect?.selectedOptions[0].text, "1.1.1");
   });
 });

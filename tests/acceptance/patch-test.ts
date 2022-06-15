@@ -32,8 +32,8 @@ module("Acceptance | patch", (hooks) => {
       targetControl.selectedIndex
     )?.label;
 
-    assert.equal(sourceSelected, "1.0.1");
-    assert.equal(targetSelected, "1.1.1");
+    assert.strictEqual(sourceSelected, "1.0.1");
+    assert.strictEqual(targetSelected, "1.1.1");
   });
 
   test("navigating directly to a patch with unknown versions errors", async function (assert) {

@@ -16,7 +16,7 @@ module("Acceptance | about", (hooks) => {
     await visit("/");
     await click("About");
 
-    assert.equal(currentURL(), "/about");
+    assert.strictEqual(currentURL(), "/about");
     assert.dom(".content").containsText("Why RailsDiff was built");
   });
 });

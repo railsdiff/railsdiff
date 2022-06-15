@@ -3,11 +3,11 @@ import Version from "rails-diff/models/version";
 import compareVersions from "rails-diff/utils/compare-versions";
 
 function assertEqual(assert: Assert, left: Version, right: Version) {
-  assert.equal(compareVersions(left, right), 0, `${left} === ${right}`);
+  assert.strictEqual(compareVersions(left, right), 0, `${left} === ${right}`);
 }
 
 function assertLessThan(assert: Assert, left: Version, right: Version) {
-  assert.equal(compareVersions(left, right), -1, `${left} < ${right}`);
+  assert.strictEqual(compareVersions(left, right), -1, `${left} < ${right}`);
 }
 
 function assertNotEqual(assert: Assert, left: Version, right: Version) {

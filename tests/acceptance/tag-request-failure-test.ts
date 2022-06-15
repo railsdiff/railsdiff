@@ -9,7 +9,7 @@ module("Acceptance | tag request failure", (hooks) => {
   test("describes the application", async function (assert) {
     await visit("/");
 
-    assert.equal(currentURL(), "/");
+    assert.strictEqual(currentURL(), "/");
     assert.dom(".content").containsText("There was a problem");
   });
 });
