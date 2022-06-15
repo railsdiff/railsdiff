@@ -10,14 +10,23 @@ function paginate<T>(
   return collection.slice(limit * (number - 1), limit * number);
 }
 
-function normalize(number: number | string) {
+function normalize(
+  number: unknown,
+  options: { default: number } = { default: 1 }
+): number {
   if (typeof number === "string") {
-    number = parseInt(number, 10);
+    const parsedNumber = parseInt(number, 10);
+    if (isNaN(parsedNumber) || parsedNumber < 1) {
+      return options.default;
+    }
+    return parsedNumber;
+  } else if (typeof number === "number") {
+    if (number < 1) {
+      return options.default;
+    }
+    return number;
   }
-  if (isNaN(number) || number < 1) {
-    number = 1;
-  }
-  return number;
+  return options.default;
 }
 
 export default function (this: Server<AppRegistry>) {
@@ -40,8 +49,8 @@ export default function (this: Server<AppRegistry>) {
       );
     }
 
-    const limit = normalize(request.queryParams["per_page"]);
-    const number = normalize(request.queryParams["page"]);
+    const limit = normalize(request.queryParams?.per_page, { default: 25 });
+    const number = normalize(request.queryParams?.page, { default: 1 });
     const tags = paginate(repo.tags, { limit, number });
     const totalPages = Math.ceil(repo.tags.length / limit);
     const links: string[] = [];

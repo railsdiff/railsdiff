@@ -1,7 +1,15 @@
 "use strict";
 
 function isTruthy(value) {
-  return ["true", "1"].includes(value.toString().toLowerCase());
+  if (typeof value === "boolean") {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    return ["true", "1"].includes(value.toLowerCase());
+  }
+
+  return false;
 }
 
 module.exports = function (environment) {
