@@ -34,7 +34,7 @@
     "@ember/test-helpers": "^2.6.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.0.4",
-    "@types/diff": "^5.0.1",
+    "@types/diff": "^5.0.2",
     "@types/ember": "^3.16.5",
     "@types/ember__test-helpers": "^2.0.1",
     "@types/ember-data": "^3.16.13",
