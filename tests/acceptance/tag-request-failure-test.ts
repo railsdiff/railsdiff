@@ -1,10 +1,10 @@
 import { currentURL, visit } from "@ember/test-helpers";
 import { module, test } from "qunit";
 
-import { setupAcceptanceTest } from "../helpers";
+import { setupApplicationTest } from "../helpers";
 
 module("Acceptance | tag request failure", (hooks) => {
-  setupAcceptanceTest(hooks);
+  setupApplicationTest(hooks);
 
   test("describes the application", async function (assert) {
     await visit("/");

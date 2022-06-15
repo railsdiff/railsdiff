@@ -5,7 +5,7 @@ import { module, test } from "qunit";
 import config from "rails-diff/config/environment";
 
 import sample from "../../mirage/scenarios/sample";
-import { setupAcceptanceTest } from "../helpers";
+import { setupApplicationTest } from "../helpers";
 
 async function viewDiff() {
   // With two "View Diff" buttons on the page, a simple click("View Diff") throws an error (rightly so).
@@ -14,7 +14,7 @@ async function viewDiff() {
 }
 
 module("Acceptance | patch", (hooks) => {
-  setupAcceptanceTest(hooks);
+  setupApplicationTest(hooks);
 
   hooks.beforeEach(() => {
     sample(server);

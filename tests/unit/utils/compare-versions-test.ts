@@ -2,6 +2,8 @@ import { module, test } from "qunit";
 import Version from "rails-diff/models/version";
 import compareVersions from "rails-diff/utils/compare-versions";
 
+import { setupTest } from "../../helpers";
+
 function assertEqual(assert: Assert, left: Version, right: Version) {
   assert.strictEqual(compareVersions(left, right), 0, `${left} === ${right}`);
 }
@@ -18,7 +20,9 @@ function v(version: string) {
   return new Version(version);
 }
 
-module("Unit | Utils | compareVersions", () => {
+module("Unit | Utils | compareVersions", (hooks) => {
+  setupTest(hooks);
+
   test("compares SemVer versions", function (assert) {
     assert.expect(6);
     assertLessThan(assert, v("1.0.0-alpha"), v("1.0.0-alpha.1"));

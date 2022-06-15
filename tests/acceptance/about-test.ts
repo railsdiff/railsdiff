@@ -3,10 +3,10 @@ import { click } from "ember-semantic-test-helpers/test-support";
 import { module, test } from "qunit";
 
 import sample from "../../mirage/scenarios/sample";
-import { setupAcceptanceTest } from "../helpers";
+import { setupApplicationTest } from "../helpers";
 
 module("Acceptance | about", (hooks) => {
-  setupAcceptanceTest(hooks);
+  setupApplicationTest(hooks);
 
   hooks.beforeEach(() => {
     sample(server);

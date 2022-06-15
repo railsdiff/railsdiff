@@ -1,7 +1,11 @@
 import { module, test } from "qunit";
 import Version from "rails-diff/models/version";
 
-module("Unit | Models | Version", () => {
+import { setupTest } from "../../helpers";
+
+module("Unit | Models | Version", (hooks) => {
+  setupTest(hooks);
+
   test("errs when initialized with invalid values", function (assert) {
     assert.expect(5);
 

@@ -3,7 +3,7 @@ import { findControl, select } from "ember-semantic-test-helpers/test-support";
 import { module, test } from "qunit";
 
 import sample from "../../mirage/scenarios/sample";
-import { setupAcceptanceTest } from "../helpers";
+import { setupApplicationTest } from "../helpers";
 
 function getVersions(label: string) {
   const control = findControl(label) as HTMLSelectElement;
@@ -14,7 +14,7 @@ function getVersions(label: string) {
 }
 
 module("Acceptance | version selection", (hooks) => {
-  setupAcceptanceTest(hooks);
+  setupApplicationTest(hooks);
 
   hooks.beforeEach(() => {
     sample(server);
