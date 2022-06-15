@@ -19,7 +19,8 @@ function v(version: string) {
 }
 
 module("Unit | Utils | compareVersions", () => {
-  test("compares SemVer versions", (assert) => {
+  test("compares SemVer versions", function (assert) {
+    assert.expect(6);
     assertLessThan(assert, v("1.0.0-alpha"), v("1.0.0-alpha.1"));
     assertLessThan(assert, v("1.0.0-alpha.1"), v("1.0.0-beta.2"));
     assertLessThan(assert, v("1.0.0-beta.2"), v("1.0.0-beta.11"));
@@ -28,7 +29,8 @@ module("Unit | Utils | compareVersions", () => {
     assertLessThan(assert, v("1.0.0-1"), v("1"));
   });
 
-  test("identifies order equality", (assert) => {
+  test("identifies order equality", function (assert) {
+    assert.expect(4);
     assertEqual(assert, v("1.2"), v("1.2"));
     assertEqual(assert, v("1.2"), v("1.2.0"));
     assertNotEqual(assert, v("1.2"), v("1.3"));

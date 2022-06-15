@@ -12,7 +12,7 @@ module("Acceptance | about", (hooks) => {
     sample(server);
   });
 
-  test("describes the application", async (assert) => {
+  test("describes the application", async function (assert) {
     await visit("/");
     await click("About");
 

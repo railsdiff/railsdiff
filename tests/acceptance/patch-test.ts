@@ -20,7 +20,7 @@ module("Acceptance | patch", (hooks) => {
     sample(server);
   });
 
-  test("navigating directly to a patch sets the selected versions", async (assert) => {
+  test("navigating directly to a patch sets the selected versions", async function (assert) {
     await visit("/1.0.1/1.1.1");
 
     const sourceControl = findControl("Source") as HTMLSelectElement;
@@ -36,7 +36,7 @@ module("Acceptance | patch", (hooks) => {
     assert.equal(targetSelected, "1.1.1");
   });
 
-  test("navigating directly to a patch with unknown versions errors", async (assert) => {
+  test("navigating directly to a patch with unknown versions errors", async function (assert) {
     await visit("/1.0.1/2.1.1");
 
     assert.dom(".content").containsText("There was a problem");
@@ -50,7 +50,7 @@ module("Acceptance | patch", (hooks) => {
     assert.dom(".content").containsText("There was a problem");
   });
 
-  test("deep links to each file diff", async (assert) => {
+  test("deep links to each file diff", async function (assert) {
     await visit("/");
     await select("Source", "1.0.0");
     await select("Target", "1.0.1");
@@ -61,7 +61,7 @@ module("Acceptance | patch", (hooks) => {
       .hasAttribute("href", "#diff-de3150c01c3a946a6168173c4116741379fe3579");
   });
 
-  test("displays the diff between the source and target versions for an added file", async (assert) => {
+  test("displays the diff between the source and target versions for an added file", async function (assert) {
     await visit("/");
     await select("Source", "1.0.0");
     await select("Target", "1.0.1");
@@ -70,7 +70,7 @@ module("Acceptance | patch", (hooks) => {
     assert.dom(".content").containsText("Gemfile");
   });
 
-  test("links only to the target file location for an added file", async (assert) => {
+  test("links only to the target file location for an added file", async function (assert) {
     await visit("/");
     await select("Source", "1.0.0");
     await select("Target", "1.0.1");
@@ -86,7 +86,7 @@ module("Acceptance | patch", (hooks) => {
       );
   });
 
-  test("displays the diff between the source and target versions for a modified file", async (assert) => {
+  test("displays the diff between the source and target versions for a modified file", async function (assert) {
     await visit("/");
     await select("Source", "1.0.1");
     await select("Target", "1.1.1");
@@ -95,7 +95,7 @@ module("Acceptance | patch", (hooks) => {
     assert.dom(".content").containsText("Gemfile");
   });
 
-  test("links to source and target file locations for a modified file", async (assert) => {
+  test("links to source and target file locations for a modified file", async function (assert) {
     await visit("/");
     await select("Source", "1.0.1");
     await select("Target", "1.1.1");
@@ -117,7 +117,7 @@ module("Acceptance | patch", (hooks) => {
       );
   });
 
-  test("displays the diff between the source and target versions for a removed file", async (assert) => {
+  test("displays the diff between the source and target versions for a removed file", async function (assert) {
     await visit("/");
     await select("Source", "1.1.1");
     await select("Target", "2.0.0");
@@ -126,7 +126,7 @@ module("Acceptance | patch", (hooks) => {
     assert.dom(".content").containsText("Gemfile");
   });
 
-  test("links only to the source file location for a removed file", async (assert) => {
+  test("links only to the source file location for a removed file", async function (assert) {
     await visit("/");
     await select("Source", "1.1.1");
     await select("Target", "2.0.0");

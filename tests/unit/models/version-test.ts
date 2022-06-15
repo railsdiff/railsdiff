@@ -2,7 +2,9 @@ import { module, test } from "qunit";
 import Version from "rails-diff/models/version";
 
 module("Unit | Models | Version", () => {
-  test("errs when initialized with invalid values", (assert) => {
+  test("errs when initialized with invalid values", function (assert) {
+    assert.expect(5);
+
     [
       "junk",
       "1.0\n2.0",
@@ -20,7 +22,9 @@ module("Unit | Models | Version", () => {
     });
   });
 
-  test("normalizes the given version string", (assert) => {
+  test("normalizes the given version string", function (assert) {
+    assert.expect(7);
+
     ["1.0", "1.0 ", " 1.0 ", "1.0\n", "\n1.0\n", "1.0"].forEach((version) => {
       assert.equal(
         new Version(version).toString(),

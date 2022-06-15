@@ -20,26 +20,26 @@ module("Acceptance | version selection", (hooks) => {
     sample(server);
   });
 
-  test("source versions include only branch names beginning with 'v'", async (assert) => {
+  test("source versions include only branch names beginning with 'v'", async function (assert) {
     await visit("/");
 
     const sourceVersions = getVersions("Source");
     assert.notOk(sourceVersions.includes("main"));
   });
 
-  test("source versions do not include the latest version", async (assert) => {
+  test("source versions do not include the latest version", async function (assert) {
     await visit("/");
 
     assert.notOk(getVersions("Source").includes("2.0.0"));
   });
 
-  test("source versions are listed in descending order", async (assert) => {
+  test("source versions are listed in descending order", async function (assert) {
     await visit("/");
 
     assert.deepEqual(getVersions("Source"), ["1.1.1", "1.0.1", "1.0.0"]);
   });
 
-  test("target versions include only versions greater than the selected source version", async (assert) => {
+  test("target versions include only versions greater than the selected source version", async function (assert) {
     await visit("/");
 
     assert.deepEqual(getVersions("Target"), ["2.0.0"]);
@@ -49,14 +49,14 @@ module("Acceptance | version selection", (hooks) => {
     assert.deepEqual(getVersions("Target"), ["2.0.0", "1.1.1"]);
   });
 
-  test("target versions are listed in descending order", async (assert) => {
+  test("target versions are listed in descending order", async function (assert) {
     await visit("/");
     await select("Source", "1.0.0");
 
     assert.deepEqual(getVersions("Target"), ["2.0.0", "1.1.1", "1.0.1"]);
   });
 
-  test("header selection and landing page selection are bound together", async (assert) => {
+  test("header selection and landing page selection are bound together", async function (assert) {
     await visit("/");
     await select("Source", "1.0.0");
     await select("Target", "2.0.0");
@@ -69,13 +69,13 @@ module("Acceptance | version selection", (hooks) => {
       "What version of Rails do you want to upgrade to?"
     ) as HTMLSelectElement | undefined;
 
-    assert.equal("1.0.0", sourceSelect?.selectedOptions[0].text);
-    assert.equal("2.0.0", targetSelect?.selectedOptions[0].text);
+    assert.equal(sourceSelect?.selectedOptions[0].text, "1.0.0");
+    assert.equal(targetSelect?.selectedOptions[0].text, "2.0.0");
 
     await select("Source", "1.0.1");
     await select("Target", "1.1.1");
 
-    assert.equal("1.0.1", sourceSelect?.selectedOptions[0].text);
-    assert.equal("1.1.1", targetSelect?.selectedOptions[0].text);
+    assert.equal(sourceSelect?.selectedOptions[0].text, "1.0.1");
+    assert.equal(targetSelect?.selectedOptions[0].text, "1.1.1");
   });
 });

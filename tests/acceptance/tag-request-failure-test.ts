@@ -6,7 +6,7 @@ import { setupAcceptanceTest } from "../helpers";
 module("Acceptance | tag request failure", (hooks) => {
   setupAcceptanceTest(hooks);
 
-  test("describes the application", async (assert) => {
+  test("describes the application", async function (assert) {
     await visit("/");
 
     assert.equal(currentURL(), "/");
