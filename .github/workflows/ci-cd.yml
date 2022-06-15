@@ -18,7 +18,7 @@ jobs:
       - uses: "actions/setup-node@v3"
         with:
           cache: "npm"
-          node-version: "14.x"
+          node-version-file: ".node-version"
       - name: "Install Dependencies"
         run: "npm ci"
       - name: "Run Tests"
@@ -33,7 +33,7 @@ jobs:
       - uses: "actions/setup-node@v3"
         with:
           cache: "npm"
-          node-version: "14.x"
+          node-version-file: ".node-version"
       - name: "Install Dependencies"
         run: "npm ci"
       - env:
