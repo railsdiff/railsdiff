@@ -23,7 +23,7 @@
     "lint:prettier:hbs": "prettier --list-different --parser glimmer \"**/*.hbs\"",
     "lint:prettier:js:fix": "prettier --write \"**/*.{js,ts}\"",
     "lint:prettier:js": "prettier --list-different \"**/*.{js,ts}\"",
-    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
+    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\" \"lint:prettier:*\"",
     "prettier": "prettier",
     "start": "ember serve",
     "test:ember": "ember test",
