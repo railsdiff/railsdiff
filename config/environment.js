@@ -42,7 +42,7 @@ module.exports = function (environment) {
       },
     },
     environment,
-    locationType: "auto",
+    locationType: "history",
     modulePrefix: "rails-diff",
     rootURL: "/",
   };
