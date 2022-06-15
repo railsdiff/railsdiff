@@ -81,7 +81,7 @@
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-qunit": "^6.2.0",
     "eslint-plugin-sort-keys-fix": "^1.1.1",
-    "fp-ts": "^2.11.2",
+    "fp-ts": "^2.12.1",
     "io-ts": "^2.2.16",
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
