@@ -73,7 +73,7 @@ header h1 {
   border-spacing: 0;
   display: block;
   font-family: Consolas, Monaco, "Andale Mono", monospace;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .file {
