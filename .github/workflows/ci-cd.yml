@@ -1,15 +1,55 @@
 ---
-name: "CI/CD"
-
-"on":
-  pull_request:
-    branches:
-      - "main"
-  push:
-    branches:
-      - "main"
-
 jobs:
+  deploy:
+    if: "needs.release.outputs.new_release_published == 'true'"
+    name: "Deploy"
+    needs:
+      - "release"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-node@v3"
+        with:
+          cache: "npm"
+          node-version-file: ".node-version"
+      - name: "Install Dependencies"
+        run: "npm ci"
+      - env:
+          API_URL: "https://api.github.com"
+          FILE_URL: "https://github.com"
+          GA_MEASUREMENT_ID: "UA-7325596-4"
+          REPOSITORY: "railsdiff/rails-new-output"
+        name: "Build Application"
+        run: "npm run build"
+      - env:
+          NETLIFY_AUTH_TOKEN: "${{ secrets.NETLIFY_AUTH_TOKEN }}"
+          NETLIFY_SITE_ID: "${{ secrets.NETLIFY_SITE_ID }}"
+        name: "Deploy"
+        uses: "netlify/actions/cli@master"
+        with:
+          args: "deploy --dir=dist --prod"
+
+  release:
+    if: "github.event_name == 'push' && github.ref == 'refs/heads/main'"
+    name: "Release"
+    needs:
+      - "tests"
+    outputs:
+      new_release_published: "${{ steps.semantic.outputs.new_release_published }}"
+      new_release_version: "${{ steps.semantic.outputs.new_release_version }}"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        id: "semantic"
+        name: "Semantic Release"
+        uses: "cycjimmy/semantic-release-action@v3"
+        with:
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
+
   tests:
     name: "Tests"
     runs-on: "ubuntu-latest"
@@ -23,30 +63,13 @@ jobs:
         run: "npm ci"
       - name: "Run Tests"
         run: "npm test"
-  deploy:
-    if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
-    name: "Deploy"
-    needs: "tests"
-    runs-on: "ubuntu-latest"
-    steps:
-      - uses: "actions/checkout@v3"
-      - uses: "actions/setup-node@v3"
-        with:
-          cache: "npm"
-          node-version-file: ".node-version"
-      - name: "Install Dependencies"
-        run: "npm ci"
-      - env:
-          API_URL: "https://api.github.com"
-          GA_MEASUREMENT_ID: "UA-7325596-4"
-          FILE_URL: "https://github.com"
-          REPOSITORY: "railsdiff/rails-new-output"
-        name: "Build Application"
-        run: "npm run build"
-      - env:
-          NETLIFY_AUTH_TOKEN: "${{ secrets.NETLIFY_AUTH_TOKEN }}"
-          NETLIFY_SITE_ID: "${{ secrets.NETLIFY_SITE_ID }}"
-        name: "Deploy"
-        uses: "netlify/actions/cli@master"
-        with:
-          args: "deploy --dir=dist --prod"
+
+name: "CI/CD"
+
+"on":
+  pull_request:
+    branches:
+      - "main"
+  push:
+    branches:
+      - "main"
