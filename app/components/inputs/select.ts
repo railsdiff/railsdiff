@@ -1,14 +1,16 @@
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
 
-interface Args {
-  onChange: (value: unknown) => void;
-  value: unknown;
+interface InputsSelectSignature {
+  Args: {
+    onChange: (value: unknown) => void;
+    value: unknown;
+  };
 }
 
-export default class InputsSelectComponent extends Component<Args> {
+export default class InputsSelectComponent extends Component<InputsSelectSignature> {
   @action
-  onChange(event: Event) {
+  onChange(event: Event): void {
     this.args.onChange((event.currentTarget as HTMLSelectElement).value);
   }
 }
