@@ -2,15 +2,19 @@ import { schedule } from "@ember/runloop";
 import Component from "@glimmer/component";
 import Diff from "rails-diff/models/diff";
 
-interface Args {
-  diff: Diff;
-  linkedAnchor?: string;
-  sourceVersion: string;
-  targetVersion: string;
+interface DiffSignature {
+  Args: {
+    Named: {
+      diff: Diff;
+      linkedAnchor?: string;
+      sourceVersion: string;
+      targetVersion: string;
+    };
+  };
 }
 
-export default class DiffComponent extends Component<Args> {
-  constructor(owner: unknown, args: Args) {
+export default class DiffComponent extends Component<DiffSignature> {
+  constructor(owner: unknown, args: DiffSignature["Args"]["Named"]) {
     super(owner, args);
     schedule("afterRender", this, this._scrollToLinked);
   }
@@ -19,7 +23,7 @@ export default class DiffComponent extends Component<Args> {
     return this.args.linkedAnchor === this.args.diff.anchor;
   }
 
-  private _scrollToLinked() {
+  private _scrollToLinked(): void {
     if (!this.isLinked || !this.args.linkedAnchor) {
       return;
     }
@@ -28,5 +32,11 @@ export default class DiffComponent extends Component<Args> {
     if (element) {
       element.scrollIntoView();
     }
+  }
+}
+
+declare module "@glint/environment-ember-loose/registry" {
+  export default interface Registry {
+    Diff: typeof DiffComponent;
   }
 }

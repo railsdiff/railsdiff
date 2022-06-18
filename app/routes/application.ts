@@ -26,7 +26,7 @@ export default class ApplicationRoute extends Route {
   @service("metrics")
   private readonly _metrics!: ServiceRegistry["metrics"];
 
-  async model() {
+  async model(): Promise<string[]> {
     return this.versions.load();
   }
 

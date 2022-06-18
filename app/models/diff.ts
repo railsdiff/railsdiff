@@ -78,6 +78,10 @@ export default class Diff {
     return this._fileCompare.previous_filename;
   }
 
+  get sourceFilePath(): string {
+    return this.previousPath || this.filePath;
+  }
+
   get sha() {
     return this._fileCompare.sha;
   }

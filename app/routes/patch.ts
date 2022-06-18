@@ -11,7 +11,11 @@ export default class PatchRoute extends Route {
   @service("versions")
   versions!: ServiceRegistry["versions"];
 
-  async model(params: Params) {
+  async model(params: Params): Promise<{
+    patch: Patch;
+    sourceVersion: string;
+    targetVersion: string;
+  }> {
     this.versions.setSource(params.source);
     this.versions.setTarget(params.target);
 

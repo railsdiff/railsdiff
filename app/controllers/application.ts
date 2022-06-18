@@ -1,8 +1,11 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import { Registry as ServiceRegistry, inject as service } from "@ember/service";
+import ApplicationRoute from "rails-diff/routes/application";
 
 export default class ApplicationController extends Controller {
+  declare model: Awaited<ReturnType<ApplicationRoute["model"]>>;
+
   @service("router")
   private _router!: ServiceRegistry["router"];
 
