@@ -4,15 +4,17 @@ import Diff from "rails-diff/models/diff";
 
 interface DiffSignature {
   Args: {
-    diff: Diff;
-    linkedAnchor?: string;
-    sourceVersion: string;
-    targetVersion: string;
+    Named: {
+      diff: Diff;
+      linkedAnchor?: string;
+      sourceVersion: string;
+      targetVersion: string;
+    };
   };
 }
 
 export default class DiffComponent extends Component<DiffSignature> {
-  constructor(owner: unknown, args: DiffSignature["Args"]) {
+  constructor(owner: unknown, args: DiffSignature["Args"]["Named"]) {
     super(owner, args);
     schedule("afterRender", this, this._scrollToLinked);
   }
@@ -30,5 +32,11 @@ export default class DiffComponent extends Component<DiffSignature> {
     if (element) {
       element.scrollIntoView();
     }
+  }
+}
+
+declare module "@glint/environment-ember-loose/registry" {
+  export default interface Registry {
+    Diff: typeof DiffComponent;
   }
 }

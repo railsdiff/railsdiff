@@ -22,7 +22,7 @@
       {{else}}
         <RawFileLink
           class="source"
-          @path={{if @diff.isRenamed @diff.previousPath @diff.filePath}}
+          @path={{@diff.sourceFilePath}}
           @version={{@sourceVersion}}
         />
       {{/if~}}
