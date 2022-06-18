@@ -33,6 +33,7 @@
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.7.0",
     "@faker-js/faker": "^7.2.0",
+    "@gavant/glint-template-types": "^0.1.5",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@glint/core": "^0.8.3",
