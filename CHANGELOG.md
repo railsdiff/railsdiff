@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/railsdiff/railsdiff/compare/v1.0.1...v1.1.0) (2022-06-18)
+
+
+### Features
+
+* add glint for Ember template linting ([#300](https://github.com/railsdiff/railsdiff/issues/300)) ([bc897c2](https://github.com/railsdiff/railsdiff/commit/bc897c2b64791812f766cc1b721260633568b388))
+
 ## [1.0.1](https://github.com/railsdiff/railsdiff/compare/v1.0.0...v1.0.1) (2022-06-16)
 
 
