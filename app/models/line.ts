@@ -1,4 +1,4 @@
-interface Args {
+interface LineSignature {
   content: string;
   insertedLineNum?: number;
   deletedLineNum?: number;
@@ -10,7 +10,7 @@ export default class Line {
   deletedLineNum?: number;
   type: "comment" | "deleted" | "inserted" | "unchanged";
 
-  constructor(data: Args) {
+  constructor(data: LineSignature) {
     this.content = data.content;
     this.insertedLineNum = data.insertedLineNum;
     this.deletedLineNum = data.deletedLineNum;
