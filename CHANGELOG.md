@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/railsdiff/railsdiff/compare/v1.1.0...v1.1.1) (2022-07-02)
+
+
+### Bug Fixes
+
+* reset target version when source is set at or beyond it ([d961698](https://github.com/railsdiff/railsdiff/commit/d9616982be7e99ae70e7baf3664a4d5646d7f9fe))
+
 # [1.1.0](https://github.com/railsdiff/railsdiff/compare/v1.0.1...v1.1.0) (2022-06-18)
 
 
