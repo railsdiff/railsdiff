@@ -30,3 +30,9 @@ export default class ApplicationController extends Controller {
   @service("versions")
   readonly versions!: ServiceRegistry["versions"];
 }
+
+declare module "@ember/controller" {
+  interface Registry {
+    application: ApplicationController;
+  }
+}
