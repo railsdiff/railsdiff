@@ -128,15 +128,17 @@ export default class VersionsService extends Service {
       `${config.APP.API_URL}/repos/${config.APP.REPOSITORY}/tags?per_page=100`
     );
 
-    this._allVersions = tags
-      .map((tag) => tag.name)
-      .filter((name) => name.indexOf("v") === 0)
-      .map((name) => name.substring(1))
-      .map((name) => {
-        return new Version(name);
-      })
-      .sort(compareVersions)
-      .reverse();
+    this.setVersions(
+      tags
+        .map((tag) => tag.name)
+        .filter((name) => name.indexOf("v") === 0)
+        .map((name) => name.substring(1))
+        .map((name) => {
+          return new Version(name);
+        })
+        .sort(compareVersions)
+        .reverse()
+    );
 
     return this._all;
   }
@@ -153,6 +155,10 @@ export default class VersionsService extends Service {
       throw new Error("Given target version is unrecognized");
     }
     this.target = target;
+  }
+
+  setVersions(versions: Version[]) {
+    this._allVersions = versions;
   }
 }
 
