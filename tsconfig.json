@@ -28,6 +28,9 @@
       "*": ["types/*"]
     }
   },
+  "glint": {
+    "environment": ["ember-loose"]
+  },
   "include": [
     ".eslintrc.js",
     ".template-lintrc.js",
