@@ -7,7 +7,7 @@ export default class ApplicationController extends Controller {
   declare model: Awaited<ReturnType<ApplicationRoute["model"]>>;
 
   @service("router")
-  private _router!: ServiceRegistry["router"];
+  private readonly _router!: ServiceRegistry["router"];
 
   @action
   setSource(source: string) {
@@ -28,5 +28,5 @@ export default class ApplicationController extends Controller {
   }
 
   @service("versions")
-  versions!: ServiceRegistry["versions"];
+  readonly versions!: ServiceRegistry["versions"];
 }
