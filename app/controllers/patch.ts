@@ -8,3 +8,9 @@ export default class PatchController extends Controller {
     return document.URL.split("#", 2)[1];
   }
 }
+
+declare module "@ember/controller" {
+  interface Registry {
+    patch: PatchController;
+  }
+}
