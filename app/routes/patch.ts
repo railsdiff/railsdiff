@@ -9,17 +9,17 @@ interface Params {
 
 export default class PatchRoute extends Route {
   @service("versions")
-  versions!: ServiceRegistry["versions"];
+  private readonly _versions!: ServiceRegistry["versions"];
 
   async model(params: Params): Promise<{
     patch: Patch;
     sourceVersion: string;
     targetVersion: string;
   }> {
-    this.versions.setSource(params.source);
-    this.versions.setTarget(params.target);
+    this._versions.setSource(params.source);
+    this._versions.setTarget(params.target);
 
-    const files = await this.versions.loadPatch();
+    const files = await this._versions.loadPatch();
     const patch = new Patch(files);
 
     return {

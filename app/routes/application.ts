@@ -4,7 +4,7 @@ import { Transition } from "rails-diff";
 
 export default class ApplicationRoute extends Route {
   beforeModel(transition: Transition) {
-    this.intl.setLocale(["en-us"]);
+    this._intl.setLocale(["en-us"]);
 
     super.beforeModel(transition);
   }
@@ -21,18 +21,18 @@ export default class ApplicationRoute extends Route {
   }
 
   @service("intl")
-  readonly intl!: ServiceRegistry["intl"];
+  private readonly _intl!: ServiceRegistry["intl"];
 
   @service("metrics")
   private readonly _metrics!: ServiceRegistry["metrics"];
 
   async model(): Promise<string[]> {
-    return this.versions.load();
+    return this._versions.load();
   }
 
   @service("router")
   private readonly _router!: ServiceRegistry["router"];
 
   @service("versions")
-  readonly versions!: ServiceRegistry["versions"];
+  private readonly _versions!: ServiceRegistry["versions"];
 }
