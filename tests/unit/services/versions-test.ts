@@ -37,6 +37,25 @@ module("Unit | Services | Versions", function (hooks) {
       assert.strictEqual(versionsService.source, "2");
     });
 
+    test("changes the target version when set to a version equal or more recent than the current target", function (assert) {
+      const versionsService = getVersionsService(this, [
+        new Version("3"),
+        new Version("2"),
+        new Version("1"),
+      ]);
+
+      versionsService.setSource("1");
+      versionsService.setTarget("2");
+
+      assert.strictEqual(versionsService.source, "1");
+      assert.strictEqual(versionsService.target, "2");
+
+      versionsService.setSource("2");
+
+      assert.strictEqual(versionsService.source, "2");
+      assert.strictEqual(versionsService.target, "3");
+    });
+
     test("throws an error when given an unrecognized source version", function (assert) {
       const versionsService = getVersionsService(this, [
         new Version("3"),

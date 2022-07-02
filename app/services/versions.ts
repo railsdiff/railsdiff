@@ -147,7 +147,13 @@ export default class VersionsService extends Service {
     if (!this.sources.includes(source)) {
       throw new Error("Given source version is unrecognized");
     }
+
     this.source = source;
+
+    if (this.target && !this.targets.includes(this.target)) {
+      const newTarget = this.targets[this.targets.length - 1];
+      this.setTarget(newTarget);
+    }
   }
 
   setTarget(target: string) {
