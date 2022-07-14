@@ -44,7 +44,7 @@
     "@types/ember-data": "^4.0.2",
     "@types/ember-qunit": "^5.0.0",
     "@types/ember-resolver": "^5.0.11",
-    "@types/qunit": "^2.19.1",
+    "@types/qunit": "^2.19.2",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.5",
     "babel-eslint": "^10.1.0",
