@@ -40,7 +40,7 @@
     "@glint/environment-ember-loose": "^0.9.1",
     "@types/diff": "^5.0.2",
     "@types/ember": "^4.0.0",
-    "@types/ember__test-helpers": "^2.6.1",
+    "@types/ember__test-helpers": "^2.8.0",
     "@types/ember-data": "^4.0.2",
     "@types/ember-qunit": "^5.0.0",
     "@types/ember-resolver": "^5.0.11",
