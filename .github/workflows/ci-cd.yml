@@ -28,6 +28,7 @@ jobs:
         uses: "netlify/actions/cli@master"
         with:
           args: "deploy --dir=dist --prod"
+    timeout-minutes: 10
 
   release:
     if: "github.event_name == 'push' && github.ref == 'refs/heads/main'"
@@ -49,6 +50,7 @@ jobs:
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git
+    timeout-minutes: 10
 
   tests:
     name: "Tests"
@@ -63,6 +65,7 @@ jobs:
         run: "npm ci"
       - name: "Run Tests"
         run: "npm test"
+    timeout-minutes: 10
 
 name: "CI/CD"
 
