@@ -3,9 +3,9 @@ import { tracked } from "@glimmer/tracking";
 import fetch from "fetch";
 import { isLeft } from "fp-ts/lib/Either";
 import * as t from "io-ts";
-import config from "rails-diff/config/environment";
 import Version from "rails-diff/models/version";
 import compareVersions from "rails-diff/utils/compare-versions";
+import { API_URL, REPOSITORY } from "rails-diff/utils/environment";
 
 const Tag = t.interface({
   name: t.string,
@@ -84,7 +84,7 @@ export default class VersionsService extends Service {
 
   async loadPatch() {
     const response = await fetch(
-      `${config.APP.API_URL}/repos/${config.APP.REPOSITORY}/compare/v${this.source}...v${this.target}`
+      `${API_URL}/repos/${REPOSITORY}/compare/v${this.source}...v${this.target}`
     );
     const responseBody = await response.json();
     const comparisons = Compare.decode(responseBody);
@@ -125,7 +125,7 @@ export default class VersionsService extends Service {
 
   async load() {
     const tags = await this._loadPage(
-      `${config.APP.API_URL}/repos/${config.APP.REPOSITORY}/tags?per_page=100`
+      `${API_URL}/repos/${REPOSITORY}/tags?per_page=100`
     );
 
     this.setVersions(

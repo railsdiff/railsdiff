@@ -2,7 +2,7 @@ import { click as clickSelector, visit } from "@ember/test-helpers";
 import { findControl, select } from "ember-semantic-test-helpers/test-support";
 import { findButtons } from "ember-semantic-test-helpers/test-support/find-helpers";
 import { module, test } from "qunit";
-import config from "rails-diff/config/environment";
+import { REPOSITORY } from "rails-diff/utils/environment";
 
 import sample from "../../mirage/scenarios/sample";
 import { setupApplicationTest } from "../helpers";
@@ -81,7 +81,7 @@ module("Acceptance | patch", (hooks) => {
       .dom("a[title='View Gemfile at 1.0.1']")
       .hasProperty(
         "href",
-        new RegExp(`/${config.APP.REPOSITORY}/blob/v1.0.1/Gemfile`),
+        new RegExp(`/${REPOSITORY}/blob/v1.0.1/Gemfile`),
         "Links to target file"
       );
   });
@@ -105,14 +105,14 @@ module("Acceptance | patch", (hooks) => {
       .dom("a[title='View Gemfile at 1.0.1']")
       .hasProperty(
         "href",
-        new RegExp(`/${config.APP.REPOSITORY}/blob/v1.0.1/Gemfile`),
+        new RegExp(`/${REPOSITORY}/blob/v1.0.1/Gemfile`),
         "Links to source file"
       );
     assert
       .dom("a[title='View Gemfile at 1.1.1']")
       .hasProperty(
         "href",
-        new RegExp(`/${config.APP.REPOSITORY}/blob/v1.1.1/Gemfile`),
+        new RegExp(`/${REPOSITORY}/blob/v1.1.1/Gemfile`),
         "Links to target file"
       );
   });
@@ -136,7 +136,7 @@ module("Acceptance | patch", (hooks) => {
       .dom("a[title='View Gemfile at 1.1.1']")
       .hasProperty(
         "href",
-        new RegExp(`/${config.APP.REPOSITORY}/blob/v1.1.1/Gemfile`),
+        new RegExp(`/${REPOSITORY}/blob/v1.1.1/Gemfile`),
         "Links to source file"
       );
     assert.dom("a[title='View Gemfile at 2.0.0']").doesNotExist();

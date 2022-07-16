@@ -1,5 +1,5 @@
 import { Server } from "miragejs";
-import config from "rails-diff/config/environment";
+import { REPOSITORY } from "rails-diff/utils/environment";
 
 import AppRegistry from "../registry";
 
@@ -44,13 +44,12 @@ If you'd like to contribute, see https://github.com/railsdiff/railsdiff. 😍
     name: "v2.0.0",
   });
 
+  const [ownerName, repoName] = REPOSITORY.split("/", 2);
+
   const repo = server.create("repo", {
     tags: [main, v1_0_0, v1_0_1, v1_1_1, v2_0_0],
-    name: config.APP.REPOSITORY.split("/", 2)[1],
+    name: repoName,
   });
 
-  server.create("owner", {
-    login: config.APP.REPOSITORY.split("/", 2)[0],
-    repos: [repo],
-  });
+  server.create("owner", { login: ownerName, repos: [repo] });
 }
