@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/railsdiff/railsdiff/compare/v1.1.1...v1.2.0) (2022-07-16)
+
+
+### Features
+
+* ensure APP values are correctly set ([cabace6](https://github.com/railsdiff/railsdiff/commit/cabace60e2232c4e08f34349f6b59676912c26ec))
+
 ## [1.1.1](https://github.com/railsdiff/railsdiff/compare/v1.1.0...v1.1.1) (2022-07-02)
 
 
