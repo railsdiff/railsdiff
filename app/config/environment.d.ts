@@ -8,12 +8,8 @@ declare const config: {
   environment: string;
   modulePrefix: string;
   podModulePrefix: string;
-  locationType: string;
+  locationType: "history" | "hash" | "none" | "auto";
   rootURL: string;
-  APP: {
-    API_URL: string;
-    FILE_URL: string;
-    REPOSITORY: string;
-  };
+  APP: Record<string, unknown>;
   MIRAGE_SCENARIO?: string;
 };
