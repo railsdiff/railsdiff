@@ -6,6 +6,13 @@
     public'''
 
 [[headers]]
+  for = "/assets/chunk.*.*"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    public'''
+
+[[headers]]
   for = "/assets/rails-diff-*.*"
   [headers.values]
     cache-control = '''
