@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/railsdiff/railsdiff/compare/v1.2.0...v1.3.0) (2022-07-16)
+
+
+### Features
+
+* use long-lived, public caching on chunks ([8b30865](https://github.com/railsdiff/railsdiff/commit/8b30865481ced5ae044ddc7767748adf45fe790b))
+
 # [1.2.0](https://github.com/railsdiff/railsdiff/compare/v1.1.1...v1.2.0) (2022-07-16)
 
 
