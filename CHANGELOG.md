@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/railsdiff/railsdiff/compare/v1.3.2...v1.3.3) (2022-07-17)
+
+
+### Bug Fixes
+
+* use a different version tag match ([208869b](https://github.com/railsdiff/railsdiff/commit/208869b857a4fd4c5aa3253f2b62cf347d6d48e6))
+
 ## [1.3.2](https://github.com/railsdiff/railsdiff/compare/v1.3.1...v1.3.2) (2022-07-17)
 
 
