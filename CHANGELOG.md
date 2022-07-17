@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/railsdiff/railsdiff/compare/v1.3.3...v1.3.4) (2022-07-17)
+
+
+### Bug Fixes
+
+* use a GitHub PAT for release commits ([a601a00](https://github.com/railsdiff/railsdiff/commit/a601a00ef7c8930dd4b763c612622ba1aa4caee3))
+
 ## [1.3.3](https://github.com/railsdiff/railsdiff/compare/v1.3.2...v1.3.3) (2022-07-17)
 
 
