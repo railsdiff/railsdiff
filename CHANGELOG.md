@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/railsdiff/railsdiff/compare/v1.3.0...v1.3.1) (2022-07-17)
+
+
+### Bug Fixes
+
+* deploy tagged versions ([45fbe11](https://github.com/railsdiff/railsdiff/commit/45fbe1132b474b7f14637f28a7e3d3823394a7a4))
+
 # [1.3.0](https://github.com/railsdiff/railsdiff/compare/v1.2.0...v1.3.0) (2022-07-16)
 
 
