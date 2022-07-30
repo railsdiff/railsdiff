@@ -61,10 +61,10 @@ export default class VersionsService extends Service {
   }
 
   @tracked
-  source?: string = this.sources.firstObject?.toString();
+  source?: string = this.sources[0]?.toString();
 
   @tracked
-  target?: string = this.targets.firstObject?.toString();
+  target?: string = this.targets[0]?.toString();
 
   get sources() {
     return this._all.slice(1).map((version) => version.toString());

@@ -31,6 +31,7 @@ function normalize(
 
 export default function (this: Server<AppRegistry>) {
   this.get("/repos/:ownerLogin/:repoName/tags", (schema, request) => {
+    // eslint-disable-next-line ember/no-array-prototype-extensions
     const owner = schema.findBy("owner", { login: request.params.ownerLogin });
 
     if (!owner) {
@@ -91,6 +92,7 @@ export default function (this: Server<AppRegistry>) {
         2
       );
 
+      // eslint-disable-next-line ember/no-array-prototype-extensions
       const owner = schema.findBy("owner", {
         login: request.params.ownerLogin,
       });

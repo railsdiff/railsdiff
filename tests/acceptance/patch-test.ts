@@ -24,13 +24,13 @@ module("Acceptance | patch", (hooks) => {
     await visit("/1.0.1/1.1.1");
 
     const sourceControl = findControl("Source") as HTMLSelectElement;
-    const sourceSelected = [...sourceControl.options].objectAt(
+    const sourceSelected = [...sourceControl.options][
       sourceControl.selectedIndex
-    )?.label;
+    ]?.label;
     const targetControl = findControl("Target") as HTMLSelectElement;
-    const targetSelected = [...targetControl.options].objectAt(
+    const targetSelected = [...targetControl.options][
       targetControl.selectedIndex
-    )?.label;
+    ]?.label;
 
     assert.strictEqual(sourceSelected, "1.0.1");
     assert.strictEqual(targetSelected, "1.1.1");
