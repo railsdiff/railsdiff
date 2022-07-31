@@ -1,8 +1,4 @@
 ---
-concurrency:
-  group: "ci-${{ github.head_ref || github.ref }}"
-  cancel-in-progress: true
-
 jobs:
   release:
     if: "github.event_name == 'push' && github.ref == 'refs/heads/main'"
