@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/railsdiff/railsdiff/compare/v1.3.4...v1.3.5) (2022-07-31)
+
+
+### Bug Fixes
+
+* disable actions/checkout credential persistence ([5c4773d](https://github.com/railsdiff/railsdiff/commit/5c4773d0990595217eebf9e895e0c2690d57798e))
+
 ## [1.3.4](https://github.com/railsdiff/railsdiff/compare/v1.3.3...v1.3.4) (2022-07-17)
 
 
