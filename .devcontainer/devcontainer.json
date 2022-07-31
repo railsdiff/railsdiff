@@ -18,6 +18,11 @@
   },
   "forwardPorts": [4200],
   "name": "Node.js",
+  "portsAttributes": {
+    "4200": {
+      "label": "Ember"
+    }
+  },
   "postCreateCommand": "npm install",
   "remoteUser": "node"
 }
