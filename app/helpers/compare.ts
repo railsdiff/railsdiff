@@ -1,5 +1,5 @@
 import { createPatch } from "diff";
-import { Compare } from "rails-diff/services/versions";
+import { PatchFile } from "rails-diff/api/github";
 
 export type FileMap = Record<string, string>;
 
@@ -20,10 +20,10 @@ async function generateSHA(filename: string): Promise<string> {
 export default async function compare(
   sourceFiles: FileMap,
   targetFiles: FileMap
-): Promise<Compare> {
+): Promise<{ files: PatchFile[] }> {
   const sourceFilenames = Object.keys(sourceFiles);
   const targetFilenames = Object.keys(targetFiles);
-  let result: Compare["files"] = [];
+  let result: PatchFile[] = [];
   const addedFilenames = targetFilenames.filter(
     (filename) => !sourceFilenames.includes(filename)
   );

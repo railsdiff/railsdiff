@@ -1,8 +1,8 @@
-import { FileCompare } from "../services/versions";
+import { PatchFile } from "../api/github";
 
 import Diff from "./diff";
 
-const fileSorter = function (a: FileCompare, b: FileCompare) {
+const fileSorter = function (a: PatchFile, b: PatchFile) {
   const aPath = a.filename;
   const bPath = b.filename;
 
@@ -16,9 +16,9 @@ const fileSorter = function (a: FileCompare, b: FileCompare) {
 };
 
 export default class Patch {
-  files: FileCompare[];
+  files: PatchFile[];
 
-  constructor(files: FileCompare[]) {
+  constructor(files: PatchFile[]) {
     this.files = files.sort(fileSorter);
   }
 

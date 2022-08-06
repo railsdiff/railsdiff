@@ -30,62 +30,75 @@ function normalize(
 }
 
 export default function (this: Server<AppRegistry>) {
-  this.get("/repos/:ownerLogin/:repoName/tags", (schema, request) => {
-    // eslint-disable-next-line ember/no-array-prototype-extensions
-    const owner = schema.findBy("owner", { login: request.params.ownerLogin });
+  this.get(
+    `https://api.github.com/repos/:ownerLogin/:repoName/tags`,
+    (schema, request) => {
+      // eslint-disable-next-line ember/no-array-prototype-extensions
+      const owner = schema.findBy("owner", {
+        login: request.params.ownerLogin,
+      });
 
-    if (!owner) {
-      throw new Error(
-        `Could not find owner with login ${request.params.ownerLogin}`
+      if (!owner) {
+        return new Response(
+          404,
+          {
+            "Content-Type": "text/plain",
+          },
+          `Could not find owner with login ${request.params.ownerLogin}`
+        );
+      }
+
+      const repo = owner.repos.models.find(
+        (repo) => repo.name === request.params.repoName
+      );
+
+      if (!repo) {
+        return new Response(
+          404,
+          {
+            "Content-Type": "text/plain",
+          },
+          `Could not find repo with name ${request.params.repoName}`
+        );
+      }
+
+      const limit = normalize(request.queryParams?.per_page, { default: 25 });
+      const number = normalize(request.queryParams?.page, { default: 1 });
+      const tags = paginate(repo.tags, { limit, number });
+      const totalPages = Math.ceil(repo.tags.length / limit);
+      const links: string[] = [];
+
+      if (number > 1) {
+        links.push(
+          `</repos/${owner.login}/${repo.name}/tags?page=${Math.min(
+            number - 1,
+            totalPages
+          )}>; rel="prev"`
+        );
+      }
+
+      if (number < totalPages) {
+        links.push(
+          `</repos/${owner.login}/${repo.name}/tags?page=${Math.max(
+            number + 1,
+            0
+          )}>; rel="next"`
+        );
+      }
+
+      return new Response(
+        200,
+        {
+          "Content-Type": "application/json; charset=utf-8",
+          Link: links.join(", "),
+        },
+        tags
       );
     }
-
-    const repo = owner.repos.models.find(
-      (repo) => repo.name === request.params.repoName
-    );
-
-    if (!repo) {
-      throw new Error(
-        `Could not find repo with name ${request.params.repoName}`
-      );
-    }
-
-    const limit = normalize(request.queryParams?.per_page, { default: 25 });
-    const number = normalize(request.queryParams?.page, { default: 1 });
-    const tags = paginate(repo.tags, { limit, number });
-    const totalPages = Math.ceil(repo.tags.length / limit);
-    const links: string[] = [];
-
-    if (number > 1) {
-      links.push(
-        `</repos/${owner.login}/${repo.name}/tags?page=${Math.min(
-          number - 1,
-          totalPages
-        )}>; rel="prev"`
-      );
-    }
-
-    if (number < totalPages) {
-      links.push(
-        `</repos/${owner.login}/${repo.name}/tags?page=${Math.max(
-          number + 1,
-          0
-        )}>; rel="next"`
-      );
-    }
-
-    return new Response(
-      200,
-      {
-        "Content-Type": "application/json; charset=utf-8",
-        Link: links.join(", "),
-      },
-      tags
-    );
-  });
+  );
 
   this.get(
-    "/repos/:ownerLogin/:repoName/compare/:versions",
+    "https://api.github.com/repos/:ownerLogin/:repoName/compare/:versions",
     async (schema, request) => {
       const [sourceVersion, targetVersion] = request.params.versions.split(
         "...",
@@ -98,7 +111,11 @@ export default function (this: Server<AppRegistry>) {
       });
 
       if (!owner) {
-        throw new Error(
+        return new Response(
+          404,
+          {
+            "Content-Type": "text/plain",
+          },
           `Could not find owner with login ${request.params.ownerLogin}`
         );
       }
@@ -108,7 +125,11 @@ export default function (this: Server<AppRegistry>) {
       );
 
       if (!repo) {
-        throw new Error(
+        return new Response(
+          404,
+          {
+            "Content-Type": "text/plain",
+          },
           `Could not find repo with name ${request.params.repoName}`
         );
       }
@@ -118,7 +139,13 @@ export default function (this: Server<AppRegistry>) {
       );
 
       if (!sourceTag) {
-        throw new Error(`Could not find source tag with name ${sourceVersion}`);
+        return new Response(
+          404,
+          {
+            "Content-Type": "text/plain",
+          },
+          `Could not find source tag with name ${sourceVersion}`
+        );
       }
 
       const targetTag = repo.tags.models.find(
@@ -126,7 +153,13 @@ export default function (this: Server<AppRegistry>) {
       );
 
       if (!targetTag) {
-        throw new Error(`Could not find target tag with name ${targetVersion}`);
+        return new Response(
+          404,
+          {
+            "Content-Type": "text/plain",
+          },
+          `Could not find target tag with name ${targetVersion}`
+        );
       }
 
       return new Response(

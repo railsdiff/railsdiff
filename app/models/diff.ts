@@ -1,4 +1,4 @@
-import { FileCompare } from "../services/versions";
+import { PatchFile } from "../api/github";
 
 import Line from "./line";
 
@@ -7,10 +7,10 @@ const deleted = /^-/;
 const inserted = /^\+/;
 
 export default class Diff {
-  private _fileCompare: FileCompare;
+  private _fileCompare: PatchFile;
   rawLines: string[] = [];
 
-  constructor(fileCompare: FileCompare) {
+  constructor(fileCompare: PatchFile) {
     this._fileCompare = fileCompare;
 
     if (fileCompare.patch) {

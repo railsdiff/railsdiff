@@ -18,7 +18,6 @@ module.exports = function (environment) {
   const isTest = environment === "test";
 
   const {
-    API_URL = "",
     FILE_URL = "",
     GA_MEASUREMENT_ID = "",
     REPOSITORY = "railsdiff/rails-new-output",
@@ -30,7 +29,6 @@ module.exports = function (environment) {
 
   const ENV = {
     APP: {
-      API_URL,
       FILE_URL,
       REPOSITORY,
     },
@@ -82,7 +80,6 @@ module.exports = function (environment) {
     ENV.APP.rootElement = "#ember-testing";
     ENV.APP.autoboot = false;
 
-    ENV.APP.API_URL = "";
     ENV.APP.FILE_URL = "";
   }
 
