@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/railsdiff/railsdiff/compare/v1.4.0...v1.5.0) (2022-08-06)
+
+
+### Bug Fixes
+
+* add `main` element to compare view ([4aafaf0](https://github.com/railsdiff/railsdiff/commit/4aafaf0dab234c8940af050e8c7c425eef129dd9))
+
+
+### Features
+
+* link to `rails new` generated output ([2ffb2cc](https://github.com/railsdiff/railsdiff/commit/2ffb2ccaad5c8c0e489489f8787f44a78736faa2)), closes [#261](https://github.com/railsdiff/railsdiff/issues/261)
+
 # [1.4.0](https://github.com/railsdiff/railsdiff/compare/v1.3.5...v1.4.0) (2022-08-06)
 
 
