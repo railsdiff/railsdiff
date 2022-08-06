@@ -1,4 +1,4 @@
-import { click as clickSelector, visit } from "@ember/test-helpers";
+import { click as clickSelector, currentURL, visit } from "@ember/test-helpers";
 import { findControl, select } from "ember-semantic-test-helpers/test-support";
 import { findButtons } from "ember-semantic-test-helpers/test-support/find-helpers";
 import { module, test } from "qunit";
@@ -36,18 +36,40 @@ module("Acceptance | patch", (hooks) => {
     assert.strictEqual(targetSelected, "1.1.1");
   });
 
-  test("navigating directly to a patch with unknown versions errors", async function (assert) {
-    await visit("/1.0.1/2.1.1");
+  test("navigating directly to a patch with unknown versions redirects", async function (assert) {
+    try {
+      // The `visit` helper raises a `TransitionAborted` when routing is interrupted
+      // See https://github.com/emberjs/ember-test-helpers/issues/332.
+      await visit("/1.0.1/2.1.1");
+    } catch (e) {
+      console.debug(e);
+    }
 
-    assert.dom(".content").containsText("There was a problem");
+    assert.strictEqual(currentURL(), "/");
 
-    await visit("/2.0.1/1.1.1");
+    try {
+      // The `visit` helper raises a `TransitionAborted` when routing is interrupted
+      // See https://github.com/emberjs/ember-test-helpers/issues/332.
+      await visit("/2.0.1/1.1.1");
+    } catch (e) {
+      console.debug(e);
+    }
 
-    assert.dom(".content").containsText("There was a problem");
+    assert
+      .dom(".content")
+      .containsText("What version of Rails are you currently using?");
 
-    await visit("/2.0.1/2.1.1");
+    try {
+      // The `visit` helper raises a `TransitionAborted` when routing is interrupted
+      // See https://github.com/emberjs/ember-test-helpers/issues/332.
+      await visit("/2.0.1/2.1.1");
+    } catch (e) {
+      console.debug(e);
+    }
 
-    assert.dom(".content").containsText("There was a problem");
+    assert
+      .dom(".content")
+      .containsText("What version of Rails are you currently using?");
   });
 
   test("deep links to each file diff", async function (assert) {

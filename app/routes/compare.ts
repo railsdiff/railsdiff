@@ -1,6 +1,6 @@
 import Route from "@ember/routing/route";
 import { Registry as ServiceRegistry, inject as service } from "@ember/service";
-import { patch as GitHubPatch } from "rails-diff/api/github";
+import { patch } from "rails-diff/api/github";
 import Comparison from "rails-diff/models/comparison";
 import Patch from "rails-diff/models/patch";
 import { REPOSITORY } from "rails-diff/utils/environment";
@@ -14,6 +14,9 @@ export default class CompareRoute extends Route<
   Comparison,
   CompareRouteParams
 > {
+  @service("router")
+  private readonly _router!: ServiceRegistry["router"];
+
   @service("versions")
   private readonly _versions!: ServiceRegistry["versions"];
 
@@ -26,8 +29,12 @@ export default class CompareRoute extends Route<
     sourceVersion,
     targetVersion,
   }: CompareRouteParams): Promise<Comparison> {
-    const files = await GitHubPatch(sourceVersion, targetVersion, REPOSITORY);
-    const patch = new Patch(files);
+    if (
+      !this._versions.all.includes(sourceVersion) ||
+      !this._versions.all.includes(targetVersion)
+    ) {
+      this._router.replaceWith("index");
+    }
 
     return new Comparison(
       sourceVersion,

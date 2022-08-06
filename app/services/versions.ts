@@ -7,7 +7,7 @@ import compareVersions from "rails-diff/utils/compare-versions";
 export default class VersionsService extends Service {
   private _allVersions: Version[] = [];
 
-  private get _all() {
+  get all(): string[] {
     return this._allVersions.map((version) => version.toString());
   }
 
@@ -18,19 +18,19 @@ export default class VersionsService extends Service {
   target?: string = this.targets[0]?.toString();
 
   get sources() {
-    return this._all.slice(1).map((version) => version.toString());
+    return this.all.slice(1).map((version) => version.toString());
   }
 
   get targets() {
-    if (!this.source || this._all.length < 2) {
+    if (!this.source || this.all.length < 2) {
       return [];
     }
 
-    const index = this._all.findIndex(
+    const index = this.all.findIndex(
       (version) => version.toString() === this.source
     );
 
-    return this._all.slice(0, index);
+    return this.all.slice(0, index);
   }
 
   async load() {
@@ -45,7 +45,7 @@ export default class VersionsService extends Service {
         .reverse()
     );
 
-    return this._all;
+    return this.all;
   }
 
   setSource(source: string) {
