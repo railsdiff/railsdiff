@@ -1,5 +1,5 @@
 import Component from "@glimmer/component";
-import { FILE_URL, REPOSITORY } from "rails-diff/utils/environment";
+import { fileURL } from "rails-diff/api/github";
 
 interface RawFileLinkSignature {
   Args: {
@@ -13,7 +13,7 @@ interface RawFileLinkSignature {
 
 export default class RawFileLinkComponent extends Component<RawFileLinkSignature> {
   get url(): string {
-    return `${FILE_URL}/${REPOSITORY}/blob/v${this.args.version}/${this.args.path}`;
+    return fileURL(this.args.path, this.args.version);
   }
 }
 

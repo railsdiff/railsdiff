@@ -18,7 +18,6 @@ module.exports = function (environment) {
   const isTest = environment === "test";
 
   const {
-    FILE_URL = "",
     GA_MEASUREMENT_ID = "",
     REPOSITORY = "railsdiff/rails-new-output",
     MIRAGE_ENABLED = true,
@@ -29,7 +28,6 @@ module.exports = function (environment) {
 
   const ENV = {
     APP: {
-      FILE_URL,
       REPOSITORY,
     },
     EmberENV: {
@@ -79,8 +77,6 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = "#ember-testing";
     ENV.APP.autoboot = false;
-
-    ENV.APP.FILE_URL = "";
   }
 
   if (isProduction) {

@@ -59,3 +59,11 @@ export async function patch(
 
   return files;
 }
+
+export function fileURL(path: string, version: string): string {
+  return `https://github.com/${REPOSITORY}/blob/v${version}/${path}`;
+}
+
+export function treeURL(version: string): string {
+  return `https://github.com/${REPOSITORY}/tree/v${version}`;
+}

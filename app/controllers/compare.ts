@@ -1,10 +1,6 @@
 import Controller from "@ember/controller";
+import { treeURL } from "rails-diff/api/github";
 import CompareRoute from "rails-diff/routes/compare";
-import { REPOSITORY } from "rails-diff/utils/environment";
-
-function githubURL(version: string): string {
-  return `https://github.com/${REPOSITORY}/tree/v${version}`;
-}
 
 export default class CompareController extends Controller {
   declare model: Awaited<ReturnType<CompareRoute["model"]>>;
@@ -18,11 +14,11 @@ export default class CompareController extends Controller {
   }
 
   get sourceURL(): string {
-    return githubURL(this.comparison.sourceVersion);
+    return treeURL(this.comparison.sourceVersion);
   }
 
   get targetURL(): string {
-    return githubURL(this.comparison.targetVersion);
+    return treeURL(this.comparison.targetVersion);
   }
 }
 

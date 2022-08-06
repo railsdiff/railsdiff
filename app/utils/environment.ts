@@ -10,5 +10,4 @@ function app(name: keyof typeof config.APP): string {
   return value;
 }
 
-export const FILE_URL = app("FILE_URL");
 export const REPOSITORY = app("REPOSITORY");

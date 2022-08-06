@@ -12,7 +12,6 @@ jobs:
       - name: "Install Dependencies"
         run: "npm ci"
       - env:
-          FILE_URL: "https://github.com"
           GA_MEASUREMENT_ID: "UA-7325596-4"
           REPOSITORY: "railsdiff/rails-new-output"
         name: "Build Application"
