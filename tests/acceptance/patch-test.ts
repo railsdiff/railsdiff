@@ -163,4 +163,26 @@ module("Acceptance | patch", (hooks) => {
       );
     assert.dom("a[title='View Gemfile at 2.0.0']").doesNotExist();
   });
+
+  test("links to the full rails new output for selected versions", async function (assert) {
+    await visit("/");
+    await select("Source", "1.1.1");
+    await select("Target", "2.0.0");
+    await viewDiff();
+
+    assert
+      .dom("a[title='View rails new output of 1.1.1']")
+      .hasProperty(
+        "href",
+        new RegExp(`https://github.com/${REPOSITORY}/tree/v1.1.1`),
+        "Links to source rails new output"
+      );
+    assert
+      .dom("a[title='View rails new output of 2.0.0']")
+      .hasProperty(
+        "href",
+        new RegExp(`https://github.com/${REPOSITORY}/tree/v2.0.0`),
+        "Links to target rails new output"
+      );
+  });
 });

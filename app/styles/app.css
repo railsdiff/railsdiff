@@ -38,6 +38,14 @@ header a:visited {
   text-decoration: inherit;
 }
 
+footer a,
+footer a:active,
+footer a:hover,
+footer a:visited {
+  color: inherit;
+  text-decoration: underline;
+}
+
 header form {
   display: inline-block;
 }
@@ -257,7 +265,11 @@ header h1 {
   header a,
   header a:active,
   header a:hover,
-  header a:visited {
+  header a:visited
+  footer a,
+  footer a:active,
+  footer a:hover,
+  footer a:visited {
     color: #858585;
   }
 
