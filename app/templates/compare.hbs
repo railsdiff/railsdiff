@@ -8,14 +8,16 @@
   separator=(t "title-separator")
 }}
 
-{{#each this.comparison.patch.diffs as |diff|}}
-  <Diff
-    @diff={{diff}}
-    @linkedAnchor={{this.linkedAnchor}}
-    @sourceVersion={{this.comparison.sourceVersion}}
-    @targetVersion={{this.comparison.targetVersion}}
-  />
-{{/each}}
+<main>
+  {{#each this.comparison.patch.diffs as |diff|}}
+    <Diff
+      @diff={{diff}}
+      @linkedAnchor={{this.linkedAnchor}}
+      @sourceVersion={{this.comparison.sourceVersion}}
+      @targetVersion={{this.comparison.targetVersion}}
+    />
+  {{/each}}
+</main>
 
 <footer>
   <p>
