@@ -12,7 +12,10 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "EditorConfig.EditorConfig",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "lifeart.vscode-ember-unstable",
+        "lifeart.vscode-glimmer-syntax",
+        "typed-ember.glint-vscode"
       ]
     }
   },
