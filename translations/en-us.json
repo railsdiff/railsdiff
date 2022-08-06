@@ -3,11 +3,12 @@
   "about.heading": "Why RailsDiff was built:",
   "about": "About",
   "application.loading": "Downloading and parsing available versions... ",
+  "comparison.anchor.title": "Permalink to {path}",
+  "comparison.link.title": "View {path} at {version}",
+  "comparison.loading": "Downloading and parsing diff... ",
+  "comparison.page-title": "{source} → {target}",
   "error.application.description": "Perhaps try using the form above to find the diff you were looking for.",
   "error.application.heading": "There was a problem finding the resource you requested.",
-  "patch.loading": "Downloading and parsing diff... ",
-  "patch.anchor.title": "Permalink to {path}",
-  "patch.link.title": "View {path} at {version}",
   "railsdiff.summary": "RailsDiff is about what you'd have to change about your app's configuration when upgrading Rails versions, not about what Rails has changed internally.",
   "railsdiff": "RailsDiff",
   "rename": "{previousPath} → {path}",
@@ -15,7 +16,6 @@
   "source": "Source",
   "target.long": "What version of Rails do you want to upgrade to?",
   "target": "Target",
-  "title.patch": "{source} → {target}",
   "title-separator": " - ",
   "view-diff": "View Diff"
 }

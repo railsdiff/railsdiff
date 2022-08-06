@@ -1,0 +1,18 @@
+{{page-title
+  (t
+    "comparison.page-title"
+    source=this.comparison.sourceVersion
+    target=this.comparison.targetVersion
+  )
+  prepend=false
+  separator=(t "title-separator")
+}}
+
+{{#each this.comparison.patch.diffs as |diff|}}
+  <Diff
+    @diff={{diff}}
+    @linkedAnchor={{this.linkedAnchor}}
+    @sourceVersion={{this.comparison.sourceVersion}}
+    @targetVersion={{this.comparison.targetVersion}}
+  />
+{{/each}}

@@ -2,7 +2,9 @@ import Route from "@ember/routing/route";
 import { Registry as ServiceRegistry, inject as service } from "@ember/service";
 import { Transition } from "rails-diff";
 
-export default class ApplicationRoute extends Route {
+type ApplicationRouteModel = string[];
+
+export default class ApplicationRoute extends Route<ApplicationRouteModel> {
   beforeModel(transition: Transition) {
     this._intl.setLocale(["en-us"]);
 
@@ -26,7 +28,7 @@ export default class ApplicationRoute extends Route {
   @service("metrics")
   private readonly _metrics!: ServiceRegistry["metrics"];
 
-  async model(): Promise<string[]> {
+  async model(): Promise<ApplicationRouteModel> {
     return this._versions.load();
   }
 
