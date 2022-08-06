@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/railsdiff/railsdiff/compare/v1.3.5...v1.4.0) (2022-08-06)
+
+
+### Bug Fixes
+
+* redirect unrecognized versions to the landing page ([1e59ac4](https://github.com/railsdiff/railsdiff/commit/1e59ac4bad23ee780955f8133c1b7b79fd227065))
+
+
+### Features
+
+* add a Comparison value object ([1a97aaf](https://github.com/railsdiff/railsdiff/commit/1a97aaf9251c18ef3f6381f79754a5342cbaa0a4))
+* rename patch route to compare ([2534adb](https://github.com/railsdiff/railsdiff/commit/2534adb327ae60384fc8f7f184542530dbf6e01f))
+* replace custom fetches with octokit ([fa57453](https://github.com/railsdiff/railsdiff/commit/fa57453f7414a5fef71ec209ed381a8e248ff04a))
+
 ## [1.3.5](https://github.com/railsdiff/railsdiff/compare/v1.3.4...v1.3.5) (2022-07-31)
 
 
