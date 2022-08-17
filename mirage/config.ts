@@ -1,7 +1,7 @@
 import { Collection, Response, Server } from "miragejs";
 import compare from "rails-diff/helpers/compare";
 
-import AppRegistry from "./registry";
+import AppRegistry from "./app/registry";
 
 function paginate<T>(
   collection: Collection<T>,

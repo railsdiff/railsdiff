@@ -2,7 +2,7 @@ import { camelize } from "@ember/string";
 import { Server } from "miragejs";
 import ENV from "rails-diff/config/environment";
 
-import AppRegistry from "../registry";
+import AppRegistry from "../app/registry";
 
 import sample from "./sample";
 
