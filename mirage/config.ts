@@ -1,7 +1,7 @@
-import { Collection, Response, Server } from "miragejs";
+import { Collection, Response } from "miragejs";
 import compare from "rails-diff/helpers/compare";
 
-import AppRegistry from "./app/registry";
+import Server from "./app/server";
 
 function paginate<T>(
   collection: Collection<T>,
@@ -29,7 +29,7 @@ function normalize(
   return options.default;
 }
 
-export default function (this: Server<AppRegistry>) {
+export default function (this: Server) {
   this.get(
     `https://api.github.com/repos/:ownerLogin/:repoName/tags`,
     (schema, request) => {

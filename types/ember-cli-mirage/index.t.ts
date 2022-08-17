@@ -1,7 +1,5 @@
-import { Server } from "miragejs";
-
-import AppRegistry from "../../mirage/app/registry";
+import Server from "../../mirage/app/server";
 
 declare global {
-  const server: Server<AppRegistry>;
+  const server: Server;
 }

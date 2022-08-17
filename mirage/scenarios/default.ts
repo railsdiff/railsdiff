@@ -1,8 +1,7 @@
 import { camelize } from "@ember/string";
-import { Server } from "miragejs";
 import ENV from "rails-diff/config/environment";
 
-import AppRegistry from "../app/registry";
+import Server from "../app/server";
 
 import sample from "./sample";
 
@@ -12,7 +11,7 @@ export const scenarios: Record<string, Scenario> = {
   sample,
 };
 
-export default function (server: Server<AppRegistry>) {
+export default function (server: Server) {
   const scenario =
     scenarios[
       camelize(

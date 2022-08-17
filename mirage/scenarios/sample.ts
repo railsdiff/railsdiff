@@ -1,9 +1,8 @@
-import { Server } from "miragejs";
 import { REPOSITORY } from "rails-diff/utils/environment";
 
-import AppRegistry from "../app/registry";
+import Server from "../app/server";
 
-export default function (server: Server<AppRegistry>) {
+export default function (server: Server) {
   const main = server.create("tag", { name: "main" });
   const v1_0_0 = server.create("tag", { name: "v1.0.0" });
   const v1_0_1 = server.create("tag", {
