@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/railsdiff/railsdiff/compare/v1.5.0...v1.6.0) (2022-08-21)
+
+
+### Features
+
+* add a changed file count to compare view ([bc47ec1](https://github.com/railsdiff/railsdiff/commit/bc47ec17aa364121442dae5c85b3f2ca85136a8f))
+
 # [1.5.0](https://github.com/railsdiff/railsdiff/compare/v1.4.0...v1.5.0) (2022-08-06)
 
 
