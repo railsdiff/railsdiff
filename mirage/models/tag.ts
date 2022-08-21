@@ -1,3 +1,12 @@
 import { Model } from "miragejs";
+import { ModelDefinition } from "miragejs/-types";
+import { FileMap } from "rails-diff/helpers/compare";
 
-export default Model.extend({});
+export type TagType = {
+  files: FileMap;
+  name: string;
+};
+
+const TagModel: ModelDefinition<TagType> = Model.extend({});
+
+export default TagModel;
