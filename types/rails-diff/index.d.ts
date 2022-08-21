@@ -2,6 +2,7 @@ import "@glint/environment-ember-loose";
 import Helper from "@ember/component/helper";
 import type RouterService from "@ember/routing/router-service";
 import TranslationHelper from "@gavant/glint-template-types/types/ember-intl/translation-helper";
+import { ComponentLike } from "@glint/template/-private";
 import Ember from "ember";
 
 declare global {
@@ -11,6 +12,19 @@ declare global {
 
 declare module "@glint/environment-ember-loose/registry" {
   export default interface Registry {
+    // ember-ally-refocus
+    NavigationNarrator: ComponentLike<{
+      Args: {
+        Named: {
+          navigationText?: string;
+          routeChangeValidator?: (transition: Transition) => boolean;
+          skipLink?: boolean;
+          skipText?: string;
+          skipTo?: string;
+        };
+      };
+    }>;
+
     // ember-page-title
     "page-title": new () => Helper<{
       Args: {

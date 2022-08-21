@@ -8,7 +8,7 @@
   separator=(t "title-separator")
 }}
 
-<main>
+<main id="main">
   <p>{{t "comparison.summary" count=this.comparison.patch.diffs.length}}</p>
   {{#each this.comparison.patch.diffs as |diff|}}
     <Diff

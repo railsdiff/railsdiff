@@ -11,6 +11,8 @@
   "comparison.view-generated": "View the <code>rails new</code> output from '<'a href=\"{sourceURL}\" title=\"View rails new output of {source}\"'>'{source}'<'/a'>' or '<'a href=\"{targetURL}\" title=\"View rails new output of {target}\"'>'{target}'<'/a'>'.",
   "error.application.description": "Perhaps try using the form above to find the diff you were looking for.",
   "error.application.heading": "There was a problem finding the resource you requested.",
+  "navigation.link.title": "Skip to content",
+  "navigation.complete": "Navigation complete",
   "railsdiff.summary": "RailsDiff is about what you'd have to change about your app's configuration when upgrading Rails versions, not about what Rails has changed internally.",
   "railsdiff": "RailsDiff",
   "rename": "{previousPath} → {path}",
