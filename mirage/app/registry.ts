@@ -1,8 +1,8 @@
-import { Registry } from "miragejs";
+import { Registry as MirageRegistry } from "miragejs";
 
 import { FactoryRegistry } from "./factory-registry";
 import { ModelRegistry } from "./model-registry";
 
-type AppRegistry = Registry<ModelRegistry, FactoryRegistry>;
+type Registry = MirageRegistry<ModelRegistry, FactoryRegistry>;
 
-export default AppRegistry;
+export default Registry;
