@@ -83,6 +83,21 @@ module("Acceptance | patch", (hooks) => {
       .hasAttribute("href", "#diff-de3150c01c3a946a6168173c4116741379fe3579");
   });
 
+  test("displays the count of changed files between the source and target versions", async function (assert) {
+    await visit("/");
+    await select("Source", "1.0.0");
+    await select("Target", "1.0.1");
+    await viewDiff();
+
+    assert.dom(".content").containsText("Showing 1 changed file.");
+
+    await select("Source", "1.0.0");
+    await select("Target", "1.1.1");
+    await viewDiff();
+
+    assert.dom(".content").containsText("Showing 2 changed files.");
+  });
+
   test("displays the diff between the source and target versions for an added file", async function (assert) {
     await visit("/");
     await select("Source", "1.0.0");
