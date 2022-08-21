@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/railsdiff/railsdiff/compare/v1.6.0...v1.7.0) (2022-08-21)
+
+
+### Features
+
+* add ally navigation announcements and jump to content ([16c5e39](https://github.com/railsdiff/railsdiff/commit/16c5e393c08aaac31f37cf14bad0fc87fe68fa24))
+
 # [1.6.0](https://github.com/railsdiff/railsdiff/compare/v1.5.0...v1.6.0) (2022-08-21)
 
 
