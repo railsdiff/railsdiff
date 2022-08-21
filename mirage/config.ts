@@ -33,7 +33,6 @@ export default function (this: Server) {
   this.get(
     `https://api.github.com/repos/:ownerLogin/:repoName/tags`,
     (schema, request) => {
-      // eslint-disable-next-line ember/no-array-prototype-extensions
       const owner = schema.findBy("owner", {
         login: request.params.ownerLogin,
       });
@@ -105,7 +104,6 @@ export default function (this: Server) {
         2
       );
 
-      // eslint-disable-next-line ember/no-array-prototype-extensions
       const owner = schema.findBy("owner", {
         login: request.params.ownerLogin,
       });
