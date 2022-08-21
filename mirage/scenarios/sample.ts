@@ -1,8 +1,8 @@
 import { REPOSITORY } from "rails-diff/utils/environment";
 
-import Server from "../app/server";
+import Scenario from "./scenario";
 
-export default function (server: Server) {
+const scenario: Scenario = (server) => {
   const main = server.create("tag", { name: "main" });
   const v1_0_0 = server.create("tag", { name: "v1.0.0" });
   const v1_0_1 = server.create("tag", {
@@ -51,4 +51,6 @@ If you'd like to contribute, see https://github.com/railsdiff/railsdiff. 😍
   });
 
   server.create("owner", { login: ownerName, repos: [repo] });
-}
+};
+
+export default scenario;

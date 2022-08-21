@@ -1,17 +1,14 @@
 import { camelize } from "@ember/string";
 import ENV from "rails-diff/config/environment";
 
-import Server from "../app/server";
-
 import sample from "./sample";
-
-type Scenario = (server: Server) => void;
+import Scenario from "./scenario";
 
 export const scenarios: Record<string, Scenario> = {
   sample,
 };
 
-export default function (server: Server) {
+const scenario: Scenario = (server) => {
   const scenario =
     scenarios[
       camelize(
@@ -24,4 +21,6 @@ export default function (server: Server) {
   if (scenario) {
     scenario(server);
   }
-}
+};
+
+export default scenario;
