@@ -41,7 +41,7 @@
     "@types/diff": "^5.0.2",
     "@types/ember": "^4.0.1",
     "@types/ember__test-helpers": "^2.8.1",
-    "@types/ember-data": "^4.4.0",
+    "@types/ember-data": "^4.4.1",
     "@types/ember-qunit": "^5.0.0",
     "@types/ember-resolver": "^5.0.11",
     "@types/qunit": "^2.19.2",
