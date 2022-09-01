@@ -36,7 +36,7 @@
     "@gavant/glint-template-types": "^0.1.5",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
-    "@glint/core": "^0.9.1",
+    "@glint/core": "^0.9.3",
     "@glint/environment-ember-loose": "^0.9.1",
     "@types/diff": "^5.0.2",
     "@types/ember": "^4.0.1",
