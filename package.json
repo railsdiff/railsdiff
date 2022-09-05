@@ -45,7 +45,7 @@
     "@types/ember-qunit": "^5.0.0",
     "@types/ember-resolver": "^5.0.11",
     "@types/qunit": "^2.19.2",
-    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.33.1",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
