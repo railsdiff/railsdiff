@@ -29,7 +29,7 @@
     }
   },
   "glint": {
-    "environment": ["ember-loose"]
+    "environment": "ember-loose"
   },
   "include": [
     ".eslintrc.js",
