@@ -14,7 +14,7 @@
     "build": "ember build --environment=production",
     "lint:eslint:fix": "eslint --cache --ext js,ts . --fix",
     "lint:eslint": "eslint --cache --ext js,ts --max-warnings=0 .",
-    "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:*:fix\" \"lint:prettier:*:fix\"",
+    "lint:fix": "npm-run-all --print-name --aggregate-output --continue-on-error --parallel \"lint:*:fix\"",
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:hbs": "ember-template-lint .",
     "lint:js:fix": "eslint . --fix",
@@ -23,11 +23,11 @@
     "lint:prettier:hbs": "prettier --list-different --parser glimmer \"**/*.hbs\"",
     "lint:prettier:js:fix": "prettier --write \"**/*.{js,ts}\"",
     "lint:prettier:js": "prettier --list-different \"**/*.{js,ts}\"",
-    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\" \"lint:prettier:*\"",
+    "lint": "npm-run-all --print-name --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "prettier": "prettier",
     "start": "ember serve",
     "test:ember": "ember test",
-    "test": "npm-run-all lint test:*"
+    "test": "npm-run-all --print-name \"lint\" \"test:*\""
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
@@ -51,8 +51,8 @@
     "broccoli-asset-rev": "^3.0.0",
     "diff": "^5.1.0",
     "ember-a11y-refocus": "^3.0.2",
-    "ember-auto-import": "^2.4.2",
-    "ember-cli": "~4.7.0",
+    "ember-auto-import": "^2.4.3",
+    "ember-cli": "~4.8.0",
     "ember-cli-app-version": "^5.0.0",
     "ember-cli-babel": "^7.26.11",
     "ember-cli-dependency-checker": "^3.3.1",
@@ -63,7 +63,7 @@
     "ember-cli-terser": "^4.0.2",
     "ember-cli-typescript": "^5.2.1",
     "ember-cli-typescript-blueprints": "^3.0.0",
-    "ember-data": "~4.7.1",
+    "ember-data": "~4.7.3",
     "ember-decorators": "^6.1.1",
     "ember-fetch": "^8.1.2",
     "ember-intl": "^6.0.0-beta.3",
@@ -74,11 +74,11 @@
     "ember-qunit": "^6.2.0",
     "ember-resolver": "^8.0.3",
     "ember-semantic-test-helpers": "^1.0.0",
-    "ember-source": "~4.7.0",
+    "ember-source": "~4.8.0",
     "ember-template-lint": "^5.6.0",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-ember": "^11.0.6",
+    "eslint-plugin-ember": "^11.1.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -96,7 +96,7 @@
     "webpack": "^5.78.0"
   },
   "engines": {
-    "node": "14.* || >= 16"
+    "node": "14.* || 16.* || >= 18"
   },
   "ember": {
     "edition": "octane"
