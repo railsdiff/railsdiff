@@ -1,9 +1,9 @@
 import "@glint/environment-ember-loose";
 import Helper from "@ember/component/helper";
 import type RouterService from "@ember/routing/router-service";
-import TranslationHelper from "@gavant/glint-template-types/types/ember-intl/translation-helper";
 import { ComponentLike } from "@glint/template/-private";
 import Ember from "ember";
+import TranslationHelper from "ember-intl/helpers/t";
 
 declare global {
   interface Array<T> extends Ember.ArrayPrototypeExtensions<T> {}
