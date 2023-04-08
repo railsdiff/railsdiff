@@ -1,20 +1,20 @@
-import { createPatch } from "diff";
-import { PatchFile } from "rails-diff/api/github";
+import { createPatch } from 'diff';
+import { PatchFile } from 'rails-diff/api/github';
 
 export type FileMap = Record<string, string>;
 
 function gitDiff(filename: string, source: string, target: string): string {
-  const diff = createPatch(filename, source, target).split("\n");
+  const diff = createPatch(filename, source, target).split('\n');
   diff.splice(0, 4);
-  return diff.join("\n");
+  return diff.join('\n');
 }
 
 async function generateSHA(filename: string): Promise<string> {
   const encoder = new TextEncoder();
   const data = encoder.encode(filename);
-  const encoding = await crypto.subtle.digest("SHA-1", data);
+  const encoding = await crypto.subtle.digest('SHA-1', data);
   const encodingArray = Array.from(new Uint8Array(encoding));
-  return encodingArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+  return encodingArray.map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
 export default async function compare(
@@ -39,9 +39,9 @@ export default async function compare(
     const sha = await generateSHA(filename);
     result.push({
       filename,
-      patch: gitDiff(filename, "", targetFiles[filename]),
+      patch: gitDiff(filename, '', targetFiles[filename]),
       sha,
-      status: "added",
+      status: 'added',
     });
   }
 
@@ -50,9 +50,9 @@ export default async function compare(
     const sha = await generateSHA(filename);
     result.push({
       filename,
-      patch: gitDiff(filename, sourceFiles[filename], ""),
+      patch: gitDiff(filename, sourceFiles[filename], ''),
       sha,
-      status: "removed",
+      status: 'removed',
     });
   }
 
@@ -63,7 +63,7 @@ export default async function compare(
       filename,
       patch: gitDiff(filename, sourceFiles[filename], targetFiles[filename]),
       sha,
-      status: "modified",
+      status: 'modified',
     });
   }
 

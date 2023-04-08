@@ -33,6 +33,7 @@
   },
   "include": [
     ".eslintrc.js",
+    ".prettierrc.js",
     ".template-lintrc.js",
     "app/**/*",
     "config/**/*",

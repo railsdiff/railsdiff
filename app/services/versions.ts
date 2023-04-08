@@ -1,8 +1,8 @@
-import Service from "@ember/service";
-import { tracked } from "@glimmer/tracking";
-import { allVersions } from "rails-diff/api/github";
-import Version from "rails-diff/models/version";
-import compareVersions from "rails-diff/utils/compare-versions";
+import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
+import { allVersions } from 'rails-diff/api/github';
+import Version from 'rails-diff/models/version';
+import compareVersions from 'rails-diff/utils/compare-versions';
 
 export default class VersionsService extends Service {
   private _allVersions: Version[] = [];
@@ -50,7 +50,7 @@ export default class VersionsService extends Service {
 
   setSource(source: string) {
     if (!this.sources.includes(source)) {
-      throw new Error("Given source version is unrecognized");
+      throw new Error('Given source version is unrecognized');
     }
 
     this.source = source;
@@ -63,7 +63,7 @@ export default class VersionsService extends Service {
 
   setTarget(target: string) {
     if (!this.targets.includes(target)) {
-      throw new Error("Given target version is unrecognized");
+      throw new Error('Given target version is unrecognized');
     }
     this.target = target;
   }
@@ -73,7 +73,7 @@ export default class VersionsService extends Service {
   }
 }
 
-declare module "@ember/service" {
+declare module '@ember/service' {
   interface Registry {
     versions: VersionsService;
   }

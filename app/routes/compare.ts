@@ -1,9 +1,9 @@
-import Route from "@ember/routing/route";
-import { Registry as ServiceRegistry, inject as service } from "@ember/service";
-import { patch } from "rails-diff/api/github";
-import Comparison from "rails-diff/models/comparison";
-import Patch from "rails-diff/models/patch";
-import { REPOSITORY } from "rails-diff/utils/environment";
+import Route from '@ember/routing/route';
+import { Registry as ServiceRegistry, inject as service } from '@ember/service';
+import { patch } from 'rails-diff/api/github';
+import Comparison from 'rails-diff/models/comparison';
+import Patch from 'rails-diff/models/patch';
+import { REPOSITORY } from 'rails-diff/utils/environment';
 
 interface CompareRouteParams {
   sourceVersion: string;
@@ -14,11 +14,11 @@ export default class CompareRoute extends Route<
   Comparison,
   CompareRouteParams
 > {
-  @service("router")
-  private readonly _router!: ServiceRegistry["router"];
+  @service('router')
+  private readonly _router!: ServiceRegistry['router'];
 
-  @service("versions")
-  private readonly _versions!: ServiceRegistry["versions"];
+  @service('versions')
+  private readonly _versions!: ServiceRegistry['versions'];
 
   afterModel(model: Comparison): void {
     this._versions.setSource(model.sourceVersion);
@@ -33,7 +33,7 @@ export default class CompareRoute extends Route<
       !this._versions.all.includes(sourceVersion) ||
       !this._versions.all.includes(targetVersion)
     ) {
-      this._router.replaceWith("index");
+      this._router.replaceWith('index');
     }
 
     return new Comparison(

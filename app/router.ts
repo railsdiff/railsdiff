@@ -1,5 +1,5 @@
-import EmberRouter from "@ember/routing/router";
-import config from "rails-diff/config/environment";
+import EmberRouter from '@ember/routing/router';
+import config from 'rails-diff/config/environment';
 
 export default class Router extends EmberRouter {
   location = config.locationType;
@@ -7,6 +7,6 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route("about");
-  this.route("compare", { path: "/:sourceVersion/:targetVersion" });
+  this.route('about');
+  this.route('compare', { path: '/:sourceVersion/:targetVersion' });
 });

@@ -1,7 +1,7 @@
-import { Collection, Model, hasMany } from "miragejs";
-import { ModelDefinition } from "miragejs/-types";
+import { Collection, Model, hasMany } from 'miragejs';
+import { ModelDefinition } from 'miragejs/-types';
 
-import { TagType } from "./tag";
+import { TagType } from './tag';
 
 export type RepoType = {
   tags: Collection<TagType>;
@@ -9,7 +9,7 @@ export type RepoType = {
 };
 
 const RepoModel: ModelDefinition<RepoType> = Model.extend({
-  tags: hasMany("tag"),
+  tags: hasMany('tag'),
 });
 
 export default RepoModel;

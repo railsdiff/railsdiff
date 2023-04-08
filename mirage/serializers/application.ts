@@ -1,3 +1,3 @@
-import { RestSerializer } from "miragejs";
+import { RestSerializer } from 'miragejs';
 
 export default class ApplicationSerializer extends RestSerializer {}

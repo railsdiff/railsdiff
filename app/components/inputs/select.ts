@@ -1,8 +1,8 @@
-import { action } from "@ember/object";
-import Component from "@glimmer/component";
-import { WithBoundArgs } from "@glint/template";
+import { action } from '@ember/object';
+import Component from '@glimmer/component';
+import { WithBoundArgs } from '@glint/template';
 
-import InputsSelectOptionComponent from "./select/option";
+import InputsSelectOptionComponent from './select/option';
 
 interface InputsSelectSignature {
   Args: {
@@ -16,7 +16,7 @@ interface InputsSelectSignature {
       {
         option: WithBoundArgs<
           typeof InputsSelectOptionComponent,
-          "currentValue" | "label" | "value"
+          'currentValue' | 'label' | 'value'
         >;
       }
     ];
@@ -31,8 +31,8 @@ export default class InputsSelectComponent extends Component<InputsSelectSignatu
   }
 }
 
-declare module "@glint/environment-ember-loose/registry" {
+declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    "Inputs::Select": typeof InputsSelectComponent;
+    'Inputs::Select': typeof InputsSelectComponent;
   }
 }

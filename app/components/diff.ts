@@ -1,6 +1,6 @@
-import { schedule } from "@ember/runloop";
-import Component from "@glimmer/component";
-import Diff from "rails-diff/models/diff";
+import { schedule } from '@ember/runloop';
+import Component from '@glimmer/component';
+import Diff from 'rails-diff/models/diff';
 
 interface DiffSignature {
   Args: {
@@ -14,9 +14,9 @@ interface DiffSignature {
 }
 
 export default class DiffComponent extends Component<DiffSignature> {
-  constructor(owner: unknown, args: DiffSignature["Args"]["Named"]) {
+  constructor(owner: unknown, args: DiffSignature['Args']['Named']) {
     super(owner, args);
-    schedule("afterRender", this, this._scrollToLinked);
+    schedule('afterRender', this, this._scrollToLinked);
   }
 
   get isLinked(): boolean {
@@ -35,7 +35,7 @@ export default class DiffComponent extends Component<DiffSignature> {
   }
 }
 
-declare module "@glint/environment-ember-loose/registry" {
+declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
     Diff: typeof DiffComponent;
   }

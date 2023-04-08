@@ -34,17 +34,17 @@ export default class Version {
   private _version: string;
 
   constructor(version: string) {
-    version = version.replace(/\n/g, " ");
+    version = version.replace(/\n/g, ' ');
 
     if (!ANCHORED_VERSION_PATTERN.test(version)) {
       throw new Error(`Malformed version number string "${version}"`);
     }
 
     if (EMPTY_PATTERN.test(version)) {
-      version = "0";
+      version = '0';
     }
 
-    this._version = version.trim().replace(/-/g, ".pre.");
+    this._version = version.trim().replace(/-/g, '.pre.');
   }
 
   toString() {
@@ -53,7 +53,7 @@ export default class Version {
 
   private _splitSegments() {
     const stringStart = this._segments.findIndex(
-      (segment) => typeof segment === "string"
+      (segment) => typeof segment === 'string'
     );
     const numericSegments = this._segments.slice(
       0,

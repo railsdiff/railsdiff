@@ -1,6 +1,6 @@
-import { PatchFile } from "../api/github";
+import { PatchFile } from '../api/github';
 
-import Diff from "./diff";
+import Diff from './diff';
 
 const fileSorter = function (a: PatchFile, b: PatchFile) {
   const aPath = a.filename;

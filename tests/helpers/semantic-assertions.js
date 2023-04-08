@@ -1,2 +1,2 @@
-import semantic from "qunit-semantic-assertions";
+import semantic from 'qunit-semantic-assertions';
 semantic();

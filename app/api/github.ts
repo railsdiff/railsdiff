@@ -1,18 +1,18 @@
-import { components } from "@octokit/openapi-types";
-import { Octokit } from "octokit";
-import { REPOSITORY } from "rails-diff/utils/environment";
+import { components } from '@octokit/openapi-types';
+import { Octokit } from 'octokit';
+import { REPOSITORY } from 'rails-diff/utils/environment';
 
-type TagName = components["schemas"]["tag"]["name"];
+type TagName = components['schemas']['tag']['name'];
 
 export type PatchFile = Pick<
-  components["schemas"]["diff-entry"],
-  "filename" | "patch" | "previous_filename" | "sha" | "status"
+  components['schemas']['diff-entry'],
+  'filename' | 'patch' | 'previous_filename' | 'sha' | 'status'
 >;
 
 const octokit = new Octokit();
 
 async function allTags(repository: string = REPOSITORY): Promise<TagName[]> {
-  const [owner, repo] = repository.split("/", 2);
+  const [owner, repo] = repository.split('/', 2);
   let tagNames: TagName[] = [];
 
   for await (const response of octokit.paginate.iterator(
@@ -31,7 +31,7 @@ export async function allVersions(
   const tagNames = await allTags(repository);
 
   return tagNames
-    .filter((name) => name.indexOf("v") === 0)
+    .filter((name) => name.indexOf('v') === 0)
     .map((name) => name.substring(1));
 }
 
@@ -40,7 +40,7 @@ export async function patch(
   targetVersion: string,
   repository: string = REPOSITORY
 ): Promise<PatchFile[]> {
-  const [owner, repo] = repository.split("/", 2);
+  const [owner, repo] = repository.split('/', 2);
   let files: PatchFile[] = [];
 
   for await (const response of octokit.paginate.iterator(

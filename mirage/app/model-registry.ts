@@ -1,6 +1,6 @@
-import Owner from "../models/owner";
-import Repo from "../models/repo";
-import Tag from "../models/tag";
+import Owner from '../models/owner';
+import Repo from '../models/repo';
+import Tag from '../models/tag';
 
 export type ModelRegistry = {
   owner: typeof Owner;

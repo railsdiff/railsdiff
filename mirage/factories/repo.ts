@@ -1,7 +1,7 @@
-import { faker } from "@faker-js/faker";
-import { Factory } from "miragejs";
+import { faker } from '@faker-js/faker';
+import { Factory } from 'miragejs';
 
-import { RepoType } from "../models/repo";
+import { RepoType } from '../models/repo';
 
 const RepoFactory = Factory.extend<Partial<RepoType>>({
   name: () => faker.internet.userName(),

@@ -1,5 +1,5 @@
-import Component from "@glimmer/component";
-import { fileURL } from "rails-diff/api/github";
+import Component from '@glimmer/component';
+import { fileURL } from 'rails-diff/api/github';
 
 interface RawFileLinkSignature {
   Args: {
@@ -17,7 +17,7 @@ export default class RawFileLinkComponent extends Component<RawFileLinkSignature
   }
 }
 
-declare module "@glint/environment-ember-loose/registry" {
+declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
     RawFileLink: typeof RawFileLinkComponent;
   }

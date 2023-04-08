@@ -1,6 +1,6 @@
-import { PatchFile } from "../api/github";
+import { PatchFile } from '../api/github';
 
-import Line from "./line";
+import Line from './line';
 
 const commentRegexp = /^\\/;
 const deleted = /^-/;
@@ -14,7 +14,7 @@ export default class Diff {
     this._fileCompare = fileCompare;
 
     if (fileCompare.patch) {
-      fileCompare.patch?.split("\n").forEach((line) => {
+      fileCompare.patch?.split('\n').forEach((line) => {
         this.rawLines.push(line);
       });
     }
@@ -29,15 +29,15 @@ export default class Diff {
   }
 
   get isAdded() {
-    return this._fileCompare.status == "added";
+    return this._fileCompare.status == 'added';
   }
 
   get isRenamed() {
-    return this._fileCompare.status === "renamed";
+    return this._fileCompare.status === 'renamed';
   }
 
   get isRemoved() {
-    return this._fileCompare.status == "removed";
+    return this._fileCompare.status == 'removed';
   }
 
   get lines() {
@@ -46,32 +46,32 @@ export default class Diff {
 
     return this.rawLines.map((line) => {
       if (commentRegexp.test(line)) {
-        return new Line({ content: line, type: "comment" });
+        return new Line({ content: line, type: 'comment' });
       } else if (deleted.test(line)) {
         return new Line({
           content: line,
           deletedLineNum: deletedLineNum++,
-          type: "deleted",
+          type: 'deleted',
         });
       } else if (inserted.test(line)) {
         return new Line({
           content: line,
           insertedLineNum: insertedLineNum++,
-          type: "inserted",
+          type: 'inserted',
         });
       } else {
         return new Line({
           content: line,
           deletedLineNum: deletedLineNum++,
           insertedLineNum: insertedLineNum++,
-          type: "unchanged",
+          type: 'unchanged',
         });
       }
     });
   }
 
   get previousPath() {
-    if (this._fileCompare.status !== "renamed") {
+    if (this._fileCompare.status !== 'renamed') {
       return;
     }
 

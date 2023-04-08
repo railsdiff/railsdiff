@@ -1,4 +1,4 @@
-import Patch from "./patch";
+import Patch from './patch';
 
 export default class Comparison {
   constructor(

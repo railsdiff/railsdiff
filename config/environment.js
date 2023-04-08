@@ -1,27 +1,27 @@
-"use strict";
+'use strict';
 
 function isTruthy(value) {
-  if (typeof value === "boolean") {
+  if (typeof value === 'boolean') {
     return value;
   }
 
-  if (typeof value === "string") {
-    return ["true", "1"].includes(value.toLowerCase());
+  if (typeof value === 'string') {
+    return ['true', '1'].includes(value.toLowerCase());
   }
 
   return false;
 }
 
 module.exports = function (environment) {
-  const isDevelopment = environment === "development";
-  const isProduction = environment === "production";
-  const isTest = environment === "test";
+  const isDevelopment = environment === 'development';
+  const isProduction = environment === 'production';
+  const isTest = environment === 'test';
 
   const {
-    GA_MEASUREMENT_ID = "",
-    REPOSITORY = "railsdiff/rails-new-output",
+    GA_MEASUREMENT_ID = '',
+    REPOSITORY = 'railsdiff/rails-new-output',
     MIRAGE_ENABLED = true,
-    MIRAGE_SCENARIO = "sample",
+    MIRAGE_SCENARIO = 'sample',
   } = {
     ...process.env,
   };
@@ -38,9 +38,9 @@ module.exports = function (environment) {
       },
     },
     environment,
-    locationType: "history",
-    modulePrefix: "rails-diff",
-    rootURL: "/",
+    locationType: 'history',
+    modulePrefix: 'rails-diff',
+    rootURL: '/',
   };
 
   if (GA_MEASUREMENT_ID) {
@@ -53,7 +53,7 @@ module.exports = function (environment) {
             sendHitTask: isProduction,
             trace: isDevelopment,
           },
-          name: "GoogleAnalytics",
+          name: 'GoogleAnalytics',
         },
       ],
     });
@@ -62,7 +62,7 @@ module.exports = function (environment) {
   if (isDevelopment) {
     Object.assign(ENV, {
       MIRAGE_SCENARIO,
-      "ember-cli-mirage": {
+      'ember-cli-mirage': {
         enabled: isTruthy(MIRAGE_ENABLED),
       },
     });
@@ -70,13 +70,13 @@ module.exports = function (environment) {
 
   if (isTest) {
     // Testem prefers this...
-    ENV.locationType = "none";
+    ENV.locationType = 'none';
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
-    ENV.APP.rootElement = "#ember-testing";
+    ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
   }
 

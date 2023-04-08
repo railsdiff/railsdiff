@@ -1,7 +1,7 @@
-import { Collection, Response } from "miragejs";
-import compare from "rails-diff/helpers/compare";
+import { Collection, Response } from 'miragejs';
+import compare from 'rails-diff/helpers/compare';
 
-import Server from "./app/server";
+import Server from './app/server';
 
 function paginate<T>(
   collection: Collection<T>,
@@ -14,13 +14,13 @@ function normalize(
   number: unknown,
   options: { default: number } = { default: 1 }
 ): number {
-  if (typeof number === "string") {
+  if (typeof number === 'string') {
     const parsedNumber = parseInt(number, 10);
     if (isNaN(parsedNumber) || parsedNumber < 1) {
       return options.default;
     }
     return parsedNumber;
-  } else if (typeof number === "number") {
+  } else if (typeof number === 'number') {
     if (number < 1) {
       return options.default;
     }
@@ -33,7 +33,7 @@ export default function (this: Server) {
   this.get(
     `https://api.github.com/repos/:ownerLogin/:repoName/tags`,
     (schema, request) => {
-      const owner = schema.findBy("owner", {
+      const owner = schema.findBy('owner', {
         login: request.params.ownerLogin,
       });
 
@@ -41,7 +41,7 @@ export default function (this: Server) {
         return new Response(
           404,
           {
-            "Content-Type": "text/plain",
+            'Content-Type': 'text/plain',
           },
           `Could not find owner with login ${request.params.ownerLogin}`
         );
@@ -55,7 +55,7 @@ export default function (this: Server) {
         return new Response(
           404,
           {
-            "Content-Type": "text/plain",
+            'Content-Type': 'text/plain',
           },
           `Could not find repo with name ${request.params.repoName}`
         );
@@ -88,8 +88,8 @@ export default function (this: Server) {
       return new Response(
         200,
         {
-          "Content-Type": "application/json; charset=utf-8",
-          Link: links.join(", "),
+          'Content-Type': 'application/json; charset=utf-8',
+          Link: links.join(', '),
         },
         tags
       );
@@ -97,14 +97,14 @@ export default function (this: Server) {
   );
 
   this.get(
-    "https://api.github.com/repos/:ownerLogin/:repoName/compare/:versions",
+    'https://api.github.com/repos/:ownerLogin/:repoName/compare/:versions',
     async (schema, request) => {
       const [sourceVersion, targetVersion] = request.params.versions.split(
-        "...",
+        '...',
         2
       );
 
-      const owner = schema.findBy("owner", {
+      const owner = schema.findBy('owner', {
         login: request.params.ownerLogin,
       });
 
@@ -112,7 +112,7 @@ export default function (this: Server) {
         return new Response(
           404,
           {
-            "Content-Type": "text/plain",
+            'Content-Type': 'text/plain',
           },
           `Could not find owner with login ${request.params.ownerLogin}`
         );
@@ -126,7 +126,7 @@ export default function (this: Server) {
         return new Response(
           404,
           {
-            "Content-Type": "text/plain",
+            'Content-Type': 'text/plain',
           },
           `Could not find repo with name ${request.params.repoName}`
         );
@@ -140,7 +140,7 @@ export default function (this: Server) {
         return new Response(
           404,
           {
-            "Content-Type": "text/plain",
+            'Content-Type': 'text/plain',
           },
           `Could not find source tag with name ${sourceVersion}`
         );
@@ -154,7 +154,7 @@ export default function (this: Server) {
         return new Response(
           404,
           {
-            "Content-Type": "text/plain",
+            'Content-Type': 'text/plain',
           },
           `Could not find target tag with name ${targetVersion}`
         );
@@ -162,7 +162,7 @@ export default function (this: Server) {
 
       return new Response(
         200,
-        { "Content-Type": "application/json; charset=utf-8" },
+        { 'Content-Type': 'application/json; charset=utf-8' },
         await compare(sourceTag.files, targetTag.files)
       );
     }

@@ -2,7 +2,7 @@
 // Project: https://github.com/tradegecko/semantic-dom-selectors
 // Definitions by: Dray Lacy <https://github.com/omghax>
 
-declare module "semantic-dom-selectors" {
+declare module 'semantic-dom-selectors' {
   export function findButton(labelText: string): Element | undefined;
   export function findButtons(labelText: string): Element[];
   export function findControl(labelText: string): Element | undefined;

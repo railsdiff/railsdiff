@@ -1,9 +1,9 @@
-import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import {
   setupApplicationTest as upstreamSetupApplicationTest,
   setupRenderingTest as upstreamSetupRenderingTest,
   setupTest as upstreamSetupTest,
-} from "ember-qunit";
+} from 'ember-qunit';
 
 export function setupApplicationTest(
   hooks: Parameters<typeof upstreamSetupApplicationTest>[0],

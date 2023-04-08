@@ -1,4 +1,4 @@
-import Version from "rails-diff/models/version";
+import Version from 'rails-diff/models/version';
 
 export default function compareVersions(a: Version, b: Version) {
   const aSegments = a.canonicalSegments;
@@ -22,10 +22,10 @@ export default function compareVersions(a: Version, b: Version) {
     if (aSegment === bSegment) {
       continue;
     }
-    if (typeof aSegment === "string" && typeof bSegment === "number") {
+    if (typeof aSegment === 'string' && typeof bSegment === 'number') {
       return -1;
     }
-    if (typeof bSegment === "string" && typeof aSegment === "number") {
+    if (typeof bSegment === 'string' && typeof aSegment === 'number') {
       return 1;
     }
     return aSegment < bSegment ? -1 : 1;

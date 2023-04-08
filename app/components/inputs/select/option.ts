@@ -1,4 +1,4 @@
-import Component from "@glimmer/component";
+import Component from '@glimmer/component';
 
 interface InputsSelectOptionSignature {
   Args: {
@@ -16,9 +16,9 @@ export default class InputsSelectOptionComponent extends Component<InputsSelectO
   }
 }
 
-declare module "@glint/environment-ember-loose/registry" {
+declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    "Inputs::Select::Option": typeof InputsSelectOptionComponent;
-    "inputs/select/option": typeof InputsSelectOptionComponent;
+    'Inputs::Select::Option': typeof InputsSelectOptionComponent;
+    'inputs/select/option': typeof InputsSelectOptionComponent;
   }
 }

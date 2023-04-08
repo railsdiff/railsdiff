@@ -1,4 +1,4 @@
-import Server from "../app/server";
+import Server from '../app/server';
 
 type Scenario = (server: Server) => void;
 

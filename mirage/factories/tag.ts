@@ -1,7 +1,7 @@
-import { faker } from "@faker-js/faker";
-import { Factory } from "miragejs";
+import { faker } from '@faker-js/faker';
+import { Factory } from 'miragejs';
 
-import { TagType } from "../models/tag";
+import { TagType } from '../models/tag';
 
 const TagFactory = Factory.extend<Partial<TagType>>({
   files: () => ({}),
