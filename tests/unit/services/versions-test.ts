@@ -8,9 +8,7 @@ function getVersionsService(
   context: TestContext,
   versions: Version[]
 ): ServiceRegistry["versions"] {
-  const service = context.owner.lookup(
-    "service:versions"
-  ) as ServiceRegistry["versions"];
+  const service = context.owner.lookup("service:versions");
   service.setVersions(versions);
   return service;
 }
