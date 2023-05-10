@@ -1,6 +1,4 @@
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -14,13 +12,13 @@ body {
   margin: 0;
 }
 
-body:before,
-body:after {
+body::before,
+body::after {
   content: " ";
   display: table;
 }
 
-body:after {
+body::after {
   clear: both;
 }
 
@@ -38,6 +36,7 @@ header a:visited {
   text-decoration: inherit;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 footer a,
 footer a:active,
 footer a:hover,
@@ -54,7 +53,7 @@ header h1 {
   display: inline-block;
   margin: 5px 5%;
   background-size: 34px auto;
-  background-image: url(/images/logo.png);
+  background-image: url("/images/logo.png");
   background-repeat: no-repeat;
   padding-left: 49px;
 }
@@ -91,7 +90,7 @@ header h1 {
 }
 
 .file-linked {
-  box-shadow: 0 0 0.5em rgb(0, 0, 165);
+  box-shadow: 0 0 0.5em rgb(0 0 165);
   box-sizing: border-box;
 }
 
@@ -116,7 +115,7 @@ header h1 {
 
 .line-code.comment {
   background-color: #fafafa;
-  color: rgba(0, 0, 0, 0.3);
+  color: rgb(0 0 0 / 30%);
 }
 
 .line-code.deleted {
@@ -130,7 +129,7 @@ header h1 {
 .line-num {
   border: solid #eee;
   border-width: 0 1px 0 0;
-  color: rgba(0, 0, 0, 0.3);
+  color: rgb(0 0 0 / 30%);
   min-width: 40px;
   padding-right: 0.4em;
   text-align: right;
@@ -138,7 +137,7 @@ header h1 {
   width: 1%;
 }
 
-.line-num:before {
+.line-num::before {
   content: attr(data-line-num);
 }
 
@@ -147,7 +146,7 @@ header h1 {
 }
 
 .line-num.deleted {
-  background-color: #ffdddd;
+  background-color: #fdd;
   border-color: #f1c0c0;
 }
 
@@ -165,14 +164,14 @@ header h1 {
   font-weight: bold;
 }
 
-.message:before {
+.message::before {
   content: attr(data-message-type);
 }
 
 .message.error {
-  border-color: rgb(237, 177, 177);
-  background-color: rgb(250, 222, 222);
-  color: rgb(176, 109, 109);
+  border-color: rgb(237 177 177);
+  background-color: rgb(250 222 222);
+  color: rgb(176 109 109);
 }
 
 .message * {
@@ -181,13 +180,14 @@ header h1 {
   color: initial;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .message a {
   text-decoration: none;
   float: right;
 }
 
 .message.error a {
-  color: rgb(176, 109, 109);
+  color: rgb(176 109 109);
 }
 
 .message span {
@@ -224,7 +224,7 @@ header h1 {
   color: #8c8;
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   body {
     font-size: 12px;
   }
@@ -243,7 +243,7 @@ header h1 {
   }
 
   .line-code {
-    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     width: 1%;
   }
 
@@ -257,16 +257,17 @@ header h1 {
     background-color: #1e1e1e;
     color: #d4d4d4;
   }
+
   header {
     background-color: #333;
     border-bottom-color: #000;
   }
 
   header a,
+  footer a,
   header a:active,
   header a:hover,
-  header a:visited
-  footer a,
+  header a:visited,
   footer a:active,
   footer a:hover,
   footer a:visited {

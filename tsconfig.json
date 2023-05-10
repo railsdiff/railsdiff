@@ -34,11 +34,12 @@
   "include": [
     ".eslintrc.js",
     ".prettierrc.js",
+    ".stylelintrc.js",
     ".template-lintrc.js",
     "app/**/*",
     "config/**/*",
-    "mirage/**/*",
     "ember-cli-build.js",
+    "mirage/**/*",
     "prettier.config.js",
     "testem.js",
     "tests/**/*",
