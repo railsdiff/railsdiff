@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/railsdiff/railsdiff/compare/v1.7.0...v1.8.0) (2023-05-10)
+
+
+### Features
+
+* bump ember from 4.11.0 to 4.12.0 ([55e764e](https://github.com/railsdiff/railsdiff/commit/55e764e387511076b00e0ddc521dc8ae078d68ec))
+
 # [1.7.0](https://github.com/railsdiff/railsdiff/compare/v1.6.0...v1.7.0) (2022-08-21)
 
 
