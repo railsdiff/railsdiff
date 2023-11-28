@@ -42,7 +42,7 @@
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@glint/core": "^1.0.2",
-    "@glint/environment-ember-loose": "^1.0.0-beta.4",
+    "@glint/environment-ember-loose": "^1.0.2",
     "@glint/template": "^1.0.0-beta.4",
     "@types/diff": "^5.0.2",
     "@types/ember": "^4.0.1",
